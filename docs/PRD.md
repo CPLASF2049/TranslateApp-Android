@@ -107,4 +107,4 @@ Android平台翻译App的业务目标是提供高质量的翻译服务，提升�
 ## 8. 系统约束
 
 - 开发语言：Java
-- 最低Android版本：Android 5.0 (API Level 21)
+- 最低Android版本：Android 11.0 
