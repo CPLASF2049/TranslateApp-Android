@@ -108,4 +108,8 @@ Android平台翻译App的业务目标是提供高质量的翻译服务，提升�
 ## 8. 系统约束
 
 - 开发语言：Java
-- 最低Android版本：Android 11.0 
+- 最低Android版本：Android 11.0
+
+## 9. 用例图
+
+- ![翻译app用例图]("C:\Users\Meowstic\Pictures\QQ图片20240422202805.png")
