@@ -112,15 +112,15 @@ Android平台翻译App的业务目标是提供高质量的翻译服务，提升�
 
 ## 9. 用例图
 
-- ![翻译app用例图](https://github.com/CPLASF2049/TranslateApp-Android/blob/main/pics/Use%20Case%20Diagram.png)
+- ![翻译app用例图]<img src="https://github.com/CPLASF2049/TranslateApp-Android/blob/main/pics/Use%20Case%20Diagram.png" width="400">
 
 ## 10. 原型
 
-- ![主界面](https://github.com/CPLASF2049/TranslateApp-Android/blob/main/pics/Home%20Page.png)
-- ![文本翻译](https://github.com/CPLASF2049/TranslateApp-Android/blob/main/pics/Text%20Translation.png)
-- ![图片翻译](https://github.com/CPLASF2049/TranslateApp-Android/blob/main/pics/Picture%20translation.png)
-- ![语音翻译](https://github.com/CPLASF2049/TranslateApp-Android/blob/main/pics/Speech%20Translation.png)
-- ![翻译历史](https://github.com/CPLASF2049/TranslateApp-Android/blob/main/pics/Historical%20translation.png)
-- ![我的](https://github.com/CPLASF2049/TranslateApp-Android/blob/main/pics/My%20(It's%20so%20hard%20to%20translate%20that%20I%20have%20to%20use%20this%20abstract%20name).png)
-- ![设置](https://github.com/CPLASF2049/TranslateApp-Android/blob/main/pics/Settings.png)
+- <img src="https://github.com/CPLASF2049/TranslateApp-Android/raw/main/pics/Home%20Page.png" width="400">
+- <img src="https://github.com/CPLASF2049/TranslateApp-Android/raw/main/pics/Text%20Translation.png" width="400">
+- <img src="https://github.com/CPLASF2049/TranslateApp-Android/raw/main/pics/Picture%20translation.png" width="400"> - <img src="https://github.com/CPLASF2049/TranslateApp-Android/raw/main/pics/Speech%20Translation.png" width="400">
+- <img src="https://github.com/CPLASF2049/TranslateApp-Android/raw/main/pics/Historical%20translation.png" width="400">- <img src="https://github.com/CPLASF2049/TranslateApp-Android/raw/main/pics/My%20(It's%20so%20hard%20to%20translate%20that%20I%20have%20to%20use%20this%20abstract%20name).png" width="400">
+- <img src="https://github.com/CPLASF2049/TranslateApp-Android/raw/main/pics/Settings.png" width="400">
+
+ 
   
