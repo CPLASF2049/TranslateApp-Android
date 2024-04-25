@@ -112,10 +112,15 @@ Android平台翻译App的业务目标是提供高质量的翻译服务，提升�
 
 ## 9. 用例图
 
-- ![翻译app用例图](https://github.com/CPLASF2049/TranslateApp-Android/blob/main/pics/%E7%94%A8%E4%BE%8B%E5%9B%BE.png)
+- ![翻译app用例图](https://github.com/CPLASF2049/TranslateApp-Android/blob/main/pics/Use%20Case%20Diagram.png)
 
 ## 10. 原型
 
-- ![主界面](https://github.com/CPLASF2049/TranslateApp-Android/blob/main/pics/MainMenu.png)
-- ![文本翻译](https://github.com/CPLASF2049/TranslateApp-Android/blob/main/pics/TextTranslation.png)
+- ![主界面](https://github.com/CPLASF2049/TranslateApp-Android/blob/main/pics/Home%20Page.png)
+- ![文本翻译](https://github.com/CPLASF2049/TranslateApp-Android/blob/main/pics/Text%20Translation.png)
+- ![图片翻译](https://github.com/CPLASF2049/TranslateApp-Android/blob/main/pics/Picture%20translation.png)
+- ![语音翻译](https://github.com/CPLASF2049/TranslateApp-Android/blob/main/pics/Speech%20Translation.png)
 - ![翻译历史](https://github.com/CPLASF2049/TranslateApp-Android/blob/main/pics/Historical%20translation.png)
+- ![我的](https://github.com/CPLASF2049/TranslateApp-Android/blob/main/pics/My%20(It's%20so%20hard%20to%20translate%20that%20I%20have%20to%20use%20this%20abstract%20name).png)
+- ![设置](https://github.com/CPLASF2049/TranslateApp-Android/blob/main/pics/Settings.png)
+  
