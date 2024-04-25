@@ -118,4 +118,4 @@ Android平台翻译App的业务目标是提供高质量的翻译服务，提升�
 
 - ![主界面](https://github.com/CPLASF2049/TranslateApp-Android/blob/main/pics/MainMenu.png)
 - ![文本翻译](https://github.com/CPLASF2049/TranslateApp-Android/blob/main/pics/TextTranslation.png)
-- ![翻译历史](https://github.com/CPLASF2049/TranslateApp-Android/blob/main/pics/TranslationHistory.png)
+- ![翻译历史](https://github.com/CPLASF2049/TranslateApp-Android/blob/main/pics/Historical%20translation.png)
