@@ -39,35 +39,41 @@
 ## 三、组件接口设计
 
 ### 翻译管理组件
+![](../pics/interface1.png)
 - **接口**：ITranslationManager
 - **方法**：
   - `translateText(String inputText, String languagePair)`: 接受文本和语言对，返回翻译结果。
   - `translateImage(File imageFile)`: 接受图像文件，返回识别并翻译后的文本。
 
 ### 语音处理组件
+![](../pics/interface2.png)
 - **接口**：IVoiceProcessor
 - **方法**：
   - `recognizeSpeech(File audioFile)`: 将语音文件转为文本。
   - `synthesizeSpeech(String text, String language)`: 将文本转换为语音。
 
 ### 图像处理组件
+![](../pics/interface3.png)
 - **接口**：IImageProcessor
 - **方法**：
   - `recognizeText(File imageFile)`: 从图像中识别文字。
 
 ### 用户界面组件
+![](../pics/interface4.png)
 - **接口**：IUserInterface
 - **方法**：
   - `displayTranslation(String translation)`: 展示翻译结果。
   - `getUserInput()`: 获取用户输入。
 
 ### 数据访问组件
+![](../pics/interface5.png)
 - **接口**：IDataAccess
 - **方法**：
   - `saveTranslationRecord(TranslationRecord record)`: 保存翻译记录到数据库。
   - `getTranslationHistory()`: 获取翻译历史记录。
 
 ### 网络通信组件
+![](../pics/interface6.png)
 - **接口**：INetworkManager
 - **方法**：
   - `sendRequest(RequestData requestData)`: 发送网络请求。
