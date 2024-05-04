@@ -81,6 +81,10 @@
 
 ## 四、系统流程分析
 ![](../pics/Example.png)
+![](../pics/Text%20Sequence%20Diagram.png)
+![](../pics/Example.png)
+![](../pics/Example.png)
+![](../pics/Example.png)
 ### 用户发起翻译请求流程
 
 1. **用户输入**：用户在界面上输入文本或通过语音输入/图像上传。
