@@ -110,7 +110,7 @@ Android平台翻译App的业务目标是提供高质量的翻译服务，提升�
 ## 10. 原型
 <div align = "center">
 - <img src="https://github.com/CPLASF2049/TranslateApp-Android/raw/main/pics/Text%20Translation.png" width="18%" />
-- <img src="https://github.com/CPLASF2049/TranslateApp-Android/raw/main/pics/Picture%20translation.png" width="18%" />
+- <img src="https://github.com/CPLASF2049/TranslateApp-Android/raw/main/pics/Image%20translation.png" width="18%" />
 - <img src="https://github.com/CPLASF2049/TranslateApp-Android/raw/main/pics/Speech%20Translation.png" width="18%" />
 
 </div>
