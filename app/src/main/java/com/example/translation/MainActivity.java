@@ -78,9 +78,5 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // 播放翻译结果语音
-    private void speakTranslation(String text) {
-        // 在这里实现语音合成并播放逻辑
-        Toast.makeText(this, "Speak translation: " + text, Toast.LENGTH_SHORT).show();
-    }
+
 }
