@@ -1,0 +1,7 @@
+<?xml version ="1.0" encoding ="utf-8"?><!--  Learn More about how to use App Actions: https://developer.android.com/guide/actions/index.html -->
+<paths>
+    <external_path
+        name="my_image"
+        path="." />
+
+</paths>
