@@ -1,30 +1,254 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent">
 
-    <!--TextureView: 把摄像头捕获到的数据显示到界面上-->
-    <TextureView
-        android:id="@+id/textureView"
+    <!-- 导航框 -->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
+        android:layout_height="wrap_content"
+        android:background="#ededed"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:gravity="center_vertical|center_horizontal">
 
-    <Button
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.532"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.948"
-        android:text="TAKE"
-        android:onClick="Capture"
-        ></Button>
+        <!-- 左侧标题 -->
+        <TextView
+            android:layout_width="351dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="欢迎使用 InnoTranslate"
+            android:typeface="serif"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <!-- 右侧更多选项 -->
+        <ImageView
+            android:id="@+id/more_options_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:src="@drawable/ic_more_vert_black_24dp" />
+    </LinearLayout>
 
+    <!-- 分割线 -->
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/navigation_bar"
+        android:background="#FFFFFF" />
+
+    <!-- 翻译搜索框 -->
+
+    <!-- 底部按钮 -->
+
+
+    <LinearLayout
+        android:id="@+id/search_bar"
+        android:layout_width="374dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/divider"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="-282dp"
+        android:layout_marginEnd="21dp"
+        android:background="#c7c7c7"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <!-- 搜索图标 -->
+        <ImageView
+            android:id="@+id/search_icon"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:src="@drawable/ic_search_black_24dp" />
+
+        <!-- 搜索按钮 -->
+        <TextView
+            android:id="@+id/language_selector"
+            android:layout_width="5dp"
+            android:layout_height="22dp"
+
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+        <!-- 翻译输入框 -->
+        <EditText
+            android:id="@+id/search_input"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:typeface="serif"
+            android:textSize="16sp"
+            android:hint="              请输入要翻译的内容"
+            android:textColorHint="d4d4d4" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/navigation_bar"
+        android:layout_width="283dp"
+        android:layout_height="157dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="268dp"
+        android:layout_marginEnd="62dp"
+        android:background="000000"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <!-- 选择翻译前的语言的下拉框 -->
+        <Spinner
+            android:id="@+id/text_language_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center_horizontal"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/spinner_background" />
+
+        <!-- 中间文本视图 -->
+
+        <!-- 选择翻译后的语言的下拉框 -->
+
+        <!-- 右侧更多选项 -->
+
+        <!-- 中间图标 -->
+        <ImageView
+            android:id="@+id/translate_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="24dp"
+            android:src="@drawable/translate_icon" />
+
+        <Spinner
+            android:id="@+id/translated_language_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/spinner_background" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#EDEDED"
+        android:orientation="horizontal"
+        android:paddingVertical="8dp">
+
+        <!-- 首页按钮 -->
+        <LinearLayout
+            android:id="@+id/home_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_home_black_24dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="首页"
+                android:textColor="#000000"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <!-- 语音按钮 -->
+        <LinearLayout
+            android:id="@+id/voice_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_mic_black_24dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="语音"
+                android:textColor="#000000"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <!-- 拍照按钮 -->
+        <LinearLayout
+            android:id="@+id/camera_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_camera_alt_black_24dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="拍照"
+                android:textColor="#000000"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <!-- 历史按钮 -->
+        <LinearLayout
+            android:id="@+id/history_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_history_black_24dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="历史"
+                android:textColor="#000000"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <!-- 我的按钮 -->
+        <LinearLayout
+            android:id="@+id/my_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_person_black_24dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="我的"
+                android:textColor="#000000"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>
