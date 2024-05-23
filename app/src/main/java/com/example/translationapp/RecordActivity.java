@@ -100,6 +100,8 @@ public class RecordActivity extends AppCompatActivity{
                     textViewRecordTime.setText(time[0]+":"+time[1]+":"+time[2]);
 
                     break;
+
+
             }
         }
     };
@@ -108,7 +110,164 @@ public class RecordActivity extends AppCompatActivity{
 
         @Override
         public void onClick(View view){
+            switch(view.getId()){
+                case R.id.buttonRecord :
+                    if(isRecording == 0){
+                        if(FilePath != null){
+                            File oldFile = new File(FilePath);
+                            oldFile.delete();
+                        }
 
+                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+                        Date curDate = new Date(System.currentTimeMillis());
+                        String str = simpleDateFormat.format(curDate);
+
+                        str = str + "record.amr";
+                        File dir = new File("/sdcard/notes/");
+                        File file = new File("/sdcard/notes/", str);
+                        if(!dir.exists()){
+                            dir.mkdir();
+                        }
+                        else{
+                            if(file.exists()){
+                                file.delete();
+                            }
+                        }
+
+                        FilePath = dir.getPath() + "/" + str;
+                        timer = new Timer();
+
+                        imageView.setClickable(false);
+                        textViewRecordTime.setText("00:00:00");
+                        isRecording = 1;
+                        buttonRecord.setBackgroundResource(R.drawable.tabbar_record_stop);
+
+                        mediaRecorder = new MediaRecorder();
+                        mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+                        mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+                        mediaRecorder.setOutputFile(FilePath);
+                        mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+
+                        try{
+                            mediaRecorder.prepare();
+                        } catch (IllegalStateException e){
+                            e.printStackTrace();
+                        } catch (IOException e){
+                            e.printStackTrace();
+                        }
+
+                        mediaRecorder.start();
+                        timer.schedule(new TimerTask() {
+                            @Override
+                            public void run() {
+                                Message message = new Message();
+                                message.what = 1;
+                                handler.sendMessage(message);
+                            }
+                        },1000, 1000);
+
+                        animationDrawableLeft.start();
+                        animationDrawableRight.start();
+                    }
+                    else{
+                        isRecording = 0;
+                        buttonRecord.setBackgroundResource(R.drawable.tabbar_record_start);
+                        mediaRecorder.stop();
+                        timer.cancel();
+                        timer = null;
+
+                        mediaRecorder.release();
+                        mediaRecorder = null;
+
+                        imageView.setClickable(true);
+                        animationDrawableLeft.stop();
+                        animationDrawableRight.stop();
+                        Toast.makeText(RecordActivity.this, "单击麦克风图标试听，再次点击结束试听", Toast.LENGTH_LONG).show();
+                    }
+                    break;
+
+                case R.id.iv_microphone :
+                    if(FilePath == null){
+                        Toast.makeText(RecordActivity.this, "请先录音", Toast.LENGTH_LONG).show();
+                    }
+                    else {
+                        if(isPlaying == 0){
+                            isPlaying = 1;
+                            mediaPlayer = new MediaPlayer();
+                            textViewRecordTime.setText("00:00:00");
+                            timer = new Timer();
+                            mediaPlayer .setOnCompletionListener(new MediaCompletion());
+                            try{
+                                mediaPlayer.setDataSource(FilePath);
+                                mediaPlayer.prepare();
+                                mediaPlayer.start();
+                            } catch (IllegalArgumentException e) {
+                                e.printStackTrace();
+                            } catch (SecurityException e) {
+                                e.printStackTrace();
+                            } catch (IllegalStateException e) {
+                                e.printStackTrace();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    Message message = new Message();
+                                    message.what = 1;
+                                    handler.sendMessage(message);
+                                }
+                            }, 1000, 1000);
+
+                            animationDrawableLeft.start();
+                            animationDrawableRight.start();
+                        }
+                        else {
+                            isPlaying = 0;
+                            mediaPlayer.stop();
+                            mediaPlayer.release();
+                            mediaPlayer = null;
+                            timer.cancel();
+                            timer = null;
+
+                            animationDrawableLeft.stop();
+                            animationDrawableRight.stop();
+                        }
+                    }
+                    break;
+
+                case R.id.bt_save :
+                    Intent intent = getIntent();
+                    Bundle bundle = new Bundle();
+                    bundle.putString("Audio", FilePath);
+                    intent.putExtras(bundle);
+                    setResult(RESULT_OK, intent);
+
+                    RecordActivity.this.finish();
+                    break;
+
+                case R.id.bt_back :
+                    if(FilePath != null){
+                        File oldFile =new File(FilePath);
+                        oldFile.delete();
+                    }
+                    RecordActivity.this.finish();
+                    break;
+            }
+        }
+    }
+
+    class MediaCompletion implements MediaPlayer.OnCompletionListener {
+
+        @Override
+        public void onCompletion(MediaPlayer mp) {
+            timer.cancel();
+            timer = null;
+            isPlaying = 0;
+            animationDrawableLeft.stop();
+            animationDrawableRight.stop();
+            Toast.makeText(RecordActivity.this, "播放完毕", Toast.LENGTH_LONG).show();
+            textViewRecordTime.setText("00:00:00");
         }
     }
 }
