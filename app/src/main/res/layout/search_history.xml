@@ -5,11 +5,6 @@
     android:layout_height="match_parent"
     android:background="">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
         <!-- 导航框 -->
         <LinearLayout
             android:layout_width="match_parent"
@@ -19,27 +14,32 @@
             android:padding="16dp"
             android:gravity="center_vertical|center_horizontal">
 
-            <!-- 左侧标题 -->
-            <TextView
-                android:layout_width="351dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/greeting_message"
-                android:textColor="#000000"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:typeface="serif" />
+    <!-- 第一个布局文件的内容 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#ededed"
+        android:padding="16dp">
 
-
-        </LinearLayout>
+        <!-- 导航栏的标题 -->
 
         <!-- 分割线 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:text="    Translation History"
+            android:textColor="#000000"
+            android:textSize="28sp"
+            android:lineSpacingMultiplier="1.2"
+            android:textStyle="bold" />
+
         <View
             android:id="@+id/divider"
             android:layout_width="match_parent"
-            android:layout_height="3dp"
+            android:layout_height="2dp"
             android:background="#808080" />
-
     </LinearLayout>
 
 
@@ -52,7 +52,6 @@
         android:gravity="center"
         android:textSize="24sp"
         android:padding="16dp"
-        android:layout_below="@id/顶部导航栏ID"
         android:background=""
         android:textColor="#FFFFFF" />
 
