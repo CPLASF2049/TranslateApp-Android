@@ -13,7 +13,7 @@
             android:orientation="horizontal"
             android:padding="16dp"
             android:gravity="center_vertical|center_horizontal">
-
+    </LinearLayout>
     <!-- 第一个布局文件的内容 -->
     <LinearLayout
         android:layout_width="match_parent"
