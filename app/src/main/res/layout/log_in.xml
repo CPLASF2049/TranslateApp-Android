@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center_horizontal">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo3"
+        android:layout_marginTop="80dp" />
+
+    <EditText
+        android:id="@+id/usernameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="请输入用户名"
+        android:textColorHint="@color/your_hint_color"
+        android:inputType="text"
+        android:layout_marginTop="30dp"
+        android:padding="8dp" />
+
+    <EditText
+        android:id="@+id/passwordEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="请输入密码"
+        android:inputType="textPassword"
+        android:layout_marginTop="20dp"
+        android:padding="8dp" />
+
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="登录"
+        android:layout_marginTop="30dp"
+        android:padding="8dp" />
+
+    <TextView
+        android:id="@+id/forgotPasswordTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="忘记密码？点击此处找回密码"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp"
+        android:textAlignment="textEnd"
+        android:padding="10dp"
+        android:textColor="#87CEFA"
+    android:clickable="true"
+    android:focusable="true"
+    android:onClick="onForgotPasswordClick" />
+
+    <TextView
+        android:id="@+id/registerTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="没有账号？点击此处注册账号"
+        android:textStyle="bold"
+        android:layout_marginTop="12dp"
+        android:textAlignment="textEnd"
+        android:padding="10dp"
+        android:textColor="#87CEFA"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="onRegisterClick" />
+
+</LinearLayout>
