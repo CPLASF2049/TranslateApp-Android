@@ -21,7 +21,8 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Music02"
+rootProject.name = "translationapp"
 include(":app")
+include(":tesseract4android")
 
  
