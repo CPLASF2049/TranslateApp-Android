@@ -34,17 +34,9 @@
             <View
                 android:id="@+id/divider"
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
+                android:layout_height="1dp"
                 android:background="#808080" />
         </LinearLayout>
-
-        <!-- 分割线 -->
-        <View
-            android:id="@+id/divider"
-            android:layout_width="match_parent"
-            android:layout_height="3dp"
-            android:background="#808080" />
-
     </LinearLayout>
 
     <!-- 语音输入区域 -->
@@ -116,13 +108,14 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_mic_black_24dp" />
+                    android:src="@drawable/ic_mic_blue_24dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="语音"
-                    android:textColor="#000000"
+                    android:textColor="#0044cc"
+                    android:textStyle="bold"
                     android:textSize="12sp" />
             </LinearLayout>
 
@@ -199,8 +192,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="0dp"
-        android:layout_marginBottom="124dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginBottom="99dp"
         android:orientation="vertical"
         android:padding="16dp">
 
@@ -218,8 +211,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="8dp"
-            android:text="请按住说话"
+            android:layout_marginTop="20dp"
+            android:text="按住按钮 开始说话"
             android:textColor="#FF000000"
             android:textSize="20sp"
             android:textStyle="bold" />

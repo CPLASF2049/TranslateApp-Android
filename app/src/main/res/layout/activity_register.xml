@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center_horizontal">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="您好，\n       欢迎使用InnoTranslate！"
+        android:layout_marginTop="30dp"
+        android:textSize="25sp"
+        android:textColor="#000000"
+        android:textStyle="bold" />
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo3"
+        android:layout_marginTop="50dp" />
+
+    <EditText
+        android:id="@+id/usernameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="请输入用户名"
+        android:padding="10dp"
+        android:background="@drawable/custom_edittext_border"
+        android:layout_marginTop="20dp"/>
+
+    <EditText
+        android:id="@+id/passwordEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="请输入密码"
+        android:inputType="textPassword"
+        android:padding="10dp"
+        android:background="@drawable/custom_edittext_border"
+        android:layout_below="@id/usernameEditText"
+        android:layout_marginTop="20dp"/>
+
+    <EditText
+        android:id="@+id/confirmPasswordEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="请再次输入密码"
+        android:inputType="textPassword"
+        android:padding="10dp"
+        android:background="@drawable/custom_edittext_border"
+        android:layout_below="@id/passwordEditText"
+        android:layout_marginTop="20dp"/>
+
+    <Button
+        android:id="@+id/registerButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="注册账号"
+        android:background="@drawable/custom_button_background"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:padding="11dp"
+        android:textStyle="bold"
+        android:layout_below="@id/confirmPasswordEditText"
+        android:layout_marginTop="50dp"/>
+
+
+</LinearLayout>

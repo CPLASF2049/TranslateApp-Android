@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#0044cc" /> <!-- 这里设置背景为深蓝色 -->
+    <corners android:radius="10dp" />  <!-- 这里设置圆角边框的弧度 -->
+</shape>
