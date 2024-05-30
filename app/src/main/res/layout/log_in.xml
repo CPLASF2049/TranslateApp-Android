@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center_horizontal">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="您好，\n       欢迎使用InnoTranslate！"
+        android:layout_marginTop="30dp"
+        android:textSize="25sp"
+        android:textColor="#000000"
+        android:textStyle="bold" />
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo3"
+        android:layout_marginTop="50dp" />
+
+    <EditText
+        android:id="@+id/usernameEditText"
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
+        android:hint=" 请输入用户名"
+        android:textColorHint="#d3d3d3"
+        android:inputType="text"
+        android:layout_marginTop="40dp"
+        android:padding="9dp"
+        android:background="@drawable/custom_edittext_border" />
+
+    <EditText
+        android:id="@+id/passwordEditText"
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
+        android:hint=" 请输入密码"
+        android:textColorHint="#d3d3d3"
+        android:inputType="textPassword"
+        android:layout_marginTop="20dp"
+        android:padding="9dp"
+        android:background="@drawable/custom_edittext_border" />
+
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:text="登录"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginTop="50dp"
+        android:padding="11dp"
+        android:background="@drawable/custom_button_background"
+        android:textColor="#FFFFFF" />
+
+
+    <TextView
+        android:id="@+id/forgotPasswordTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="忘记密码？点击此处找回密码"
+        android:textStyle="bold"
+        android:layout_marginTop="50dp"
+        android:textAlignment="textEnd"
+        android:padding="10dp"
+        android:textSize="14sp"
+        android:textColor="#87CEFA"
+    android:clickable="true"
+    android:focusable="true"
+    android:onClick="onForgotPasswordClick" />
+
+    <TextView
+        android:id="@+id/registerTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="没有账号？点击此处注册账号"
+        android:textStyle="bold"
+        android:layout_marginTop="0dp"
+        android:textSize="14sp"
+        android:textAlignment="textEnd"
+        android:padding="10dp"
+        android:textColor="#87CEFA"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="onRegisterClick" />
+
+</LinearLayout>
