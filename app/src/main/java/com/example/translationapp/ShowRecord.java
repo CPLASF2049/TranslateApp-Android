@@ -69,8 +69,8 @@ public class ShowRecord extends AppCompatActivity{
 //        ad_left = (AnimationDrawable)iv_record_wave_left.getBackground();
         iv_record_wave_left.setImageResource(R.drawable.record_wave_left);
         iv_record_wave_right.setImageResource(R.drawable.record_wave_right);
-        animationDrawableLeft=((AnimationDrawable) iv_record_wave_left.getDrawable());
-        animationDrawableRight=((AnimationDrawable) iv_record_wave_right.getDrawable());
+        ad_left=((AnimationDrawable) iv_record_wave_left.getDrawable());
+        ad_right=((AnimationDrawable) iv_record_wave_right.getDrawable());
         tv_recordTime = (TextView)findViewById(R.id.tv_recordTime);
     }
     final Handler handler = new Handler(){
