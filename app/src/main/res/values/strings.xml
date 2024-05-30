@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">Translation</string>
     <string name="greeting_message">Hi, InnoTranslate!</string>
+    <string name="btn_gallery">Gallery</string>
+    <string name="btn_capture">Capture</string>
 </resources>
