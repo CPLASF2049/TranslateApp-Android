@@ -61,11 +61,12 @@
         android:id="@+id/btn_submit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="44dp"
         android:background="@drawable/button_background"
-    android:text="提交"
-    android:textColor="@color/white"
-    app:layout_constraintTop_toBottomOf="@id/til_contact" />
+        android:text="提交"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/til_contact"
+        tools:layout_editor_absoluteX="16dp" />
 
     <!-- 其他视图和约束 -->
 
