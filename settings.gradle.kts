@@ -23,6 +23,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "translationapp"
 include(":app")
-include(":tesseract4android")
 
  
