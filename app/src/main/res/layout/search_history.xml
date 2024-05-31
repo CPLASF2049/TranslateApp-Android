@@ -42,48 +42,29 @@
             android:background="#808080" />
     </LinearLayout>
 
-
-    <!-- 标题栏 -->
-    <TextView
-        android:id="@+id/txt_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="搜索历史"
-        android:gravity="center"
-        android:textSize="24sp"
-        android:padding="16dp"
-        android:background=""
-        android:textColor="#FFFFFF" />
-
     <!-- 搜索历史列表 -->
     <ListView
         android:id="@+id/list_search_history"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/txt_title"
-        android:divider="@android:color/darker_gray"
-        android:dividerHeight="1dp" />
+        android:layout_height="468dp"
+        android:layout_marginTop="63dp"
+        android:divider="@color/listDividerColor"
+        android:dividerHeight="1dp"
+        android:padding="16dp" />
 
     <!-- 清除历史按钮 -->
     <Button
         android:id="@+id/btn_clear_history"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
         android:text="清除历史记录"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="50dp"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:background="@drawable/button_background"
         android:layout_below="@id/list_search_history" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="0dp"
-        android:layout_marginBottom="-8dp"
-        android:background="#ededed"
-        android:orientation="horizontal"
-        android:paddingVertical="8dp">
 
         <!-- 其他底部按钮可以在这里添加，与主页布局类似 -->
         <LinearLayout
@@ -206,6 +187,5 @@
                     android:textSize="12sp" />
             </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
 
 </RelativeLayout>
