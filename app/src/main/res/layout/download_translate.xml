@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <!-- 标题栏 -->
+    <TextView
+        android:id="@+id/txt_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="离线翻译"
+        android:textColor="#000000"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <!-- 源语言下拉选择器 -->
+    <Spinner
+        android:id="@+id/spinner_source_language"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:padding="8dp"
+        app:layout_constraintTop_toBottomOf="@id/txt_title" />
+
+    <!-- 目标语言下拉选择器 -->
+    <Spinner
+        android:id="@+id/spinner_target_language"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:padding="8dp"
+        app:layout_constraintTop_toBottomOf="@id/spinner_source_language" />
+
+    <!-- 输入框 -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/spinner_target_language">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_input"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:hint="  输入文本"
+            android:minLines="1"
+            android:background="@drawable/custom_edittext_border"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- 翻译结果展示 -->
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toBottomOf="@id/til_input"
+        app:layout_constraintBottom_toTopOf="@id/btn_translate">
+
+        <TextView
+            android:id="@+id/txt_translation_result"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:textSize="18sp"
+            android:background="@drawable/custom_edittext_border"
+            android:padding="10dp" />
+    </ScrollView>
+
+    <!-- 翻译按钮 -->
+    <Button
+        android:id="@+id/btn_translate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="16dp"
+        android:background="@drawable/button_background"
+        android:text="翻译"
+        android:padding="10dp"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <!-- 其他视图和约束 -->
+
+</androidx.constraintlayout.widget.ConstraintLayout>
