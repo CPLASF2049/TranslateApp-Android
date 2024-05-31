@@ -1,5 +1,0 @@
-include ':tesseract4android'
-
-include ':eyes-two'
-include ':tess-two-test'
-include ':tess-two'
