@@ -3,4 +3,6 @@
     <string name="greeting_message">Hi, InnoTranslate!</string>
     <string name="btn_gallery">Gallery</string>
     <string name="btn_capture">Capture</string>
+    <string name="change_avatar">更改头像</string>
+    <string name="voice_input_button">开始语音输入</string>
 </resources>

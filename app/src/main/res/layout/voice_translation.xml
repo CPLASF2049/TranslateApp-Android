@@ -39,6 +39,7 @@
         </LinearLayout>
     </LinearLayout>
 
+
     <!-- 语音输入区域 -->
     <androidx.cardview.widget.CardView
         android:id="@+id/voice_input_card"
@@ -49,8 +50,47 @@
         app:cardCornerRadius="8dp"
         app:cardElevation="4dp">
 
-    </androidx.cardview.widget.CardView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
 
+            <!-- 语音输入按钮 -->
+            <ImageView
+                android:id="@+id/voice_input_button"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/voice_input_button"
+                android:contentDescription="@string/voice_input_button" />
+
+            <!-- 语音输入提示文本 -->
+            <TextView
+                android:id="@+id/voice_input_hint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:text="按住按钮 开始说话"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <!-- 翻译结果展示区域 -->
+            <TextView
+                android:id="@+id/txt_translation_result"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:layout_marginTop="20dp"
+                android:text="翻译结果会显示在这里"
+                android:textSize="18sp"
+                android:background="@drawable/translation_result_background" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
     <!-- 底部导航栏 -->
 
     <LinearLayout
@@ -187,36 +227,4 @@
         </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="3dp"
-        android:layout_marginBottom="99dp"
-        android:orientation="vertical"
-        android:padding="16dp">
-
-        <!-- 语音输入按钮 -->
-        <ImageView
-            android:id="@+id/voice_input_button"
-            android:layout_width="72dp"
-            android:layout_height="72dp"
-            android:layout_gravity="center_horizontal"
-            android:background="@drawable/voice_input_button" />
-
-        <!-- 语音输入提示文本 -->
-        <TextView
-            android:id="@+id/voice_input_hint"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
-            android:text="按住按钮 开始说话"
-            android:textColor="#FF000000"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-
-    </LinearLayout>
 </RelativeLayout>

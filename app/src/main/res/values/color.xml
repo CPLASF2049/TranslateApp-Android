@@ -3,4 +3,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="your_hint_color">#dcffff</color>
+    <color name="dividerColor">#1F000000</color>
+    <color name="listDividerColor">#E0E0E0</color>
+    <color name="buttonTextColor">#000000</color>
 </resources>
