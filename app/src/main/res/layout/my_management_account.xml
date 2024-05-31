@@ -155,7 +155,7 @@
                 android:id="@+id/privacy_settings_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="隐私设置"
+                android:text="账户设置"
                 android:drawableLeft="@drawable/ic_personalset"
                 android:drawableRight="@drawable/ic_to"
                 android:drawablePadding="16dp" />
