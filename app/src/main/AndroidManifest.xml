@@ -4,15 +4,12 @@
 
     <uses-feature
         android:name="android.hardware.camera"
-        android:required="false">
+        android:required="false" />
 
-    </uses-feature>
-    
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
-    </uses-permission>
 
     <application
         android:allowBackup="true"
@@ -27,16 +24,11 @@
 
         <activity
             android:name=".RecordActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true" />
 
         <activity
             android:name=".ShowRecord"
-            android:exported="true"/>
-
-
-        </activity>
+            android:exported="true" />
 
         <activity
             android:name=".MainActivity"
