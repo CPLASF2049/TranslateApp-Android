@@ -38,7 +38,7 @@ public class ShowRecord extends AppCompatActivity{
         //设置为全屏模式
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        ActionBar actionBar=getSupportActionBar();
+        ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
         Button bt_back = (Button)findViewById(R.id.bt_back);
 

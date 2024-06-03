@@ -9,7 +9,7 @@ public class Translation {
     String salt = "123456"; // 随机数
     String sign = "25a51c8844e4bc77929a307511480008"; // 根据文档计算得出的签名
 
-        translationManager.translate("Hello, how are you", "en", "zh", "20240531002066446", "123456", "25a51c8844e4bc77929a307511480008", new com.example.translationapp.TranslationManager.TranslationCallback() {
+        translationManager.translate("Hello, how are you", "en", "zh", "20240531002066446", "123456", "25a51c8844e4bc77929a307511480008", new TranslationManager.TranslationCallback() {
         @Override
         public void onSuccess(String translatedText) {
             translationResultTextView.setText("Translated Text: " + translatedText);
