@@ -29,7 +29,7 @@ public class RegisterActivity extends AppCompatActivity {
         mRegisterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                registerUser(usernameEditText.getText().toString(), passwordEditText.getText().toString(), confirmPasswordEditText.getText().toString());
+                registerUser(usernameEditText, passwordEditText, confirmPasswordEditText);
             }
         });
     }
