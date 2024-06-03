@@ -53,6 +53,7 @@
         android:textStyle="bold"
         android:layout_marginTop="50dp"
         android:padding="11dp"
+        android:onClick="onLoginClick"
         android:background="@drawable/custom_button_background"
         android:textColor="#FFFFFF" />
 
