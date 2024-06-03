@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <!-- 指南线，用于分隔图像和文本区域 -->
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.34" />
+
+    <!-- 识别出的文字区域 -->
+    <TextView
+        android:id="@+id/txt_recognized_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/guideline"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btn_translate"
+        android:padding="16dp"
+        android:textSize="18sp"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/translation_result_background"
+        android:scrollbars="vertical" />
+
+    <!-- 翻译按钮 -->
+    <Button
+        android:id="@+id/btn_translate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/txt_recognized_text"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text="识别的文字  翻译结果如下"
+        android:textSize="20sp"
+        android:layout_marginTop="60dp"
+        android:textColor="@color/buttonTextColor"
+        android:background="@drawable/translation_result_background" />
+
+    <!-- 翻译后的文字区域 -->
+    <TextView
+        android:id="@+id/txt_translated_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/btn_translate"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:padding="16dp"
+        android:textSize="18sp"
+        android:textColor="#000000"
+        android:background="@drawable/translation_result_background"
+        android:scrollbars="vertical" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

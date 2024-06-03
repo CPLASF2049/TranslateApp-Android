@@ -77,6 +77,37 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
+            <Spinner
+                android:id="@+id/spinner_source_language"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/spinner_background"
+                android:prompt="@string/source_language_prompt" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:text="👇"
+                android:textColor="#000000"
+                android:textSize="28sp"
+                android:lineSpacingMultiplier="1.2"
+                android:textStyle="bold" />
+
+            <!-- 翻译后语言选择下拉栏 -->
+            <Spinner
+                android:id="@+id/spinner_target_language"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/spinner_background"
+                android:prompt="@string/target_language_prompt" />
+
+
             <!-- 翻译结果展示区域 -->
             <TextView
                 android:id="@+id/txt_translation_result"
