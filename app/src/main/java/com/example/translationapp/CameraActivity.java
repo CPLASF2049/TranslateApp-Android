@@ -51,7 +51,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
-public class Camera extends AppCompatActivity {
+public class CameraActivity extends AppCompatActivity {
     TextureView previewView;
 
     HandlerThread handlerThread;
@@ -372,3 +372,4 @@ public class Camera extends AppCompatActivity {
         }
     }
 }
+
