@@ -4,10 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.ImageFormat;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
@@ -18,20 +14,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.camera.core.ImageProxy;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.translation.R;
-
-import java.io.IOException;
 
 public class CameraTranslationActivity extends AppCompatActivity {
 
     private static final int REQUEST_IMAGE_CAPTURE = 1;
     private static final int PICK_IMAGE_REQUEST = 2;
     private ImageView imgSelectedPhoto;
-    private Bitmap selectedImageBitmap;
     private Button btnSubmitTranslation;
     private ImageButton btnCapture, btnGallery;
 
@@ -89,30 +81,15 @@ public class CameraTranslationActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
             Bundle extras = data.getExtras();
-            selectedImageBitmap = (Bitmap) extras.get("data");
-            imgSelectedPhoto.setImageBitmap(selectedImageBitmap);
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            imgSelectedPhoto.setImageBitmap(imageBitmap);
         } else if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK) {
-            Uri imageUri = data.getData();
-            try {
-                selectedImageBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
-                imgSelectedPhoto.setImageBitmap(selectedImageBitmap);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            Bitmap imageBitmap = BitmapFactory.decodeFile(data.getData().getPath());
+            imgSelectedPhoto.setImageBitmap(imageBitmap);
         }
     }
 
     private void submitTranslation() {
-        if (selectedImageBitmap != null) {
-            // 创建一个新的 Intent 对象，将当前的 Activity 跳转到 CameraRecognitionActivity
-            Intent intent = new Intent(this, CameraRecognitionActivity.class);
-            // 将图片数据作为附加信息添加到 Intent 中
-            intent.putExtra("imageBitmap", selectedImageBitmap); // bitmap 是您要传递的图片数据
-            // 启动 CameraRecognitionActivity
-            startActivity(intent);
-        } else {
-            // 如果未选择图片，显示提示信息或执行其他操作
-            Toast.makeText(this, "请先选择图片", Toast.LENGTH_SHORT).show();
-        }
+        // 可以在这里添加将图片或文本发送到翻译服务的代码
     }
 }

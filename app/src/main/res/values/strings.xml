@@ -8,4 +8,6 @@
     <string name="source_language_prompt">选择源语言</string>
     <string name="target_language_prompt">选择目标语言</string>
     <string name="profile">Profile</string>
+    <string name="english" translatable="false">en</string>
+    <string name="chinese" translatable="false">en</string>
 </resources>
