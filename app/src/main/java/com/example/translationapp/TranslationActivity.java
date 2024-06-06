@@ -14,9 +14,6 @@ public class TranslationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_translation);
-
-        translationResultTextView = findViewById(R.id.translation_result_text_view);
 
         TranslationManager translationManager = new TranslationManager();
         translationManager.translate("Hello, how are you", "en", "zh", "20240531002066446", "123456", "25a51c8844e4bc77929a307511480008", new TranslationManager.TranslationCallback() {
