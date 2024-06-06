@@ -16,6 +16,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.translation.R;
+
 import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;

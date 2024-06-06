@@ -10,6 +10,8 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.translation.R;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;

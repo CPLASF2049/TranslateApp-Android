@@ -8,6 +8,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.example.translation.R;
+
 public class CameraRecognitionActivity extends AppCompatActivity {
 
     private TextView txtRecognizedText;
