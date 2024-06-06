@@ -66,125 +66,76 @@
         android:layout_below="@id/list_search_history" />
 
         <!-- 其他底部按钮可以在这里添加，与主页布局类似 -->
-        <LinearLayout
-            android:id="@+id/bottom_navigation"
-            android:layout_width="match_parent"
+    <LinearLayout
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#ededed"
+        android:orientation="horizontal"
+        android:paddingVertical="8dp">
+
+        <!-- 首页按钮 -->
+        <Button
+            android:id="@+id/home_button"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:background="#ededed"
-            android:orientation="horizontal"
-            android:paddingVertical="8dp">
+            android:layout_weight="1"
+            android:gravity="center"
+            android:drawableTop="@drawable/ic_home_black_24dp"
+            android:text="首页"
+            android:textColor="#000000"
+            android:textSize="12sp" />
 
-            <!-- 首页按钮 -->
-            <LinearLayout
-                android:id="@+id/home_button"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
+        <!-- 语音按钮 -->
+        <Button
+            android:id="@+id/voice_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:drawableTop="@drawable/ic_mic_black_24dp"
+            android:text="语音"
+            android:textColor="#000000"
+            android:textSize="12sp" />
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_home_black_24dp" />
+        <!-- 拍照按钮 -->
+        <Button
+            android:id="@+id/camera_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:drawableTop="@drawable/ic_camera_alt_black_24dp"
+            android:text="拍照"
+            android:textColor="#000000"
+            android:textSize="12sp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="首页"
-                    android:textColor="#000000"
-                    android:textSize="12sp" />
-            </LinearLayout>
+        <!-- 历史按钮 -->
+        <Button
+            android:id="@+id/history_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:drawableTop="@drawable/ic_history_blue_24dp"
+            android:text="历史"
+            android:textColor="#0044cc"
+            android:textStyle="bold"
+            android:textSize="12sp" />
 
-            <!-- 语音按钮 -->
-            <LinearLayout
-                android:id="@+id/voice_button"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
+        <!-- 我的按钮 -->
+        <Button
+            android:id="@+id/my_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:drawableTop="@drawable/ic_person_black_24dp"
+            android:text="我的"
+            android:textColor="#000000"
+            android:textSize="12sp" />
+    </LinearLayout>
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_mic_black_24dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="语音"
-                    android:textColor="#000000"
-                    android:textSize="12sp" />
-            </LinearLayout>
-
-            <!-- 拍照按钮 -->
-            <LinearLayout
-                android:id="@+id/camera_button"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_camera_alt_black_24dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="拍照"
-                    android:textColor="#000000"
-                    android:textSize="12sp" />
-            </LinearLayout>
-
-            <!-- 历史按钮 -->
-            <LinearLayout
-                android:id="@+id/history_button"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_history_blue_24dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="历史"
-                    android:textColor="#0044cc"
-                    android:textStyle="bold"
-                    android:textSize="12sp" />
-            </LinearLayout>
-
-            <!-- 我的按钮 -->
-            <LinearLayout
-                android:id="@+id/my_button"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_person_black_24dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="我的"
-                    android:textColor="#000000"
-                    android:textSize="12sp" />
-            </LinearLayout>
-        </LinearLayout>
 
 </RelativeLayout>
