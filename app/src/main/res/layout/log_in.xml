@@ -58,26 +58,28 @@
         android:textColor="#FFFFFF" />
 
 
-    <TextView
-        android:id="@+id/forgotPasswordTextView"
+    <Button
+        android:id="@+id/forgotPasswordButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="忘记密码？点击此处找回密码"
+        android:background="@drawable/custom_edittext_border"
         android:textStyle="bold"
         android:layout_marginTop="50dp"
         android:textAlignment="textEnd"
         android:padding="10dp"
         android:textSize="14sp"
         android:textColor="#87CEFA"
-    android:clickable="true"
-    android:focusable="true"
-    android:onClick="onForgotPasswordClick" />
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="onForgotPasswordClick" />
 
-    <TextView
-        android:id="@+id/registerTextView"
+    <Button
+        android:id="@+id/registerButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="没有账号？点击此处注册账号"
+        android:background="@drawable/custom_edittext_border"
         android:textStyle="bold"
         android:layout_marginTop="0dp"
         android:textSize="14sp"
