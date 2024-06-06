@@ -2,6 +2,7 @@ package com.example.translationapp;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.FrameLayout;
@@ -14,6 +15,7 @@ import androidx.camera.core.CameraSelector;
 import androidx.camera.core.ExperimentalGetImage;
 import androidx.camera.core.ImageAnalysis;
 import androidx.camera.core.ImageProxy;
+import androidx.camera.core.ImageProxy.PlaneProxy;
 import androidx.camera.lifecycle.ProcessCameraProvider;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -51,6 +53,12 @@ public class CameraRecognitionActivity extends AppCompatActivity {
         recognizedTextView = findViewById(R.id.txt_recognized_text);
         initOCR();
 
+        // 获取传递过来的图片数据
+        Bitmap bitmap = getIntent().getParcelableExtra("imageBitmap");
+
+        // 执行 OCR 识别操作
+        performOCR(bitmap);
+
         if (allPermissionsGranted()) {
             startCamera();
         } else {
@@ -60,6 +68,14 @@ public class CameraRecognitionActivity extends AppCompatActivity {
 
     private void initOCR() {
         textRecognizer = TextRecognition.getClient();
+    }
+
+    private void performOCR(Bitmap bitmap) {
+        // 将 Bitmap 转换为 ImageProxy 对象
+        InputImage inputImage = InputImage.fromBitmap(bitmap, 0);
+
+        // 调用 performOCR 方法并传递 ImageProxy 对象
+        performOCR(imageProxy);
     }
 
     @ExperimentalGetImage
