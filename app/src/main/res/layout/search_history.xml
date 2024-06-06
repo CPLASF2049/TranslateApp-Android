@@ -21,8 +21,6 @@
         android:background="#ededed"
         android:padding="16dp">
 
-        <!-- 导航栏的标题 -->
-
         <!-- 分割线 -->
         <TextView
             android:layout_width="match_parent"
