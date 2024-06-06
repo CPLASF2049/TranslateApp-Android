@@ -138,7 +138,7 @@
                     android:id="@+id/txt_translated_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="这里是翻译结果..."
+                    android:text="这里是翻译结果"
                     android:textSize="18sp" />
             </ScrollView>
 
