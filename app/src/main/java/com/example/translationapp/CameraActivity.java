@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Camera;
+import android.widget.FrameLayout;
 import android.graphics.ImageFormat;
 import android.graphics.SurfaceTexture;
 import android.hardware.camera2.CameraAccessException;
@@ -87,8 +88,9 @@ public class CameraActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        previewView = findViewById(R.id.camera_preview_container);
+        setContentView(R.layout.camera_photo);
+        FrameLayout previewContainer = findViewById(R.id.camera_preview_container);
+        TextureView textureView = previewContainer.findViewById(R.id.texture_view);
     }
 
     /* 检查摄像头的状态 onResume在activity启动后执行 */

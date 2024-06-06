@@ -30,6 +30,11 @@
         android:layout_below="@id/navigation_bar"
         android:layout_above="@id/bottom_navigation">
 
+        <!-- 添加TextureView用于显示摄像头预览 -->
+        <TextureView
+            android:id="@+id/texture_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
     </FrameLayout>
 
     <!-- 拍照按钮 -->
