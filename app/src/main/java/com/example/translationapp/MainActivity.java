@@ -11,6 +11,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.translation.R;
+import com.example.translationapp.TranslationManager;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.your_layout);
+        setContentView(R.layout.home_translation);
 
         originalTextEditText = findViewById(R.id.txt_original_text);
         translatedTextTextView = findViewById(R.id.txt_translated_text);
@@ -57,22 +58,32 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        // TODO: 实现翻译逻辑，例如调用翻译API
-        String translatedText = "翻译结果示例"; // 假设的翻译结果
-
-        // 显示翻译结果
-        translatedTextTextView.setText(translatedText);
-
-        // 滚动到视图底部
-        translationResultScrollView.post(new Runnable() {
+        // 使用 TranslationManager 进行翻译
+        TranslationManager translationManager = new TranslationManager();
+        translationManager.translate(originalText, "en", "zh", "20240531002066446", "123456", "25a51c8844e4bc77929a307511480008", new TranslationManager.TranslationCallback() {
             @Override
-            public void run() {
-                translationResultScrollView.fullScroll(ScrollView.FOCUS_DOWN);
+            public void onSuccess(String translatedText) {
+                // 显示翻译结果
+                translatedTextTextView.setText("Translated Text: " + translatedText);
+
+                // 滚动到视图底部
+                translationResultScrollView.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        translationResultScrollView.fullScroll(ScrollView.FOCUS_DOWN);
+                    }
+                });
+
+                // 保存翻译历史
+                saveToHistory(originalText, translatedText);
+            }
+
+            @Override
+            public void onFailure(String errorMessage) {
+                System.out.println("翻译失败：" + errorMessage);
+                // 处理翻译失败的情况
             }
         });
-
-        // 保存翻译历史
-        saveToHistory(originalText, translatedText);
     }
 
     private void saveToHistory(String originalText, String translatedText) {

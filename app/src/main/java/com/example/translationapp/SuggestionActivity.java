@@ -1,4 +1,4 @@
-package com.example.yourapp; // 替换为您的应用程序的包名
+package com.example.translationapp; // 替换为您的应用程序的包名
 
 import android.os.Bundle;
 import android.view.View;
@@ -6,6 +6,8 @@ import android.widget.Button;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+
+import com.example.translation.R;
 
 public class SuggestionActivity extends AppCompatActivity {
 
