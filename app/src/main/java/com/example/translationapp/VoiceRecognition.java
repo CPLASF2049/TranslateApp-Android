@@ -101,5 +101,24 @@ public class VoiceRecognition extends AppCompatActivity implements RecognitionLi
         }
     }
 
+    @Override
+    public void onPartialResults(Bundle partialResults) {
+
+    }
+
+    @Override
+    public void onEvent(int eventType, Bundle params) {
+
+    }
+
+    @Override
+    public void onRmsChanged(float rmsdB) {
+        // 可以在需要时实现此方法
+    }
+
+    @Override
+    public void onBufferReceived(byte[] buffer) {
+
+    }
 
 }
