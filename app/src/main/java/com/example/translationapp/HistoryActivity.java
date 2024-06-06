@@ -24,6 +24,7 @@ public class HistoryActivity extends AppCompatActivity {
         Button myButton = findViewById(R.id.my_button);
 
         // 为首页按钮设置点击事件
+
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
