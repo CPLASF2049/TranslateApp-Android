@@ -17,6 +17,7 @@ public class NoAccountManagementActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.my_management_noaccount);
 
+
         // 初始化组件
         CardView cardViewWithLogButton = findViewById(R.id.cardViewWithLogButton); // 假设CardView的ID
 
