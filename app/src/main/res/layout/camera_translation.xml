@@ -36,77 +36,68 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main_content"
-        android:layout_width="369dp"
-        android:layout_height="544dp"
-        android:layout_below="@id/top_navigation"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="18dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:padding="16dp">
 
-        <!-- 使用CardView包裹整个按钮区域以增加阴影和质感 -->
+        <!-- 左边的按钮和解释 -->
+
+        <!-- 右边的按钮和解释 -->
+        <LinearLayout
+            android:id="@+id/left_buttons"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="84dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toStartOf="@+id/right_buttons"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageButton
+                android:id="@+id/btn_capture"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/button_background"
+                android:contentDescription="@string/btn_capture"
+                android:src="@drawable/ic_camera_white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="拍照"
+                android:textSize="20sp" />
+        </LinearLayout>
 
 
         <LinearLayout
-            android:layout_width="320dp"
-            android:layout_height="148dp"
-            android:layout_constraintTop_toBottomOf="+id/top_navigation"
+            android:id="@+id/right_buttons"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="84dp"
+            android:layout_weight="1"
             android:gravity="center"
-            android:orientation="horizontal"
-            android:padding="16dp"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="16dp"
-            tools:ignore="MissingConstraints">
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/left_buttons"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <!-- 左边的按钮和解释 -->
-            <LinearLayout
-                android:layout_width="0dp"
+            <ImageButton
+                android:id="@+id/btn_gallery"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/button_background"
+                android:contentDescription="@string/btn_gallery"
+                android:src="@drawable/ic_photo" />
+
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageButton
-                    android:id="@+id/btn_capture"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:background="@drawable/button_background"
-                    android:contentDescription="@string/btn_capture"
-                    android:src="@drawable/ic_camera_white" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="拍照"
-                    android:textSize="20sp" />
-
-            </LinearLayout>
-
-            <!-- 右边的按钮和解释 -->
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageButton
-                    android:id="@+id/btn_gallery"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:background="@drawable/button_background"
-                    android:contentDescription="@string/btn_gallery"
-                    android:src="@drawable/ic_photo" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="图库"
-                    android:textSize="20sp" />
-
-            </LinearLayout>
+                android:layout_marginTop="8dp"
+                android:text="图库"
+                android:textSize="20sp" />
         </LinearLayout>
 
         <ImageView
@@ -139,14 +130,12 @@
 
         </androidx.cardview.widget.CardView>
 
-        <!-- 显示提交按钮 -->
-
         <Button
             android:id="@+id/btn_submit_translation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_constraintTop_toBottomOf="@+id/cardView"
             android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="420dp"
             android:background="@drawable/button_background"
             android:text="提交"
             android:textColor="@color/white"
@@ -154,9 +143,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="445dp" />
-
-
+            app:layout_constraintTop_toBottomOf="@id/cardView" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
