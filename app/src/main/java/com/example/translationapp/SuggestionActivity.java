@@ -1,10 +1,5 @@
-package com.example.translationapp;
+package com.example.yourapp; // 替换为您的应用程序的包名
 
-import static android.app.DownloadManager.COLUMN_DESCRIPTION;
-
-
-import android.content.ContentValues;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,53 +7,62 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import com.example.translation.R;
-import com.google.android.material.search.SearchView;
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
-
 public class SuggestionActivity extends AppCompatActivity {
-
-    private DatabaseHelper databaseHelper;
-    private TextInputLayout tilDescription;
-    private TextInputLayout tilContact;
-    private Button btnSubmit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.suggestions);
 
-        databaseHelper = new DatabaseHelper(this);
+        // 初始化控件
+        final ConstraintLayout constraintLayout = findViewById(R.id.your_constraint_layout_id); // 如果您的根布局有ID
+        final Button btnSubmit = findViewById(R.id.btn_submit);
 
-        tilDescription = findViewById(R.id.til_description);
-        tilContact = findViewById(R.id.til_contact);
-        btnSubmit = findViewById(R.id.btn_submit);
-
+        // 设置按钮的点击监听器
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String description = etDescription.getEditText().getText().toString();
-                String contact = etContact.getEditText().getText().toString();
-                saveSuggestion(description, contact);
+                // 点击按钮时保存反馈
+                saveFeedback();
             }
         });
     }
 
-    private void saveSuggestion(String description, String contact) {
-        // 这里可以添加数据验证逻辑
+    private void saveFeedback() {
+        // 获取用户输入的描述和联系方式
+        String description = findViewById(R.id.et_description).getText().toString();
+        String contact = findViewById(R.id.et_contact).getText().toString();
 
-        // 将数据保存到数据库
-        SQLiteDatabase db = databaseHelper.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(COLUMN_DESCRIPTION, description);
-        values.put(COLUMN_CONTACT, contact);
-        long result = db.insert(TABLE_SUGGESTIONS, null, values);
+        // 验证输入是否有效
+        if (description.isEmpty()) {
+            Toast.makeText(this, "描述不能为空", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-        if (result != -1) {
-            Toast.makeText(this, "建议已成功保存", Toast.LENGTH_SHORT).show();
+        // 验证邮箱（简单验证，实际使用时需要更复杂的验证）
+        if (!contact.isEmpty() && !contact.contains("@")) {
+            Toast.makeText(this, "邮箱格式不正确", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // 假设我们这里直接保存到数据库，实际使用时需要替换为数据库保存逻辑
+        boolean isSaved = saveToDatabase(description, contact);
+
+        if (isSaved) {
+            // 显示成功消息并清空输入框
+            Toast.makeText(this, "感谢您的反馈", Toast.LENGTH_SHORT).show();
+            findViewById(R.id.et_description).setText("");
+            findViewById(R.id.et_contact).setText("");
         } else {
             Toast.makeText(this, "保存失败，请重试", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    // 模拟数据库保存逻辑
+    private boolean saveToDatabase(String description, String contact) {
+        // 这里应该是保存数据到数据库的逻辑
+        // 目前我们只是返回true以表示“保存成功”
+        // 实际使用时需要替换为真实的数据库操作
+        return true;
     }
 }
