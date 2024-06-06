@@ -1,6 +1,7 @@
 package com.example.translationapp;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.EditText;
@@ -41,15 +42,32 @@ public class LoginActivity extends AppCompatActivity {
         }, 2000);
     }
 
+
+    // 这个方法将作为按钮点击事件的处理器
     public void onForgotPasswordClick(View view) {
         Intent intent = new Intent(this, ResetPasswordActivity.class);
-        // 启动新的Activity
+        // 启动ResetPasswordActivity
         startActivity(intent);
     }
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.log_in);
+
+        // 找到按钮并设置点击事件
+        Button btnRegister = findViewById(R.id.registerButton);
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+
+
+            @Override
+            public void onClick(View view) {
+                onRegisterClick(view);
+            }
+        });
+    }
     public void onRegisterClick(View view) {
-        // 注册账号的逻辑
-        Toast.makeText(this, "点击了注册账号", Toast.LENGTH_SHORT).show();
+        // 创建Intent以启动RegisterActivity
         Intent intent = new Intent(this, RegisterActivity.class);
         // 启动RegisterActivity
         startActivity(intent);
