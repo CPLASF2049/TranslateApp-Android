@@ -90,8 +90,6 @@ public class CameraTranslationActivity extends AppCompatActivity {
     }
 
     private void submitTranslation() {
-        // 这里应该是提交翻译的逻辑，目前仅作演示
-        Toast.makeText(CameraTranslationActivity.this, "提交翻译", Toast.LENGTH_SHORT).show();
         // 可以在这里添加将图片或文本发送到翻译服务的代码
     }
 }
