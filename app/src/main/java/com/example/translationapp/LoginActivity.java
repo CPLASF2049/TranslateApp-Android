@@ -55,5 +55,4 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    // 您的其他代码 ...
 }

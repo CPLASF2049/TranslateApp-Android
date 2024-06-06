@@ -6,8 +6,87 @@ import android.widget.Button;
 import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 import android.widget.Toast;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.http.POST;
+import retrofit2.http.Body;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 import com.example.translation.R;
+
+// API接口定义
+interface ResetPasswordService {
+    @POST("reset_password")
+    Call<ResetPasswordResponse> resetPassword(@Body ResetPasswordBody body);
+}
+// 请求体
+class ResetPasswordBody {
+    private String account;
+    private String newPassword;
+
+    // 全参构造函数
+    public ResetPasswordBody() {
+        this.account = account;
+        this.newPassword = newPassword;
+    }
+
+    // account的getter和setter
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
+    }
+
+    // newPassword的getter和setter
+    public String getNewPassword() {
+        return newPassword;
+    }
+
+    public void setNewPassword(String newPassword) {
+        this.newPassword = newPassword;
+    }
+}
+
+// 响应体
+class ResetPasswordResponse {
+    private boolean success;
+    private String message;
+
+    // 全参构造函数
+    public ResetPasswordResponse(boolean success, String message) {
+        this.success = success;
+        this.message = message;
+    }
+
+    // success的getter和setter
+    public boolean isSuccess() {
+        return success;
+    }
+
+    public void setSuccess(boolean success) {
+        this.success = success;
+    }
+
+    // message的getter和setter
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    // Retrofit实例化
+    Retrofit retrofit = new Retrofit.Builder()
+            .baseUrl("https://yourserver.com/api/") // 替换为您的服务器API基础URL
+            .addConverterFactory(GsonConverterFactory.create())
+            .build();
+
+    ResetPasswordService service = retrofit.create(ResetPasswordService.class);}
 
 public class ResetPasswordActivity extends AppCompatActivity {
 
