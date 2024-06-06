@@ -7,4 +7,5 @@
     <string name="voice_input_button">开始语音输入</string>
     <string name="source_language_prompt">选择源语言</string>
     <string name="target_language_prompt">选择目标语言</string>
+    <string name="profile">Profile</string>
 </resources>
