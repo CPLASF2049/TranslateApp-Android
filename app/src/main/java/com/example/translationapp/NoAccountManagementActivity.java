@@ -6,6 +6,8 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import com.example.translation.R;
+
 public class NoAccountManagementActivity extends AppCompatActivity {
 
     private CardView cardViewWithLogButton;

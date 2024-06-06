@@ -9,6 +9,8 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.translation.R;
+
 public class RegisterActivity extends AppCompatActivity {
 
     EditText usernameEditText;

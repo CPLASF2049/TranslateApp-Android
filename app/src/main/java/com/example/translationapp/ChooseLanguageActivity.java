@@ -11,6 +11,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.example.translation.R;
+
 public class ChooseLanguageActivity extends AppCompatActivity {
 
     private ListView listViewLanguages;
