@@ -2,12 +2,15 @@ package com.example.translationapp;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+
+import com.google.android.material.textfield.TextInputLayout;
 
 public class OfflineTranslationActivity extends AppCompatActivity {
 

@@ -86,7 +86,6 @@ public class CameraActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         previewView = findViewById(R.id.textureView);
     }
 
@@ -335,9 +334,16 @@ public class CameraActivity extends AppCompatActivity {
         imageReader.setOnImageAvailableListener(new ImageReader.OnImageAvailableListener() {
             @Override
             public void onImageAvailable(ImageReader reader) {
-                cameraHandler.post(new MainActivity.ImageSaver(reader.acquireLatestImage()));
+                cameraHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        // 调用 CameraActivity 中的 ImageSaver 方法
+                        new ImageSaver(reader.acquireLatestImage());
+                    }
+                });
             }
         }, cameraHandler);
+
     }
 
     private class ImageSaver implements Runnable{
@@ -346,6 +352,7 @@ public class CameraActivity extends AppCompatActivity {
             image = anImage;
         }
 
+        @Override
         public void run(){
 
             ByteBuffer buffer = image.getPlanes()[0].getBuffer();

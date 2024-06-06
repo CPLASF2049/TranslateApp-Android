@@ -11,7 +11,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String TABLE_SUGGESTIONS = "suggestions";
     private static final String COLUMN_ID = "id";
     private static final String COLUMN_DESCRIPTION = "description";
-    private static final COLUMN_CONTACT = "contact";
+    private static final String COLUMN_CONTACT = "contact";
 
     private static final String CREATE_TABLE_SUGGESTIONS =
             "CREATE TABLE " + TABLE_SUGGESTIONS + "("
