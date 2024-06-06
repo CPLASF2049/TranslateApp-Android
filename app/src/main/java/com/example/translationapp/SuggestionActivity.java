@@ -3,6 +3,7 @@ package com.example.translationapp; // 替换为您的应用程序的包名
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -17,7 +18,7 @@ public class SuggestionActivity extends AppCompatActivity {
         setContentView(R.layout.suggestions);
 
         // 初始化控件
-        final ConstraintLayout constraintLayout = findViewById(R.id.your_constraint_layout_id); // 如果您的根布局有ID
+        final ConstraintLayout constraintLayout = findViewById(R.id.suggestions_root);
         final Button btnSubmit = findViewById(R.id.btn_submit);
 
         // 设置按钮的点击监听器
@@ -32,8 +33,11 @@ public class SuggestionActivity extends AppCompatActivity {
 
     private void saveFeedback() {
         // 获取用户输入的描述和联系方式
-        String description = findViewById(R.id.et_description).getText().toString();
-        String contact = findViewById(R.id.et_contact).getText().toString();
+        EditText etDescription = findViewById(R.id.et_description);
+        EditText etContact = findViewById(R.id.et_contact);
+
+        String description = etDescription.getText().toString();
+        String contact = etContact.getText().toString();
 
         // 验证输入是否有效
         if (description.isEmpty()) {
@@ -53,13 +57,12 @@ public class SuggestionActivity extends AppCompatActivity {
         if (isSaved) {
             // 显示成功消息并清空输入框
             Toast.makeText(this, "感谢您的反馈", Toast.LENGTH_SHORT).show();
-            findViewById(R.id.et_description).setText("");
-            findViewById(R.id.et_contact).setText("");
+            etDescription.setText("");
+            etContact.setText("");
         } else {
             Toast.makeText(this, "保存失败，请重试", Toast.LENGTH_SHORT).show();
         }
     }
-
     // 模拟数据库保存逻辑
     private boolean saveToDatabase(String description, String contact) {
         // 这里应该是保存数据到数据库的逻辑
