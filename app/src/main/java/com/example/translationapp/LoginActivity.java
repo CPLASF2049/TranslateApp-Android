@@ -42,9 +42,9 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onForgotPasswordClick(View view) {
-        // 忘记密码的逻辑
-        Toast.makeText(this, "点击了忘记密码", Toast.LENGTH_SHORT).show();
-        // 可以在这里添加打开重置密码界面的逻辑
+        Intent intent = new Intent(this, ResetPasswordActivity.class);
+        // 启动新的Activity
+        startActivity(intent);
     }
 
     public void onRegisterClick(View view) {
