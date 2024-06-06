@@ -1,17 +1,22 @@
 package com.example.translationapp;
 
+
 import android.os.Bundle;
+import android.os.Handler;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 
 import com.example.translation.R;
 
@@ -41,6 +46,7 @@ public class VoiceTranslationActivity extends AppCompatActivity {
             @Override
             public void onReadyForSpeech(Bundle params) {
                 // 准备就绪，可以开始语音输入
+
             }
 
             @Override
