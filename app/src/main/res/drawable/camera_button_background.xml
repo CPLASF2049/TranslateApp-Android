@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#FF4081"/> <!-- 背景颜色 -->
+    <corners android:radius="30dp"/> <!-- 圆角，设置为尺寸的一半 -->
+    <size android:width="60dp" android:height="60dp"/> <!-- 按钮尺寸 -->
+</shape>
