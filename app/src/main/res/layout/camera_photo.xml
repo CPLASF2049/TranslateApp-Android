@@ -16,12 +16,10 @@
         <!-- 返回按钮 -->
         <Button
             android:id="@+id/btn_back"
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:text="返回"
-            android:textStyle="bold"
-            android:textSize="18sp"
-            android:textColor="#ffffff"/>
+            android:background="@drawable/button_background"
+            android:drawableLeft="@drawable/ic_arrow_back" />
     </LinearLayout>
 
     <!-- 摄像头预览容器 -->
@@ -40,6 +38,7 @@
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="92dp"
+        android:gravity="center"
         android:layout_alignParentBottom="true"
         android:background="#ededed"
         android:orientation="horizontal"
@@ -47,10 +46,11 @@
 
         <Button
             android:id="@+id/btn_capture"
-            android:layout_width="match_parent"
+            android:layout_width="70dp"
             android:layout_height="70dp"
             android:background="@drawable/camera_button_background"
-            android:drawableTop="@drawable/ic_camera_alt" />
+            android:drawableTop="@drawable/ic_camera_alt"
+            android:gravity="center" />
     </LinearLayout>
 
 </RelativeLayout>
