@@ -10,7 +10,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.OptIn;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.DoNotInline;
+import androidx.camera.core.ImageProxy;
 import androidx.camera.core.CameraSelector;
 import androidx.camera.core.ExperimentalGetImage;
 import androidx.camera.core.ImageAnalysis;
@@ -34,6 +37,7 @@ import java.util.concurrent.Executors;
 
 import com.example.translation.R;
 
+@OptIn(markerClass = ExperimentalGetImage.class)
 public class CameraRecognitionActivity extends AppCompatActivity {
 
     private static final String TAG = "CameraRecognitionActivity";
@@ -71,23 +75,30 @@ public class CameraRecognitionActivity extends AppCompatActivity {
     }
 
     private void performOCR(Bitmap bitmap) {
-        // 将 Bitmap 转换为 ImageProxy 对象
         InputImage inputImage = InputImage.fromBitmap(bitmap, 0);
-
-        // 调用 performOCR 方法并传递 ImageProxy 对象
-        performOCR(imageProxy);
-    }
-
-    @ExperimentalGetImage
-    private void performOCR(ImageProxy image, OCRResultListener listener) {
-        // 将ImageProxy转换为InputImage
-        InputImage inputImage = InputImage.fromMediaImage(image.getImage(), image.getImageInfo().getRotationDegrees());
-
-        // 进行OCR识别
         textRecognizer.process(inputImage)
                 .addOnSuccessListener(text -> {
                     // OCR成功
-                    // 处理识别结果
+                    String recognizedText = text.getText();
+                    Log.d(TAG, "Recognized text: " + recognizedText);
+                    // 这里需要更新UI，例如使用 runOnUiThread
+                    runOnUiThread(() -> recognizedTextView.setText(recognizedText));
+                })
+                .addOnFailureListener(e -> {
+                    // OCR失败
+                    Log.e(TAG, "Error during OCR: " + e.getMessage(), e);
+                    // 更新UI
+                    runOnUiThread(() -> recognizedTextView.setText("OCR failed: " + e.getMessage()));
+                });
+    }
+
+    @ExperimentalGetImage
+    @OptIn(markerClass = ExperimentalGetImage.class)
+    private void performOCR(ImageProxy image, OCRResultListener listener) {
+        InputImage inputImage = InputImage.fromMediaImage(image.getImage(), image.getImageInfo().getRotationDegrees());
+        textRecognizer.process(inputImage)
+                .addOnSuccessListener(text -> {
+                    // OCR成功
                     String recognizedText = text.getText();
                     Log.d(TAG, "Recognized text: " + recognizedText);
                     listener.onOCRCompleted(recognizedText);
@@ -96,6 +107,10 @@ public class CameraRecognitionActivity extends AppCompatActivity {
                     // OCR失败
                     Log.e(TAG, "Error during OCR: " + e.getMessage(), e);
                     listener.onOCRFailed(e.getMessage());
+                })
+                .addOnCompleteListener(task -> {
+                    // 关闭ImageProxy以释放资源
+                    image.close();
                 });
     }
 
@@ -133,14 +148,20 @@ public class CameraRecognitionActivity extends AppCompatActivity {
         imageAnalysis.setAnalyzer(executor, new ImageAnalysis.Analyzer() {
             @Override
             public void analyze(@NonNull ImageProxy image) {
-                // Implement OCR logic here
-                // You can access the image data using image.getImage() method
-                // Process the image for OCR
-                // Once OCR is done, update the recognized text in the TextView
-                String recognizedText = performOCR(image);
-                runOnUiThread(() -> recognizedTextView.setText(recognizedText));
-                // Don't forget to close the image proxy to release resources
-                image.close();
+                // 调用 performOCR 方法并传递 ImageProxy 对象和OCRResultListener
+                performOCR(image, new OCRResultListener() {
+                    @Override
+                    public void onOCRCompleted(String result) {
+                        // 更新UI
+                        runOnUiThread(() -> recognizedTextView.setText(result));
+                    }
+
+                    @Override
+                    public void onOCRFailed(String errorMessage) {
+                        // 更新UI
+                        runOnUiThread(() -> recognizedTextView.setText("OCR failed: " + errorMessage));
+                    }
+                });
             }
         });
 
