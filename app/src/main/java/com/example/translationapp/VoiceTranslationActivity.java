@@ -18,7 +18,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.translation.R;
+import com.example.translationapp.R;
 
 import java.util.ArrayList;
 

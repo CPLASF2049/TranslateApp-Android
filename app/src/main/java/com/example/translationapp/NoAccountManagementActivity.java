@@ -6,7 +6,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
-import com.example.translation.R;
+import com.example.translationapp.R;
 
 public class NoAccountManagementActivity extends AppCompatActivity {
 

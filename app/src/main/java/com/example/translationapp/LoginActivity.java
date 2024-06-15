@@ -10,7 +10,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.translation.R;
+import com.example.translationapp.R;
 
 public class LoginActivity extends AppCompatActivity {
 

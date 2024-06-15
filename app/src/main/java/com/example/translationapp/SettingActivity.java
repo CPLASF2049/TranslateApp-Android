@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import com.example.translation.R;
+import com.example.translationapp.R;
 
 public class SettingActivity extends AppCompatActivity {
 

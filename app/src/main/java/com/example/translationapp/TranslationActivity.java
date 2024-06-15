@@ -5,7 +5,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.translation.R;
+import com.example.translationapp.R;
 import com.example.translationapp.TranslationManager;
 
 public class TranslationActivity extends AppCompatActivity {

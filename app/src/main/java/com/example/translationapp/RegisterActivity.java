@@ -9,7 +9,7 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.translation.R;
+import com.example.translationapp.R;
 
 public class RegisterActivity extends AppCompatActivity {
 

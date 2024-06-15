@@ -35,7 +35,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
-import com.example.translation.R;
+import com.example.translationapp.R;
 
 @OptIn(markerClass = ExperimentalGetImage.class)
 public class CameraRecognitionActivity extends AppCompatActivity {

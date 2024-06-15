@@ -8,7 +8,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import com.example.translation.R;
+import com.example.translationapp.R;
 
 public class SuggestionActivity extends AppCompatActivity {
 

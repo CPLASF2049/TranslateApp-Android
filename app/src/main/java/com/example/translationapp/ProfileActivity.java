@@ -10,7 +10,7 @@ import android.widget.Toast;
 import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.translation.R;
+import com.example.translationapp.R;
 
 public class ProfileActivity extends AppCompatActivity {
 

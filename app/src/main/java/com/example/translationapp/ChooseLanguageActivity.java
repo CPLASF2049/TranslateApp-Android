@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.Locale;
 
-import com.example.translation.R;
+import com.example.translationapp.R;
 
 public class ChooseLanguageActivity extends AppCompatActivity {
 

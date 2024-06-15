@@ -38,7 +38,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.translation.R;
+import com.example.translationapp.R;
 
 import java.io.File;
 import java.io.FileInputStream;
