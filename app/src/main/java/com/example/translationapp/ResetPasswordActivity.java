@@ -4,168 +4,86 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import androidx.appcompat.app.AppCompatActivity;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.http.POST;
-import retrofit2.http.Body;
-import retrofit2.converter.gson.GsonConverterFactory;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.translation.R;
 
-// API接口定义
-interface ResetPasswordService {
-    @POST("reset_password")
-    Call<ResetPasswordResponse> resetPassword(@Body ResetPasswordBody body);
-}
-// 请求体
-class ResetPasswordBody {
-    private String account;
-    private String newPassword;
-
-    // 全参构造函数
-    public ResetPasswordBody() {
-        this.account = account;
-        this.newPassword = newPassword;
-    }
-
-    // account的getter和setter
-    public String getAccount() {
-        return account;
-    }
-
-    public void setAccount(String account) {
-        this.account = account;
-    }
-
-    // newPassword的getter和setter
-    public String getNewPassword() {
-        return newPassword;
-    }
-
-    public void setNewPassword(String newPassword) {
-        this.newPassword = newPassword;
-    }
-}
-
-// 响应体
-class ResetPasswordResponse {
-    private boolean success;
-    private String message;
-
-    // 全参构造函数
-    public ResetPasswordResponse(boolean success, String message) {
-        this.success = success;
-        this.message = message;
-    }
-
-    // success的getter和setter
-    public boolean isSuccess() {
-        return success;
-    }
-
-    public void setSuccess(boolean success) {
-        this.success = success;
-    }
-
-    // message的getter和setter
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    // Retrofit实例化
-    Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("https://yourserver.com/api/") // 替换为您的服务器API基础URL
-            .addConverterFactory(GsonConverterFactory.create())
-            .build();
-
-    ResetPasswordService service = retrofit.create(ResetPasswordService.class);}
+import java.util.regex.Pattern;
 
 public class ResetPasswordActivity extends AppCompatActivity {
 
-    private EditText etAccount, etNewPassword, etConfirmPassword;
-    private Button btnSubmit;
+    private EditText etAccount; // 账号输入框
+    private EditText etNewPassword; // 新密码输入框
+    private EditText etConfirmPassword; // 确认新密码输入框
+    private Button btnSubmit; // 提交按钮
+    private LinearLayout navigationBar; // 导航栏
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.find_key);
 
-        // 初始化控件
+        initializeViews();
+        setListeners();
+    }
+
+    private void initializeViews() {
+        // 初始化视图组件
         etAccount = findViewById(R.id.et_account);
         etNewPassword = findViewById(R.id.et_new_password);
         etConfirmPassword = findViewById(R.id.et_confirm_password);
         btnSubmit = findViewById(R.id.btn_submit);
+        navigationBar = findViewById(R.id.navigation_bar);
 
-        // 设置提交按钮的点击事件
+        // 这里可以添加更多初始化代码，比如设置导航栏的返回按钮等
+    }
+
+    private void setListeners() {
+        // 设置按钮的点击事件监听器
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 获取用户输入
-                String account = etAccount.getText().toString().trim();
-                String newPassword = etNewPassword.getText().toString().trim();
-                String confirmPassword = etConfirmPassword.getText().toString().trim();
-
-                // 检查输入是否有效
-                if (account.isEmpty() || newPassword.isEmpty() || confirmPassword.isEmpty()) {
-                    Toast.makeText(ResetPasswordActivity.this, "所有字段都是必填的", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                if (!newPassword.equals(confirmPassword)) {
-                    Toast.makeText(ResetPasswordActivity.this, "密码不匹配", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                // 这里添加重置密码的逻辑
-                resetPassword(account, newPassword);
-
-                // 提示用户密码重置成功
-                Toast.makeText(ResetPasswordActivity.this, "密码重置成功", Toast.LENGTH_SHORT).show();
+                resetPassword();
             }
         });
+
+        // 如果导航栏中有其他交互元素，也可以在这里设置监听器
     }
 
-    // 重置密码的方法，这里仅作为示例，实际应包含与服务器通信的代码
-    private void resetPassword(String account, String newPassword) {
-        // 创建请求体
-        ResetPasswordBody body = new ResetPasswordBody();
-        body.setAccount(account);
-        body.setNewPassword(newPassword);
+    private void resetPassword() {
+        String account = etAccount.getText().toString().trim();
+        String newPassword = etNewPassword.getText().toString().trim();
+        String confirmPassword = etConfirmPassword.getText().toString().trim();
 
-        // 发送请求
-        Call<ResetPasswordResponse> call = service.resetPassword(body);
-        call.enqueue(new Callback<ResetPasswordResponse>() {
-            @Override
-            public void onResponse(Call<ResetPasswordResponse> call, Response<ResetPasswordResponse> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    ResetPasswordResponse resetPasswordResponse = response.body();
-                    if (resetPasswordResponse.isSuccess()) {
-                        // 更新数据库的逻辑（如果需要）
-                        // 显示成功消息
-                        Toast.makeText(ResetPasswordActivity.this, "密码重置成功", Toast.LENGTH_SHORT).show();
-                    } else {
-                        // 显示错误消息
-                        Toast.makeText(ResetPasswordActivity.this, resetPasswordResponse.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                } else {
-                    // 服务器错误，显示错误消息
-                    Toast.makeText(ResetPasswordActivity.this, "服务器错误", Toast.LENGTH_SHORT).show();
-                }
-            }
+        // 检查输入是否有效
+        if (!isValidInput(account, newPassword, confirmPassword)) {
+            Toast.makeText(this, "输入有误，请重新输入", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-            @Override
-            public void onFailure(Call<ResetPasswordResponse> call, Throwable t) {
-                // 网络或其他错误，显示错误消息
-                Toast.makeText(ResetPasswordActivity.this, "网络错误", Toast.LENGTH_SHORT).show();
-            }
-        });
+        // 调用重置密码的逻辑，例如调用后端API
+        boolean isResetSuccess = resetPasswordFromServer(account, newPassword);
+
+        if (isResetSuccess) {
+            Toast.makeText(this, "密码重置成功", Toast.LENGTH_SHORT).show();
+            // 可以在这里添加逻辑，比如跳转到登录界面等
+        } else {
+            Toast.makeText(this, "密码重置失败，请重试", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private boolean isValidInput(String account, String newPassword, String confirmPassword) {
+        // 这里可以添加具体的验证逻辑，例如检查邮箱格式、密码强度等
+        return !account.isEmpty() && newPassword.equals(confirmPassword) && newPassword.matches(".{6,}"); // 至少6位密码
+    }
+
+    private boolean resetPasswordFromServer(String account, String newPassword) {
+        // 这里应该是调用后端API的逻辑，返回操作结果
+        // 以下为示例代码，实际开发中需要替换为真实的网络请求
+        return true; // 假设重置总是成功
     }
 }
