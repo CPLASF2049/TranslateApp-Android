@@ -81,37 +81,35 @@
     <!-- 中间区域按钮 -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_height="98dp"
         android:gravity="center_horizontal"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/log_button"
+            style="?attr/borderlessButtonStyle"
+            android:layout_width="350dp"
+            android:layout_height="50dp"
+            android:background="@drawable/button_background"
+            android:drawablePadding="30dp"
+            android:stateListAnimator="@animator/button_elevation"
+            android:text="点击登录"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <androidx.cardview.widget.CardView
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/cardViewWithLogButton"
             android:layout_width="301dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
+            android:clickable="true"
+            android:focusable="true"
             app:cardCornerRadius="8dp"
             app:cardElevation="4dp"
-            app:cardMaxElevation="4dp"
-            android:clickable="true"
-            android:focusable="true">
-
-            <Button
-                android:id="@+id/log_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="点击登录"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textSize="20sp"
-                android:drawablePadding="25dp"
-                android:background="@drawable/button_background"
-                android:stateListAnimator="@animator/button_elevation"
-            style="?attr/borderlessButtonStyle" />
+            app:cardMaxElevation="4dp">
 
         </androidx.cardview.widget.CardView>
 

@@ -3,6 +3,7 @@ package com.example.translationapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -45,6 +46,7 @@ public class NoAccountManagementActivity extends AppCompatActivity {
         LinearLayout myButton = findViewById(R.id.my_button);
         LinearLayout cameraButton = findViewById(R.id.camera_button);
 
+
         // 为首页按钮设置点击事件
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,12 +83,24 @@ public class NoAccountManagementActivity extends AppCompatActivity {
                 Toast.makeText(NoAccountManagementActivity.this, "您尚未登录，请先登录!", Toast.LENGTH_SHORT).show();
             }
         });
-    }
 
-    // 检查用户是否登录的方法
-    private boolean isUserLoggedIn() {
-        // 实现用户登录状态的检查逻辑
-        // 这里只是一个示例，返回false表示用户未登录
-        return false;
+        // 找到登录按钮
+        Button logButton = findViewById(R.id.log_button);
+        logButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 跳转到LoginActivity
+                redirectToLoginActivity();
+            }
+            // 跳转到LoginActivity的通用方法
+            private void redirectToLoginActivity() {
+                Intent intent = new Intent(NoAccountManagementActivity.this, LoginActivity.class);
+                startActivity(intent);
+                // 如果需要关闭当前Activity，可以添加以下代码：
+                // finish();
+            }
+        });
+
+
     }
 }
