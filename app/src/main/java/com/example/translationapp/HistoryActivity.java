@@ -80,35 +80,32 @@ public class HistoryActivity extends AppCompatActivity {
         listSearchHistory = findViewById(R.id.list_search_history);
         btnClearHistory = findViewById(R.id.btn_clear_history);
 
-        // 初始化历史数据列表，这里留空，您可以根据需要填充数据
-        historyData = new ArrayList<>();
+        // 初始化历史数据列表
+        historyData = TranslationHistoryManager.getInstance().getHistoryData();
 
         // 设置列表适配器
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, historyData);
         listSearchHistory.setAdapter(adapter);
 
-        historyData = TranslationHistoryManager.getInstance().getHistoryData();
-
         // 设置列表项点击事件
         listSearchHistory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // 获取点击的项
-                String clickedItem = adapter.getItem(position);
-                // 处理点击事件，例如显示一个Toast消息
+                // 处理列表项点击事件
+                String clickedItem = historyData.get(position);
                 Toast.makeText(HistoryActivity.this, "Clicked on: " + clickedItem, Toast.LENGTH_SHORT).show();
             }
         });
+
         // 设置清除历史记录按钮的点击事件
         btnClearHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 清空历史数据列表
-                historyData.clear();
-                // 通知适配器数据已更改
-                adapter.notifyDataSetChanged();
-                // 显示操作结果
-                Toast.makeText(HistoryActivity.this, "History cleared", Toast.LENGTH_SHORT).show();
+                if (historyData != null) {
+                    historyData.clear();
+                    adapter.notifyDataSetChanged(); // 通知适配器数据已更改
+                    Toast.makeText(HistoryActivity.this, "History cleared", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
