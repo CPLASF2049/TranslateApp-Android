@@ -101,11 +101,11 @@
         android:textSize="20sp"
         android:textStyle="bold" />
 
-    <!-- CardView部分已被删除 -->
+
 
 </LinearLayout>
 
-    <!-- bottom_spacer部分已被删除或保留，根据需要进行调整 -->
+
 
     <LinearLayout
         android:id="@+id/bottom_navigation"

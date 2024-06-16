@@ -77,7 +77,7 @@ public class ProfileActivity extends AppCompatActivity {
         Button editButton = findViewById(R.id.edit_button);
         Button offlineTranslationButton = findViewById(R.id.offline_translation_button);
         Button privacySettingsButton = findViewById(R.id.privacy_settings_button);
-        Button selectButton = findViewById(R.id.select_button);
+        Button selectButton = findViewById(R.id.select_language_button);
         Button feedbackButton = findViewById(R.id.feedback_button);
         Button logoutButton = findViewById(R.id.logout_button);
 

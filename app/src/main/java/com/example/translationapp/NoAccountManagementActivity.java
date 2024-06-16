@@ -22,85 +22,69 @@ public class NoAccountManagementActivity extends AppCompatActivity {
         setContentView(R.layout.my_management_noaccount);
 
 
-        // 初始化组件
-        //CardView cardViewWithLogButton = findViewById(R.id.cardViewWithLogButton); // 假设CardView的ID
 
-        // 为CardView设置点击事件
-        cardViewWithLogButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // 跳转到登录界面
-                Intent intent = new Intent(NoAccountManagementActivity.this, LoginActivity.class);
-                startActivity(intent);
-            }
-        });
-        // 初始化底部导航栏的按钮
-        setBottomNavigationButtons();
-    }
-    // 设置底部导航栏按钮的点击事件
-    private void setBottomNavigationButtons() {
-        LinearLayout bottomNavigation = findViewById(R.id.bottom_navigation);
-        LinearLayout homeButton = findViewById(R.id.home_button);
-        LinearLayout voiceButton = findViewById(R.id.voice_button);
-        LinearLayout historyButton = findViewById(R.id.history_button);
-        LinearLayout myButton = findViewById(R.id.my_button);
-        LinearLayout cameraButton = findViewById(R.id.camera_button);
+    // 初始化底部导航栏的LinearLayout
+    LinearLayout bottomNavigation = findViewById(R.id.bottom_navigation);
+    LinearLayout homeButton = findViewById(R.id.home_button);
+    LinearLayout voiceButton = findViewById(R.id.voice_button);
+    LinearLayout cameraButton = findViewById(R.id.camera_button);
+    LinearLayout historyButton = findViewById(R.id.history_button);
+    LinearLayout myButton = findViewById(R.id.my_button);
 
-
-        // 为首页按钮设置点击事件
+    // 为首页按钮设置点击事件，可以跳转到首页
         homeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // 跳转到首页Activity的逻辑
-                Intent intent = new Intent(NoAccountManagementActivity.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
+        @Override
+        public void onClick(View v) {
+            redirectToHomeActivity();
+        }
+    });
 
-        // 设置语音按钮点击事件
-        voiceButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // 显示未登录提示
-                Toast.makeText(NoAccountManagementActivity.this, "您尚未登录，请先登录!", Toast.LENGTH_SHORT).show();
-            }
-        });
+    // 为其他按钮设置点击事件，未登录时不能跳转
+    setUnauthenticatedButtonClickListener(voiceButton, cameraButton, historyButton, myButton);
+}
 
-// 设置拍照按钮点击事件
-        cameraButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // 同上，显示未登录提示
-                Toast.makeText(NoAccountManagementActivity.this, "您尚未登录，请先登录!", Toast.LENGTH_SHORT).show();
-            }
-        });
+    private void setUnauthenticatedButtonClickListener(LinearLayout... buttons) {
+        for (LinearLayout button : buttons) {
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // 显示未登录提示
+                    Toast.makeText(NoAccountManagementActivity.this, "您尚未登录，请先登录!", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+    }
 
-        // 设置历史按钮点击事件
-        historyButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // 同上，显示未登录提示
-                Toast.makeText(NoAccountManagementActivity.this, "您尚未登录，请先登录!", Toast.LENGTH_SHORT).show();
-            }
-        });
+    private void redirectToHomeActivity() {
+        Intent intent = new Intent(NoAccountManagementActivity.this, MainActivity.class);
+        startActivity(intent);
+        // 如果需要关闭当前Activity，可以添加以下代码：
+         finish();
+    }
+    // 初始化登录按钮并设置点击事件
+    Button logButton = findViewById(R.id.log_button);
 
-        // 找到登录按钮
-        Button logButton = findViewById(R.id.log_button);
-        logButton.setOnClickListener(new View.OnClickListener() {
+
+    // 设置登录按钮的点击事件
+    private void setupLoginButton(Button loginButton) {
+        loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 跳转到LoginActivity
+                // 调用跳转到登录界面的函数
                 redirectToLoginActivity();
             }
-            // 跳转到LoginActivity的通用方法
-            private void redirectToLoginActivity() {
-                Intent intent = new Intent(NoAccountManagementActivity.this, LoginActivity.class);
-                startActivity(intent);
-                // 如果需要关闭当前Activity，可以添加以下代码：
-                // finish();
-            }
         });
+    }
 
-
+    // 跳转到登录界面的函数
+    private void redirectToLoginActivity() {
+        Intent intent = new Intent(NoAccountManagementActivity.this, LoginActivity.class);
+        startActivity(intent);
+        // 如果需要关闭当前Activity，取消注释下面的代码
+        // finish();
     }
 }
+
+
+
+

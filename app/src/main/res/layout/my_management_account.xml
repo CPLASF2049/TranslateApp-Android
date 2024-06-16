@@ -90,134 +90,112 @@
 
     </LinearLayout>
 
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="466dp"
-        android:gravity="center_horizontal"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:padding="8dp">
 
-        <!-- 编辑资料按钮 -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            app:cardCornerRadius="4dp"
-            app:cardElevation="2dp"
-            app:cardUseCompatPadding="true">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="393dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingVertical="5dp">
 
+            <!-- 编辑资料按钮 -->
             <Button
                 android:id="@+id/edit_button"
-                android:layout_width="match_parent"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/button_background"
                 android:drawableLeft="@drawable/ic_edit"
                 android:drawableRight="@drawable/ic_to"
-                android:drawablePadding="18dp"
+                android:drawablePadding="16dp"
+                android:gravity="center_vertical"
+                android:padding="8dp"
+                android:text="编辑资料"
+                android:textSize="18sp" />
 
-                android:text="编辑资料" />
-
-        </androidx.cardview.widget.CardView>
-
-        <!-- 离线翻译按钮 -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            app:cardCornerRadius="4dp"
-            app:cardElevation="2dp"
-            app:cardUseCompatPadding="true">
-
+            <!-- 离线翻译按钮 -->
             <Button
                 android:id="@+id/offline_translation_button"
-                android:layout_width="match_parent"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/button_background"
                 android:drawableLeft="@drawable/ic_download"
                 android:drawableRight="@drawable/ic_to"
                 android:drawablePadding="16dp"
-                android:text="离线翻译" />
+                android:gravity="center_vertical"
+                android:padding="8dp"
+                android:text="离线翻译"
+                android:textSize="18sp" />
 
-        </androidx.cardview.widget.CardView>
-
-        <!-- 隐私设置按钮 -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            app:cardCornerRadius="4dp"
-            app:cardElevation="2dp"
-            app:cardUseCompatPadding="true">
-
+            <!-- 隐私设置按钮 -->
             <Button
                 android:id="@+id/privacy_settings_button"
-                android:layout_width="match_parent"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/button_background"
                 android:drawableLeft="@drawable/ic_personalset"
                 android:drawableRight="@drawable/ic_to"
                 android:drawablePadding="16dp"
-                android:text="账户设置" />
+                android:gravity="center_vertical"
+                android:padding="8dp"
+                android:text="隐私设置"
+                android:textSize="18sp" />
 
-        </androidx.cardview.widget.CardView>
-
-        <!-- 选择语言按钮 -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            app:cardCornerRadius="4dp"
-            app:cardElevation="2dp"
-            app:cardUseCompatPadding="true">
-
+            <!-- 选择语言按钮 -->
             <Button
-                android:id="@+id/select_button"
-                android:layout_width="match_parent"
+                android:id="@+id/select_language_button"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/button_background"
                 android:drawableLeft="@drawable/ic_select"
                 android:drawableRight="@drawable/ic_to"
                 android:drawablePadding="16dp"
-                android:text="选择语言" />
+                android:gravity="center_vertical"
+                android:padding="8dp"
+                android:text="选择语言"
+                android:textSize="18sp" />
 
-        </androidx.cardview.widget.CardView>
-
-        <!-- 投诉建议按钮 -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            app:cardCornerRadius="4dp"
-            app:cardElevation="2dp"
-            app:cardUseCompatPadding="true">
-
+            <!-- 投诉建议按钮 -->
             <Button
                 android:id="@+id/feedback_button"
-                android:layout_width="match_parent"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/button_background"
                 android:drawableLeft="@drawable/ic_feedback"
                 android:drawableRight="@drawable/ic_to"
                 android:drawablePadding="16dp"
-                android:text="投诉建议" />
+                android:gravity="center_vertical"
+                android:padding="8dp"
+                android:text="投诉建议"
+                android:textSize="18sp" />
 
-        </androidx.cardview.widget.CardView>
-
-        <!-- 退出账号按钮 -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            app:cardCornerRadius="4dp"
-            app:cardElevation="2dp"
-            app:cardUseCompatPadding="true">
-
+            <!-- 退出账号按钮 -->
             <Button
                 android:id="@+id/logout_button"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/button_background"
                 android:drawableLeft="@drawable/ic_exit"
                 android:drawableRight="@drawable/ic_to"
                 android:drawablePadding="16dp"
-                android:text="退出账号" />
+                android:gravity="center_vertical"
+                android:padding="8dp"
+                android:text="退出账号"
+                android:textSize="18sp" />
 
-        </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
 
 
         <!-- 底部导航栏 -->
