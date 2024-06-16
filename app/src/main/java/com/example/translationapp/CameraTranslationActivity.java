@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
@@ -66,6 +67,63 @@ public class CameraTranslationActivity extends AppCompatActivity {
         });
     }
 
+
+    private LinearLayout homeButton, voiceButton, cameraButton, historyButton, myButton;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.camera_activity); // 确保使用正确的布局文件名
+
+        // 初始化底部导航栏的按钮
+        homeButton = findViewById(R.id.home_button);
+        voiceButton = findViewById(R.id.voice_button);
+        cameraButton = findViewById(R.id.camera_button);
+        historyButton = findViewById(R.id.history_button);
+        myButton = findViewById(R.id.my_button);
+
+        // 为首页按钮设置点击事件
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 跳转到首页Activity
+                Intent intent = new Intent(CameraTranslationActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // 为语音按钮设置点击事件
+        voiceButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 跳转到语音Activity
+                Intent intent = new Intent(CameraTranslationActivity.this, VoiceTranslationActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // 为历史按钮设置点击事件
+        historyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 跳转到历史Activity
+                Intent intent = new Intent(CameraTranslationActivity.this, HistoryActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // 为“我的”按钮设置点击事件
+        myButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 跳转到我的Activity
+                Intent intent = new Intent(CameraTranslationActivity.this, ProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+
     private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
@@ -120,4 +178,5 @@ public class CameraTranslationActivity extends AppCompatActivity {
     private void submitTranslation() {
         // 可以在这里添加将图片或文本发送到翻译服务的代码
     }
+
 }
