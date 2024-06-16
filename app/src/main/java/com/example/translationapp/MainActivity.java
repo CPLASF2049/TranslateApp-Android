@@ -149,6 +149,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        LinearLayout cameraButton = findViewById(R.id.camera_button);
+
+        cameraButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, CameraTranslationActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
     }
 
     private void performTranslation() {
