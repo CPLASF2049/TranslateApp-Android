@@ -23,7 +23,7 @@ public class NoAccountManagementActivity extends AppCompatActivity {
 
 
         // 初始化组件
-        CardView cardViewWithLogButton = findViewById(R.id.cardViewWithLogButton); // 假设CardView的ID
+        //CardView cardViewWithLogButton = findViewById(R.id.cardViewWithLogButton); // 假设CardView的ID
 
         // 为CardView设置点击事件
         cardViewWithLogButton.setOnClickListener(new View.OnClickListener() {

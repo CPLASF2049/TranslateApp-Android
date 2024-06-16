@@ -13,14 +13,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class HistoryActivity extends AppCompatActivity {
 
     private ListView listSearchHistory;
     private Button btnClearHistory;
-    private ArrayAdapter<String> adapter; // 适配器用于展示历史记录
-
-    // 假设这是底部导航栏的组件引用
-    private Button homeButton, voiceButton, cameraButton, myButton;
+    private ArrayAdapter<String> adapter;
+    private List<String> historyData; // 用于存储历史记录数据
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,78 +80,36 @@ public class HistoryActivity extends AppCompatActivity {
         listSearchHistory = findViewById(R.id.list_search_history);
         btnClearHistory = findViewById(R.id.btn_clear_history);
 
+        // 初始化历史数据列表，这里留空，您可以根据需要填充数据
+        historyData = new ArrayList<>();
 
-        // 设置列表适配器（假设你已经有了一个适配器）
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, yourDataArray);
+        // 设置列表适配器
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, historyData);
         listSearchHistory.setAdapter(adapter);
+
+        historyData = TranslationHistoryManager.getInstance().getHistoryData();
 
         // 设置列表项点击事件
         listSearchHistory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // 处理列表项点击事件
-                Toast.makeText(HistoryActivity.this, "Clicked on item: " + position, Toast.LENGTH_SHORT).show();
+                // 获取点击的项
+                String clickedItem = adapter.getItem(position);
+                // 处理点击事件，例如显示一个Toast消息
+                Toast.makeText(HistoryActivity.this, "Clicked on: " + clickedItem, Toast.LENGTH_SHORT).show();
             }
         });
-
-        // 设置清除历史记录按钮的点击事件
         // 设置清除历史记录按钮的点击事件
         btnClearHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 清除历史记录的逻辑
-                clearHistory();
+                // 清空历史数据列表
+                historyData.clear();
+                // 通知适配器数据已更改
+                adapter.notifyDataSetChanged();
+                // 显示操作结果
+                Toast.makeText(HistoryActivity.this, "History cleared", Toast.LENGTH_SHORT).show();
             }
         });
     }
-
-
-    private void clearHistory() {
-        // 清空历史记录数据
-        for (int i = 0; i < historyData.length; i++) {
-            historyData[i] = ""; // 或者可以根据需要进行其他处理
-        }
-
-        // 清空适配器中的数据
-        adapter.clear();
-
-        // 通知适配器数据已更改
-        adapter.notifyDataSetChanged();
-
-        // 显示操作结果
-        Toast.makeText(HistoryActivity.this, "History cleared", Toast.LENGTH_SHORT).show();
-    }
-
-
-    private void clearHistory() {
-        // 假设有一个名为AppDatabase的数据库类，其中包含一个名为historyDao的接口
-        AppDatabase database = AppDatabase.getInstance(this);
-        historyDao = database.historyDao();
-
-        // 异步执行数据库清除操作
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                // 在后台线程中执行数据库操作
-                historyDao.deleteAllHistory();
-
-                // 数据库操作完成后，回到主线程更新UI
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        // 清空适配器中的数据
-                        adapter.clear();
-
-                        // 通知适配器数据已更改
-                        adapter.notifyDataSetChanged();
-
-                        // 显示操作结果
-                        Toast.makeText(HistoryActivity.this, "History cleared", Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
-        }).start();
-    }
-
-
 }

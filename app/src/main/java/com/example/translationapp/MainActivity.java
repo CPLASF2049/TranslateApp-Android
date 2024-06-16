@@ -233,7 +233,8 @@ public class MainActivity extends AppCompatActivity {
                 });
 
                 // 保存翻译历史
-                saveToHistory(originalText, translatedText);
+                String historyEntry = "Original: " + originalText + " | Translated: " + translatedText;
+                TranslationHistoryManager.getInstance().addHistoryEntry(historyEntry);
             }
 
             @Override
@@ -252,16 +253,4 @@ public class MainActivity extends AppCompatActivity {
         return DigestUtils.md5Hex(combinedString);
     }
 
-
-    private void saveToHistory(String originalText, String translatedText) {
-        String historyRecord = "原文: " + originalText + "\n翻译结果: " + translatedText + "\n\n";
-
-        // 将历史记录追加到文件
-        try (FileOutputStream fos = openFileOutput("translation_history.txt", MODE_APPEND)) {
-            fos.write(historyRecord.getBytes());
-        } catch (IOException e) {
-            e.printStackTrace();
-            Toast.makeText(this, "保存历史失败", Toast.LENGTH_SHORT).show();
-        }
-    }
 }
