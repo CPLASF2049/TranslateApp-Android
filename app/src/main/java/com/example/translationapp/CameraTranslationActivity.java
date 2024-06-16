@@ -46,7 +46,8 @@ public class CameraTranslationActivity extends AppCompatActivity {
         btnCapture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dispatchTakePictureIntent();
+                Intent intent = new Intent(CameraTranslationActivity.this, CameraActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -113,10 +114,6 @@ public class CameraTranslationActivity extends AppCompatActivity {
             }
         });
     }
-
-
-
-
 
     private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
