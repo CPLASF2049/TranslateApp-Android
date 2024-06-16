@@ -139,6 +139,16 @@ public class MainActivity extends AppCompatActivity {
                 performTranslation();
             }
         });
+
+        LinearLayout voiceButton = findViewById(R.id.voice_button);
+        voiceButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, VoiceTranslationActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     private void performTranslation() {
@@ -181,6 +191,7 @@ public class MainActivity extends AppCompatActivity {
                 // 处理翻译失败的情况
             }
         });
+
     }
 
     public static String md5(String fixedString, String originalText, String salt, String password) {
