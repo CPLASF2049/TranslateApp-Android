@@ -100,12 +100,23 @@ public class CameraActivity extends AppCompatActivity {
 
         startCameraThread();
 
-        if(!previewView.isActivated()){
-            // 添加监听
-            previewView.setSurfaceTextureListener(textureListener);
-        }
-        else{
-            startPreview();  //开始预览
+        if (previewView != null) {
+            if (!previewView.isAvailable()) {
+                // 添加监听
+                previewView.setSurfaceTextureListener(textureListener);
+            } else {
+                try {
+                    setUpCamera(previewView.getWidth(), previewView.getHeight());
+                }
+                catch (CameraAccessException e){
+                    throw new RuntimeException(e);
+                }
+                startPreview();  // 开始预览
+            }
+        } else {
+            previewView = new TextureView(this);
+            setContentView(previewView);
+            previewView.setSurfaceTextureListener(textureListener);  // 设置监听器
         }
     }
 

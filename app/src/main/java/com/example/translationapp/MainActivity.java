@@ -192,7 +192,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
         cameraButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

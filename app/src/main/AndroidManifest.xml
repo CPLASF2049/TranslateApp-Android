@@ -41,7 +41,29 @@
 
         </activity>
 
+        <activity android:name=".CameraActivity">
 
+        </activity>
+
+        <activity android:name="com.example.translationapp.ProfileActivity">
+            <!-- 其他属性 -->
+        </activity>
+
+        <activity android:name=".HistoryActivity">
+
+        </activity>
+
+        <activity android:name=".LoginActivity">
+
+        </activity>
+
+        <activity android:name=".EditInfoActivity">
+
+        </activity>
+
+        <activity android:name=".SettingActivity">
+
+        </activity>
     </application>
 
 </manifest>
