@@ -140,7 +140,7 @@ public class HistoryActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // 跳转到拍照Activity
-                Intent intent = new Intent(HistoryActivity.this, CameraActivity.class);
+                Intent intent = new Intent(HistoryActivity.this, CameraTranslationActivity.class);
                 startActivity(intent);
             }
         });
