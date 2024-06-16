@@ -24,22 +24,6 @@ public class ChooseLanguageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.choose_language); // 使用您的布局文件名
 
-        listView = findViewById(R.id.list_view_languages);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, languages);
-        listView.setAdapter(adapter);
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                changeLanguage(languageResIds[position]);
-            }
-        });
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.choose_language); // 替换为你的布局文件名
 
         // 找到返回按钮并设置点击事件监听器
         ImageButton btnBack = findViewById(R.id.btn_back);
@@ -52,7 +36,19 @@ public class ChooseLanguageActivity extends AppCompatActivity {
                 finish(); // 结束当前Activity
             }
         });
+
+        listView = findViewById(R.id.list_view_languages);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, languages);
+        listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                changeLanguage(languageResIds[position]);
+            }
+        });
     }
+
 
     private void changeLanguage(int languageResId) {
         // 获取语言代码

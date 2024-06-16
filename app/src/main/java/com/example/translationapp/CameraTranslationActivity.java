@@ -41,6 +41,7 @@ public class CameraTranslationActivity extends AppCompatActivity {
         btnCapture = findViewById(R.id.btn_capture);
         btnGallery = findViewById(R.id.btn_gallery);
 
+
         // 设置拍照按钮的点击事件
         btnCapture.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,33 +66,23 @@ public class CameraTranslationActivity extends AppCompatActivity {
                 submitTranslation();
             }
         });
-    }
-
-
-    private LinearLayout homeButton, voiceButton, cameraButton, historyButton, myButton;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.camera_activity); // 确保使用正确的布局文件名
 
         // 初始化底部导航栏的按钮
-        homeButton = findViewById(R.id.home_button);
-        voiceButton = findViewById(R.id.voice_button);
-        cameraButton = findViewById(R.id.camera_button);
-        historyButton = findViewById(R.id.history_button);
-        myButton = findViewById(R.id.my_button);
+        LinearLayout bottomNavigation = findViewById(R.id.bottom_navigation);
+        LinearLayout homeButton = findViewById(R.id.home_button);
+        LinearLayout voiceButton = findViewById(R.id.voice_button);
+        LinearLayout historyButton = findViewById(R.id.history_button);
+        LinearLayout myButton = findViewById(R.id.my_button);
 
-        // 为首页按钮设置点击事件
+// 为首页按钮设置点击事件
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 跳转到首页Activity
+                // 跳转到HomeActivity
                 Intent intent = new Intent(CameraTranslationActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });
-
         // 为语音按钮设置点击事件
         voiceButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,7 +92,6 @@ public class CameraTranslationActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
         // 为历史按钮设置点击事件
         historyButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,6 +112,9 @@ public class CameraTranslationActivity extends AppCompatActivity {
             }
         });
     }
+
+
+
 
 
     private void dispatchTakePictureIntent() {

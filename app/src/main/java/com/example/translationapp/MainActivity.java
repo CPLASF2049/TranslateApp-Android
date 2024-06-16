@@ -44,6 +44,59 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_translation);
 
+        // 初始化底部导航栏的按钮
+        Button homeButton = findViewById(R.id.home_button);
+        Button voiceButton = findViewById(R.id.voice_button);
+        Button cameraButton = findViewById(R.id.camera_button);
+        Button historyButton = findViewById(R.id.history_button);
+        Button myButton = findViewById(R.id.my_button);
+
+        // 为首页按钮设置点击事件
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 可能不需要跳转，因为已经在首页
+                // 也可以添加代码切换到首页的特定Fragment或执行其他逻辑
+            }
+        });
+
+        // 为语音按钮设置点击事件
+        voiceButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, VoiceTranslationActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // 为拍照按钮设置点击事件
+        cameraButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, CameraTranslationActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // 为历史按钮设置点击事件
+        historyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, HistoryActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // 为“我的”按钮设置点击事件
+        myButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
         originalTextEditText = findViewById(R.id.txt_original_text);
         translatedTextTextView = findViewById(R.id.txt_translated_text);
         translationResultScrollView = findViewById(R.id.scroll_translation_result);
@@ -224,60 +277,4 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "保存历史失败", Toast.LENGTH_SHORT).show();
         }
     }
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.your_layout_name); // 确保使用正确的布局文件名
-    // 初始化底部导航栏的按钮
-    Button homeButton = findViewById(R.id.home_button);
-    Button voiceButton = findViewById(R.id.voice_button);
-    Button cameraButton = findViewById(R.id.camera_button);
-    Button historyButton = findViewById(R.id.history_button);
-    Button myButton = findViewById(R.id.my_button);
-
-    // 为首页按钮设置点击事件
-        homeButton.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            // 可能不需要跳转，因为已经在首页
-            // 也可以添加代码切换到首页的特定Fragment或执行其他逻辑
-        }
-    });
-
-    // 为语音按钮设置点击事件
-        voiceButton.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Intent intent = new Intent(MainActivity.this, VoiceTranslationActivity.class);
-            startActivity(intent);
-        }
-    });
-
-    // 为拍照按钮设置点击事件
-        cameraButton.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Intent intent = new Intent(MainActivity.this, CameraTranslationActivity.class);
-            startActivity(intent);
-        }
-    });
-
-    // 为历史按钮设置点击事件
-        historyButton.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Intent intent = new Intent(MainActivity.this, HistoryActivity.class);
-            startActivity(intent);
-        }
-    });
-
-    // 为“我的”按钮设置点击事件
-        myButton.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
-            startActivity(intent);
-        }
-    });
-}
 }
