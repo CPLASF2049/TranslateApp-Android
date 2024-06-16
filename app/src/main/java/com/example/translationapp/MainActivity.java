@@ -183,7 +183,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        LinearLayout voiceButton = findViewById(R.id.voice_button);
         voiceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
