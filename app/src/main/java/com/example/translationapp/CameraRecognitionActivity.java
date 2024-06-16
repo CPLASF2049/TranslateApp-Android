@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.FrameLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +32,8 @@ import com.google.mlkit.vision.text.Text;
 import com.google.mlkit.vision.text.TextRecognition;
 import com.google.mlkit.vision.text.TextRecognizer;
 
+import org.apache.commons.codec.digest.DigestUtils;
+
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -44,9 +47,12 @@ public class CameraRecognitionActivity extends AppCompatActivity {
     private static final String[] REQUIRED_PERMISSIONS = {Manifest.permission.CAMERA};
 
     private TextView recognizedTextView;
+    private TextView translatedTextTextView;
     private ListenableFuture<ProcessCameraProvider> cameraProviderFuture;
     private Executor executor = Executors.newSingleThreadExecutor();
     private TextRecognizer textRecognizer;
+    String sourceLanguage = "auto";
+    String targetLanguage = "zh";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +60,7 @@ public class CameraRecognitionActivity extends AppCompatActivity {
         setContentView(R.layout.camera_recognition);
 
         recognizedTextView = findViewById(R.id.txt_recognized_text);
+        translatedTextTextView = findViewById(R.id.txt_translated_text);
         initOCR();
 
         // 获取传递过来的图片数据
@@ -82,6 +89,7 @@ public class CameraRecognitionActivity extends AppCompatActivity {
                     Log.d(TAG, "Recognized text: " + recognizedText);
                     // 这里需要更新UI，例如使用 runOnUiThread
                     runOnUiThread(() -> recognizedTextView.setText(recognizedText));
+                    performTranslation(recognizedText);
                 })
                 .addOnFailureListener(e -> {
                     // OCR失败
@@ -101,6 +109,7 @@ public class CameraRecognitionActivity extends AppCompatActivity {
                     String recognizedText = text.getText();
                     Log.d(TAG, "Recognized text: " + recognizedText);
                     listener.onOCRCompleted(recognizedText);
+                    performTranslation(recognizedText);
                 })
                 .addOnFailureListener(e -> {
                     // OCR失败
@@ -125,6 +134,35 @@ public class CameraRecognitionActivity extends AppCompatActivity {
             }
         }
         return true;
+    }
+
+    private void performTranslation(String originalText) {
+        String appId = "20240531002066446";
+        String salt = "123456"; // 随机数
+        String sign = md5(appId, originalText, salt, "GoAyiiiaGuLFmrY4F54O");// 根据文档计算得出的签名
+
+        // 使用 TranslationManager 进行翻译
+        TranslationManager translationManager = new TranslationManager();
+        translationManager.translate(originalText, sourceLanguage, targetLanguage, appId, salt, sign, new TranslationManager.TranslationCallback() {
+            @Override
+            public void onSuccess(String translatedText) {
+                // 显示翻译结果
+                translatedTextTextView.setText(translatedText);
+            }
+
+            @Override
+            public void onFailure(String errorMessage) {
+                System.out.println("翻译失败：" + errorMessage);
+                // 处理翻译失败的情况
+            }
+        });
+    }
+
+    public static String md5(String fixedString, String originalText, String salt, String password) {
+        // 将三个字符串按顺序连接起来
+        String combinedString = fixedString + originalText + salt + password;
+        // 计算组合后的字符串的 MD5 值并返回
+        return DigestUtils.md5Hex(combinedString);
     }
 
     private void startCamera() {
@@ -168,17 +206,6 @@ public class CameraRecognitionActivity extends AppCompatActivity {
                 .requireLensFacing(CameraSelector.LENS_FACING_BACK)
                 .build();
         cameraProvider.bindToLifecycle(this, cameraSelector, imageAnalysis);
-    }
-
-
-    // Placeholder method for OCR implementation
-    private String performOCR(ImageProxy image) {
-        // Implement OCR logic here and return the recognized text
-        // For example:
-        // OCR ocr = new OCR();
-        // String recognizedText = ocr.recognize(image);
-        // return recognizedText;
-        return "Sample recognized text"; // Placeholder text
     }
 
     @Override
