@@ -3,6 +3,8 @@ package com.example.translationapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
@@ -30,5 +32,59 @@ public class NoAccountManagementActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        // 初始化底部导航栏的按钮
+        setBottomNavigationButtons();
+    }
+    // 设置底部导航栏按钮的点击事件
+    private void setBottomNavigationButtons() {
+        CardView homeButton = findViewById(R.id.home_button);
+        CardView voiceButton = findViewById(R.id.voice_button);
+        CardView cameraButton = findViewById(R.id.camera_button);
+        CardView historyButton = findViewById(R.id.history_button);
+        CardView myButton = findViewById(R.id.my_button);
+
+        // 为首页按钮设置点击事件
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 跳转到首页Activity的逻辑
+                Intent intent = new Intent(NoAccountManagementActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // 设置语音按钮点击事件
+        voiceButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 显示未登录提示
+                Toast.makeText(NoAccountManagementActivity.this, "您尚未登录，请先登录!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+// 设置拍照按钮点击事件
+        cameraButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 同上，显示未登录提示
+                Toast.makeText(NoAccountManagementActivity.this, "您尚未登录，请先登录!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // 设置历史按钮点击事件
+        historyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 同上，显示未登录提示
+                Toast.makeText(NoAccountManagementActivity.this, "您尚未登录，请先登录!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    // 检查用户是否登录的方法
+    private boolean isUserLoggedIn() {
+        // 实现用户登录状态的检查逻辑
+        // 这里只是一个示例，返回false表示用户未登录
+        return false;
     }
 }
