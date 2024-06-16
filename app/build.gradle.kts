@@ -44,6 +44,7 @@ dependencies {
     implementation("androidx.camera:camera-core:1.0.0")
     implementation("androidx.camera:camera-camera2:1.0.0")
     implementation("androidx.camera:camera-lifecycle:1.1.0")
+    implementation("commons-codec:commons-codec:1.15")
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
