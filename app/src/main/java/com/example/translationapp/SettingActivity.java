@@ -1,5 +1,6 @@
 package com.example.translationapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -65,7 +66,11 @@ public class SettingActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // 执行保存设置的操作
                 Toast.makeText(SettingActivity.this, "保存设置", Toast.LENGTH_SHORT).show();
-                // 这里可以添加保存应用设置的代码
+
+                // 假设保存设置的逻辑已经完成，接下来跳转到另一个Activity
+                Intent intent = new Intent(SettingActivity.this, ProfileActivity.class);
+                startActivity(intent); // 启动Intent指向的Activity
+                finish(); // 结束当前Activity
             }
         });
     }

@@ -1,5 +1,6 @@
 package com.example.translationapp; // 替换为您的应用程序的包名
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -55,10 +56,13 @@ public class SuggestionActivity extends AppCompatActivity {
         boolean isSaved = saveToDatabase(description, contact);
 
         if (isSaved) {
-            // 显示成功消息并清空输入框
+            // 显示成功消息
             Toast.makeText(this, "感谢您的反馈", Toast.LENGTH_SHORT).show();
-            etDescription.setText("");
-            etContact.setText("");
+
+            // 创建Intent来启动my_management_account.xml对应的Activity
+            Intent intent = new Intent(SuggestionActivity.this, ProfileActivity.class);
+            startActivity(intent); // 启动Intent指向的Activity
+            finish(); // 结束当前Activity并跳转
         } else {
             Toast.makeText(this, "保存失败，请重试", Toast.LENGTH_SHORT).show();
         }
