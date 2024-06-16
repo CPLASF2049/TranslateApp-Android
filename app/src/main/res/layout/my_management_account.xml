@@ -210,8 +210,8 @@
 
             <Button
                 android:id="@+id/logout_button"
-                android:layout_width="196dp"
-                android:layout_height="56dp"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/ic_exit"
                 android:drawableRight="@drawable/ic_to"
                 android:drawablePadding="16dp"
@@ -227,6 +227,7 @@
             android:layout_width="match_parent"
             android:layout_height="71dp"
             android:layout_alignParentBottom="true"
+            android:layout_marginTop="12dp"
             android:background="#EDEDED"
             android:orientation="horizontal"
             android:paddingVertical="8dp">
