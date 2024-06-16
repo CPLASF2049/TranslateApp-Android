@@ -1,9 +1,11 @@
 package com.example.translationapp;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,6 +32,24 @@ public class ChooseLanguageActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 changeLanguage(languageResIds[position]);
+            }
+        });
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.choose_language); // 替换为你的布局文件名
+
+        // 找到返回按钮并设置点击事件监听器
+        ImageButton btnBack = findViewById(R.id.btn_back);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 创建Intent来启动my_management_account.xml对应的Activity
+                Intent intent = new Intent(ChooseLanguageActivity.this, ProfileActivity.class);
+                startActivity(intent); // 启动Intent指向的Activity
+                finish(); // 结束当前Activity
             }
         });
     }
