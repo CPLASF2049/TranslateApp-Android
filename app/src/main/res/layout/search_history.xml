@@ -60,7 +60,7 @@
         android:layout_marginTop="50dp"
         android:textColor="@color/white"
         android:textSize="18sp"
-        android:background="@drawable/button_background"
+        android:background="@drawable/custom_button_background"
         android:layout_below="@id/list_search_history" />
 
         <!-- 其他底部按钮可以在这里添加，与主页布局类似 -->
