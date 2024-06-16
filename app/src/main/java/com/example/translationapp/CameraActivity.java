@@ -97,41 +97,37 @@ public class CameraActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
         startCameraThread();
 
-        if (previewView != null) {
-            if (!previewView.isAvailable()) {
-                // 添加监听
-                previewView.setSurfaceTextureListener(textureListener);
-            } else {
+        if (previewView != null && previewView.isAvailable()) {
+            int width = previewView.getWidth();
+            int height = previewView.getHeight();
+            if (width > 0 && height > 0) {
                 try {
-                    setUpCamera(previewView.getWidth(), previewView.getHeight());
-                }
-                catch (CameraAccessException e){
+                    setUpCamera(width, height);
+                    startPreview();
+                } catch (CameraAccessException e) {
                     throw new RuntimeException(e);
                 }
-                startPreview();  // 开始预览
             }
         } else {
-            previewView = new TextureView(this);
-            setContentView(previewView);
-            previewView.setSurfaceTextureListener(textureListener);  // 设置监听器
+            // 处理TextureView未准备好的情况
         }
     }
 
     // 创建一个监听器的全局变量
     TextureView.SurfaceTextureListener textureListener = new TextureView.SurfaceTextureListener() {
         @Override
-        // 摄像头控件准备好
         public void onSurfaceTextureAvailable(@NonNull SurfaceTexture surface, int width, int height) {
             try {
                 setUpCamera(width, height);
+                openCamera();
+            } catch (CameraAccessException e) {
+                // 处理CameraAccessException，例如显示错误消息或关闭Activity
+                e.printStackTrace();
+                cameraDevice.close();
+                cameraDevice = null;
             }
-            catch (CameraAccessException e){
-                throw new RuntimeException(e);
-            }
-            openCamera();
         }
 
         @Override
@@ -163,16 +159,26 @@ public class CameraActivity extends AppCompatActivity {
 
     private void setUpCamera(int width, int height) throws CameraAccessException{
 
-        cameraManager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
+        if (cameraManager == null) {
+            cameraManager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
+        }
 
-        // 遍历手机系统的摄像头，拿到摄像头ID
-        for(String CameraID : cameraManager.getCameraIdList()){
-            // 获取当前摄像头的一些参数
+        String[] cameraIdList = cameraManager.getCameraIdList();
+        if (cameraIdList == null || cameraIdList.length == 0) {
+            // 抛出带有原因的CameraAccessException
+            throw new CameraAccessException(CameraAccessException.CAMERA_DISABLED, "No cameras available on this device.");
+        }
+
+        for (String CameraID : cameraIdList) {
             CameraCharacteristics characteristics = cameraManager.getCameraCharacteristics(cameraID);
             Integer facing = characteristics.get(CameraCharacteristics.LENS_FACING);
-            // 如果摄像头朝前就换一个
-            if(facing != null && facing == CameraCharacteristics.LENS_FACING_FRONT){
+            if (facing != null && facing == CameraCharacteristics.LENS_FACING_FRONT) {
                 continue;
+            }
+
+            // 确保尺寸有效
+            if (width <= 0 || height <= 0) {
+                throw new IllegalArgumentException("Invalid preview size");
             }
 
             // 获取当前摄像头的分辨率
