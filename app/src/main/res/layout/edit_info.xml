@@ -43,16 +43,17 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginTop="40dp"
-        android:background="@drawable/custom_edittext_border"
-        app:layout_constraintTop_toBottomOf="@id/til_name">
+        android:hint=" 邮箱"
+    app:layout_constraintTop_toBottomOf="@id/til_name">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_email"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:hint=" 邮箱"
-            android:inputType="textEmailAddress" />
-    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/et_email"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:hint=" 邮箱"
+    android:background="@drawable/custom_edittext_border"
+    android:inputType="textEmailAddress" />
+</com.google.android.material.textfield.TextInputLayout>
 
     <!-- 电话输入框 -->
     <com.google.android.material.textfield.TextInputLayout
@@ -109,4 +110,19 @@
         android:textSize="22sp"
         android:textColor="@color/white"
         app:layout_constraintTop_toBottomOf="@id/layout_avatar" />
+
+    <Button
+        android:id="@+id/btn_giveup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_background"
+        android:text="放弃"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.892"
+        tools:layout_editor_absoluteX="4dp" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

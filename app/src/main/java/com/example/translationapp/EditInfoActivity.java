@@ -47,6 +47,7 @@ public class EditInfoActivity extends AppCompatActivity {
         imgAvatar = findViewById(R.id.img_avatar);
         btnChangeAvatar = findViewById(R.id.btn_change_avatar);
         btnSubmit = findViewById(R.id.btn_submit);
+        Button btnGiveUp = findViewById(R.id.btn_giveup);
 
         // 头像更改按钮点击事件
         btnChangeAvatar.setOnClickListener(new View.OnClickListener() {
@@ -63,6 +64,20 @@ public class EditInfoActivity extends AppCompatActivity {
                 submitProfileInfo();
             }
         });
+
+
+        btnGiveUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 创建Intent，指向ProfileActivity
+                Intent intent = new Intent(EditInfoActivity.this, ProfileActivity.class);
+                // 启动ProfileActivity
+                startActivity(intent);
+                // 可以选择性添加：关闭当前Activity
+                finish();
+            }
+        });
+
     }
 
     private void openImageChooser() {

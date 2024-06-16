@@ -1,0 +1,13 @@
+<!-- res/values/styles.xml -->
+<resources>
+    <style name="CustomEditTextStyle" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:hint">"提示信息"</item>
+        <item name="android:inputType">text</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">16sp</item>
+        <item name="boxStrokeColor">@color/grey</item>
+        <item name="boxBackgroundColor">@color/white</item>
+    </style>
+</resources>

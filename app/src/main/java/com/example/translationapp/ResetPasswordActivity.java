@@ -1,5 +1,6 @@
 package com.example.translationapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -29,7 +30,37 @@ public class ResetPasswordActivity extends AppCompatActivity {
 
         initializeViews();
         setListeners();
+
+        // 提交按钮的点击事件
+        Button btnSubmit = findViewById(R.id.btn_submit);
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 跳转到LoginActivity
+                redirectToLoginActivity();
+            }
+        });
+
+        // 放弃按钮的点击事件
+        Button btnForget = findViewById(R.id.btn_forget);
+        btnForget.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 跳转到LoginActivity
+                redirectToLoginActivity();
+            }
+        });
     }
+
+    // 跳转到LoginActivity的通用方法
+    private void redirectToLoginActivity() {
+        Intent intent = new Intent(ResetPasswordActivity.this, LoginActivity.class);
+        startActivity(intent);
+        // 如果需要关闭当前Activity，可以添加以下代码：
+         finish();
+    }
+
+
 
     private void initializeViews() {
         // 初始化视图组件

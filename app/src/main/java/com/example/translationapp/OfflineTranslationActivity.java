@@ -84,4 +84,5 @@ public class OfflineTranslationActivity extends AppCompatActivity {
         // 目前我们只是简单地返回输入文本作为演示
         return "Translated text from " + sourceLanguage + " to " + targetLanguage + ": " + inputText;
     }
+
 }

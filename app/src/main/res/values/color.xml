@@ -7,4 +7,5 @@
     <color name="listDividerColor">#E0E0E0</color>
     <color name="buttonTextColor">#000000</color>
     <color name="imagePlaceholderColor">#E0E0E0</color>
+    <color name="grey">#808080</color>
 </resources>
