@@ -32,6 +32,10 @@
             </intent-filter>
         </activity>
 
+        <activity android:name="com.example.translationapp.VoiceTranslationActivity">
+            <!-- 可选：如果需要设置其他配置，可以在这里添加 -->
+        </activity>
+
     </application>
 
 </manifest>
