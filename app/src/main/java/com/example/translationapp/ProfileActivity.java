@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.content.Intent;
@@ -21,11 +22,11 @@ public class ProfileActivity extends AppCompatActivity {
 
 
         // 初始化底部导航栏的按钮
-        homeButton = findViewById(R.id.home_button);
-        voiceButton = findViewById(R.id.voice_button);
-        cameraButton = findViewById(R.id.camera_button);
-        historyButton = findViewById(R.id.history_button);
-        myButton = findViewById(R.id.my_button);
+        LinearLayout bottomNavigation = findViewById(R.id.bottom_navigation);
+        LinearLayout homeButton = findViewById(R.id.home_button);
+        LinearLayout voiceButton = findViewById(R.id.voice_button);
+        LinearLayout historyButton = findViewById(R.id.history_button);
+        LinearLayout myButton = findViewById(R.id.my_button);
 
         // 为首页按钮设置点击事件
         homeButton.setOnClickListener(new View.OnClickListener() {

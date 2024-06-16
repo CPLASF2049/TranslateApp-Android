@@ -45,11 +45,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.home_translation);
 
         // 初始化底部导航栏的按钮
-        Button homeButton = findViewById(R.id.home_button);
-        Button voiceButton = findViewById(R.id.voice_button);
-        Button cameraButton = findViewById(R.id.camera_button);
-        Button historyButton = findViewById(R.id.history_button);
-        Button myButton = findViewById(R.id.my_button);
+        LinearLayout bottomNavigation = findViewById(R.id.bottom_navigation);
+        LinearLayout homeButton = findViewById(R.id.home_button);
+        LinearLayout voiceButton = findViewById(R.id.voice_button);
+        LinearLayout historyButton = findViewById(R.id.history_button);
+        LinearLayout myButton = findViewById(R.id.my_button);
+        LinearLayout cameraButton = findViewById(R.id.camera_button);
 
         // 为语音按钮设置点击事件
         voiceButton.setOnClickListener(new View.OnClickListener() {

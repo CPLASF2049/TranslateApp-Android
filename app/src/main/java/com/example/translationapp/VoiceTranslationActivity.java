@@ -1,6 +1,7 @@
 package com.example.translationapp;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.speech.RecognitionListener;
@@ -12,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -46,6 +48,57 @@ public class VoiceTranslationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.voice_translation);
+
+        // 初始化底部导航栏的按钮
+        LinearLayout homeButton = findViewById(R.id.home_button);
+        LinearLayout voiceButton = findViewById(R.id.voice_button);
+        LinearLayout historyButton = findViewById(R.id.history_button);
+        LinearLayout myButton = findViewById(R.id.my_button);
+        LinearLayout cameraButton = findViewById(R.id.camera_button);
+
+        // 为首页按钮设置点击事件
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 跳转到首页Activity
+                Intent intent = new Intent(VoiceTranslationActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // 为拍照按钮设置点击事件
+        cameraButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 跳转到拍照Activity
+                Intent intent = new Intent(VoiceTranslationActivity.this, CameraTranslationActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+        // 为历史按钮设置点击事件
+        historyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 跳转到历史Activity
+                Intent intent = new Intent(VoiceTranslationActivity.this, HistoryActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // 为“我的”按钮设置点击事件
+        myButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 跳转到我的Activity
+                Intent intent = new Intent(VoiceTranslationActivity.this, ProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+
 
         // 初始化组件
         txtTranslationResult = findViewById(R.id.txt_translation_result);

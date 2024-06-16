@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,11 +28,12 @@ public class HistoryActivity extends AppCompatActivity {
         setContentView(R.layout.search_history);
 
         // 初始化底部导航栏的按钮
-        homeButton = findViewById(R.id.home_button);
-        voiceButton = findViewById(R.id.voice_button);
-        cameraButton = findViewById(R.id.camera_button);
-        // historyButton 已经在这个界面上，不需要设置跳转
-        myButton = findViewById(R.id.my_button);
+        LinearLayout bottomNavigation = findViewById(R.id.bottom_navigation);
+        LinearLayout homeButton = findViewById(R.id.home_button);
+        LinearLayout voiceButton = findViewById(R.id.voice_button);
+        LinearLayout historyButton = findViewById(R.id.history_button);
+        LinearLayout myButton = findViewById(R.id.my_button);
+        LinearLayout cameraButton = findViewById(R.id.camera_button);
 
         // 为首页按钮设置点击事件
         homeButton.setOnClickListener(new View.OnClickListener() {
