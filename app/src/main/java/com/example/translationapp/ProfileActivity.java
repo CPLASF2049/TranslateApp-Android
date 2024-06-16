@@ -94,4 +94,62 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
     }
-}
+
+
+        // 假设这是底部导航栏的组件引用
+        private Button homeButton, voiceButton, cameraButton, historyButton, myButton;
+
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.my_activity_layout); // 确保使用正确的布局文件名
+
+            // 初始化底部导航栏的按钮
+            homeButton = findViewById(R.id.home_button);
+            voiceButton = findViewById(R.id.voice_button);
+            cameraButton = findViewById(R.id.camera_button);
+            historyButton = findViewById(R.id.history_button);
+            myButton = findViewById(R.id.my_button);
+
+            // 为首页按钮设置点击事件
+            homeButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // 跳转到首页Activity
+                    Intent intent = new Intent(ProfileActivity.this, MainActivity.class);
+                    startActivity(intent);
+                }
+            });
+
+            // 为语音按钮设置点击事件
+            voiceButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // 跳转到语音Activity
+                    Intent intent = new Intent(ProfileActivity.this, VoiceTranslationActivity.class);
+                    startActivity(intent);
+                }
+            });
+
+            // 为拍照按钮设置点击事件
+            cameraButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // 跳转到拍照Activity
+                    Intent intent = new Intent(ProfileActivity.this, CameraTranslationActivity.class);
+                    startActivity(intent);
+                }
+            });
+
+            // 为历史按钮设置点击事件
+            historyButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // 跳转到历史Activity
+                    Intent intent = new Intent(ProfileActivity.this, HistoryActivity.class);
+                    startActivity(intent);
+                }
+            });
+        }
+    }
+
