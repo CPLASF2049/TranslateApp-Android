@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
@@ -16,6 +17,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
+
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 
 public class CameraTranslationActivity extends AppCompatActivity {
 
@@ -52,6 +56,7 @@ public class CameraTranslationActivity extends AppCompatActivity {
             }
         });
 
+
         // 设置提交翻译按钮的点击事件
         btnSubmitTranslation.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,21 +74,46 @@ public class CameraTranslationActivity extends AppCompatActivity {
     }
 
     private void pickImageFromGallery() {
-        Intent pickImageIntent = new Intent(Intent.ACTION_PICK,
-                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(pickImageIntent, PICK_IMAGE_REQUEST);
+        Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
+        photoPickerIntent.setType("image/*");
+        startActivityForResult(photoPickerIntent, PICK_IMAGE_REQUEST);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
+        if (resultCode != Activity.RESULT_OK) {
+            return; // 如果结果不是RESULT_OK，则直接返回
+        }
+
+        Bitmap imageBitmap = null;
+
+        if (requestCode == REQUEST_IMAGE_CAPTURE) {
+            // 从相机Intent的extras中获取Bitmap
             Bundle extras = data.getExtras();
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
-            imgSelectedPhoto.setImageBitmap(imageBitmap);
-        } else if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK) {
-            Bitmap imageBitmap = BitmapFactory.decodeFile(data.getData().getPath());
-            imgSelectedPhoto.setImageBitmap(imageBitmap);
+            if (extras != null) {
+                imageBitmap = (Bitmap) extras.get("data");
+                if (imageBitmap != null) {
+                    imgSelectedPhoto.setImageBitmap(imageBitmap);
+                }
+            }
+        } else if (requestCode == PICK_IMAGE_REQUEST) {
+            // 从图库中获取图片的Uri
+            Uri selectedImageUri = data.getData();
+            if (selectedImageUri != null) {
+                try {
+                    // 使用ContentResolver和InputStream来获取Bitmap
+                    InputStream is = getContentResolver().openInputStream(selectedImageUri);
+                    imageBitmap = BitmapFactory.decodeStream(is);
+                    if (imageBitmap != null) {
+                        imgSelectedPhoto.setImageBitmap(imageBitmap);
+                    }
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                    // 处理错误，例如显示Toast消息
+                    Toast.makeText(this, "Error retrieving image", Toast.LENGTH_SHORT).show();
+                }
+            }
         }
     }
 
