@@ -36,6 +36,11 @@
             <!-- 可选：如果需要设置其他配置，可以在这里添加 -->
         </activity>
 
+        <activity android:name=".CameraTranslationActivity">
+
+        </activity>
+
+
     </application>
 
 </manifest>
