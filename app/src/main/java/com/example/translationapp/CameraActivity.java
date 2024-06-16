@@ -2,8 +2,10 @@ package com.example.translationapp;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Camera;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.graphics.ImageFormat;
 import android.graphics.SurfaceTexture;
@@ -28,6 +30,7 @@ import android.util.SparseArray;
 import android.view.Surface;
 import android.view.TextureView;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -91,6 +94,15 @@ public class CameraActivity extends AppCompatActivity {
         setContentView(R.layout.camera_photo);
         FrameLayout previewContainer = findViewById(R.id.camera_preview_container);
         TextureView textureView = previewContainer.findViewById(R.id.texture_view);
+        Button quitButton = findViewById(R.id.btn_back);
+
+        quitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CameraActivity.this, CameraTranslationActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     /* 检查摄像头的状态 onResume在activity启动后执行 */
