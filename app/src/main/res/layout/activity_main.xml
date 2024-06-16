@@ -8,7 +8,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="#ededed"
         android:padding="16dp">
 
         <!-- 导航栏的标题 -->
