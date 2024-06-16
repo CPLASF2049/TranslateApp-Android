@@ -67,6 +67,7 @@
 
         <activity android:name=".CameraRecognitionActivity"></activity>
 
+
     </application>
 
 </manifest>
