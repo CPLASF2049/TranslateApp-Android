@@ -51,15 +51,6 @@ public class MainActivity extends AppCompatActivity {
         Button historyButton = findViewById(R.id.history_button);
         Button myButton = findViewById(R.id.my_button);
 
-        // 为首页按钮设置点击事件
-        homeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // 可能不需要跳转，因为已经在首页
-                // 也可以添加代码切换到首页的特定Fragment或执行其他逻辑
-            }
-        });
-
         // 为语音按钮设置点击事件
         voiceButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,7 +86,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
 
         originalTextEditText = findViewById(R.id.txt_original_text);
         translatedTextTextView = findViewById(R.id.txt_translated_text);
@@ -202,7 +192,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        LinearLayout cameraButton = findViewById(R.id.camera_button);
 
         cameraButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -211,7 +200,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
 
     }
 
