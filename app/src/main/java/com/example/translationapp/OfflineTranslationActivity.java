@@ -1,5 +1,6 @@
 package com.example.translationapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -63,6 +64,27 @@ public class OfflineTranslationActivity extends AppCompatActivity {
         spinnerSourceLanguage.setAdapter(adapter);
         spinnerTargetLanguage.setAdapter(adapter);
     }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.download_translate);
+
+
+        // 获取退出按钮实例并设置点击事件
+        Button btnExit = findViewById(R.id.btn_exit);
+        btnExit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 创建Intent来启动my_management_account.xml对应的Activity
+                Intent intent = new Intent(OfflineTranslationActivity.this, ProfileActivity.class);
+                startActivity(intent);
+                // 结束当前Activity
+                finish();
+            }
+        });
+    }
+
 
     private String performTranslation(String sourceLanguage, String targetLanguage, String inputText) {
         // 这里应该是调用翻译库或API的代码
