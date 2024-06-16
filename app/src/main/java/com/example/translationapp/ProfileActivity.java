@@ -27,6 +27,7 @@ public class ProfileActivity extends AppCompatActivity {
         LinearLayout voiceButton = findViewById(R.id.voice_button);
         LinearLayout historyButton = findViewById(R.id.history_button);
         LinearLayout myButton = findViewById(R.id.my_button);
+        LinearLayout cameraButton = findViewById(R.id.camera_button);
 
         // 为首页按钮设置点击事件
         homeButton.setOnClickListener(new View.OnClickListener() {
@@ -144,10 +145,5 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
     }
-
-
-        // 假设这是底部导航栏的组件引用
-        private Button homeButton, voiceButton, cameraButton, historyButton, myButton;
-
     }
 
