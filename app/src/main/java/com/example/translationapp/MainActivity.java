@@ -38,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
     String sourceLanguage = "auto";
     String targetLanguage;
 
+    private static final String PREFS_NAME = "InnoTranslate";
+    private static final String IS_LOGGED_IN = "isLoggedIn";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +89,26 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+
+
+        // 检查用户是否登录
+        boolean isLoggedIn = getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+                .getBoolean(IS_LOGGED_IN, false);
+
+        if (isLoggedIn) {
+            // 用户已登录，跳转到已登录用户的主界面
+            Intent intent = new Intent(this, ProfileActivity.class);
+            startActivity(intent);
+        } else {
+            // 用户未登录，跳转到访客模式界面
+            Intent intent = new Intent(this, NoAccountManagementActivity.class);
+            startActivity(intent);
+        }
+
+        // 结束当前Activity，因为已经启动了新的Activity
+        finish();
 
         originalTextEditText = findViewById(R.id.txt_original_text);
         translatedTextTextView = findViewById(R.id.txt_translated_text);
