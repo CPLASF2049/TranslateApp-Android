@@ -19,7 +19,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import com.example.translationapp.R;
+import com.example.translation.R;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -119,20 +119,22 @@ public class EditInfoActivity extends AppCompatActivity {
         String email = ((TextInputEditText) tilEmail.getEditText()).getText().toString();
         String phone = ((TextInputEditText) tilPhone.getEditText()).getText().toString();
 
-        // 这里应该是提交用户信息的逻辑
-        // 例如，保存到数据库或者发送到服务器等
-
-        // 验证输入是否合法，然后执行保存操作
+        // 验证输入是否合法
         if (!name.isEmpty() && !email.isEmpty() && !phone.isEmpty()) {
-            // 保存用户信息，例如更新数据库或发送到服务器
+            // 这里假设你已经实现了保存用户信息的逻辑
             // saveUserInfo(name, email, phone);
 
+            // 显示信息已更新的提示
             Toast.makeText(this, "用户信息已更新", Toast.LENGTH_SHORT).show();
+
+            // 创建Intent来启动MyManagementAccountActivity
+            Intent intent = new Intent(EditInfoActivity.this, ProfileActivity.class);
+            startActivity(intent); // 启动Activity
         } else {
+            // 显示请填写所有字段的提示
             Toast.makeText(this, "请填写所有字段", Toast.LENGTH_SHORT).show();
         }
     }
-
     // 以下是可能需要的其他方法，例如权限请求等
     // ...
 }
