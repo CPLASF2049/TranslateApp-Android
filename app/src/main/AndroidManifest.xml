@@ -33,37 +33,40 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.example.translationapp.VoiceTranslationActivity">
-            <!-- 可选：如果需要设置其他配置，可以在这里添加 -->
-        </activity>
+        <activity android:name="com.example.translationapp.VoiceTranslationActivity"></activity>
 
-        <activity android:name=".CameraTranslationActivity">
+        <activity android:name=".CameraTranslationActivity"></activity>
 
-        </activity>
+        <activity android:name=".CameraActivity"></activity>
 
-        <activity android:name=".CameraActivity">
+        <activity android:name="com.example.translationapp.ProfileActivity"></activity>
 
-        </activity>
+        <activity android:name=".HistoryActivity"></activity>
 
-        <activity android:name="com.example.translationapp.ProfileActivity">
-            <!-- 其他属性 -->
-        </activity>
+        <activity android:name=".LoginActivity"></activity>
 
-        <activity android:name=".HistoryActivity">
+        <activity android:name=".EditInfoActivity"></activity>
 
-        </activity>
+        <activity android:name=".SettingActivity"></activity>
 
-        <activity android:name=".LoginActivity">
+        <activity android:name=".OfflineTranslationActivity"></activity>
 
-        </activity>
+        <activity android:name=".SuggestionActivity"></activity>
 
-        <activity android:name=".EditInfoActivity">
+        <activity android:name="NoAccountManagementActivity"></activity>
 
-        </activity>
+        <activity android:name=".ChooseLanguageActivity"></activity>
 
-        <activity android:name=".SettingActivity">
+        <activity android:name=".ResetPasswordActivity"></activity>
 
-        </activity>
+        <activity android:name=".RegisterActivity"></activity>
+
+        <activity android:name=".TranslationActivity"></activity>
+
+        <activity android:name=".VoiceRecognition"></activity>
+
+        <activity android:name=".CameraRecognitionActivity"></activity>
+
     </application>
 
 </manifest>
