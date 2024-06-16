@@ -18,6 +18,19 @@ public class SuggestionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.suggestions);
 
+        Button btnBack = findViewById(R.id.btn_back);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 创建Intent，指向ProfileActivity
+                Intent intent = new Intent(SuggestionActivity.this, ProfileActivity.class);
+                // 启动ProfileActivity
+                startActivity(intent);
+                // 可以选择性添加：关闭当前Activity
+                // finish();
+            }
+        });
+
         // 初始化控件
         final ConstraintLayout constraintLayout = findViewById(R.id.suggestions_root);
         final Button btnSubmit = findViewById(R.id.btn_submit);
