@@ -76,7 +76,6 @@
 
             <Button
                 android:id="@+id/log_button"
-                style="?attr/borderlessButtonStyle"
                 android:layout_width="300dp"
                 android:layout_height="50dp"
                 android:background="@drawable/custom_button_background"
