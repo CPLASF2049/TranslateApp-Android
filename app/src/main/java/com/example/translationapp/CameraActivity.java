@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Camera;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.graphics.ImageFormat;
@@ -56,6 +57,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class CameraActivity extends AppCompatActivity {
     TextureView previewView;
@@ -92,9 +94,11 @@ public class CameraActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.camera_photo);
+        previewView = findViewById(R.id.texture_view);
+        previewView.setSurfaceTextureListener(textureListener);
         FrameLayout previewContainer = findViewById(R.id.camera_preview_container);
-        TextureView textureView = previewContainer.findViewById(R.id.texture_view);
         Button quitButton = findViewById(R.id.btn_back);
+        Button captureButton = findViewById(R.id.btn_capture);
 
         quitButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,6 +107,19 @@ public class CameraActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        captureButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    Capture(v); // 调用Capture方法
+                } catch (CameraAccessException e) {
+                    e.printStackTrace();
+                    // 处理异常，例如显示错误信息
+                }
+            }
+        });
+
     }
 
     /* 检查摄像头的状态 onResume在activity启动后执行 */
@@ -181,11 +198,11 @@ public class CameraActivity extends AppCompatActivity {
             throw new CameraAccessException(CameraAccessException.CAMERA_DISABLED, "No cameras available on this device.");
         }
 
-        for (String CameraID : cameraIdList) {
-            CameraCharacteristics characteristics = cameraManager.getCameraCharacteristics(cameraID);
+        for (String cameraId : cameraIdList) {
+            CameraCharacteristics characteristics = cameraManager.getCameraCharacteristics(cameraId);
             Integer facing = characteristics.get(CameraCharacteristics.LENS_FACING);
-            if (facing != null && facing == CameraCharacteristics.LENS_FACING_FRONT) {
-                continue;
+            if (facing != null && facing != CameraCharacteristics.LENS_FACING_BACK) {
+                continue; // 只选择后置摄像头
             }
 
             // 确保尺寸有效
@@ -207,7 +224,7 @@ public class CameraActivity extends AppCompatActivity {
 
             // 建立缓冲区
             setUpImegeReader();
-            cameraID = CameraID;
+            cameraID = cameraId;
             break;
         }
     }
@@ -335,11 +352,25 @@ public class CameraActivity extends AppCompatActivity {
         // 回调函数
         CameraCaptureSession.CaptureCallback captureCallback = new CameraCaptureSession.CaptureCallback() {
             @Override
-            // 拍照完成
             public void onCaptureCompleted(@NonNull CameraCaptureSession session, @NonNull CaptureRequest request, @NonNull TotalCaptureResult result) {
-                Toast.makeText(getApplicationContext(), "Photo has been saved!", Toast.LENGTH_LONG).show();
-                unLockFouces();
-                super.onCaptureCompleted(session, request, result);
+                // 拍照完成，显示Toast消息
+                Toast.makeText(getApplicationContext(), "Photo capture successful", Toast.LENGTH_SHORT).show();
+
+                // 拍照完成后，保存图片
+                Image image = imageReader.acquireLatestImage();
+                if (image != null) {
+                    String imagePath = saveImageToPublicDirectory(image);
+                    image.close();
+                    if (imagePath != null) {
+                        // 将图片路径传递给CameraTranslationActivity
+                        Intent intent = new Intent(CameraActivity.this, CameraTranslationActivity.class);
+                        intent.putExtra("photo_path", imagePath);
+                        startActivity(intent);
+                    }
+                }
+
+                // 恢复预览
+                startPreview();
             }
         };
 
@@ -347,69 +378,84 @@ public class CameraActivity extends AppCompatActivity {
         cameraCaptureSession.capture(cameraBuilder.build(), captureCallback, cameraHandler);
     }
 
-    private void unLockFouces(){
-
-        try {
-            captureRequestBuilder.set(CaptureRequest.CONTROL_AF_TRIGGER, CameraMetadata.CONTROL_AF_TRIGGER_CANCEL);
-            cameraCaptureSession.setRepeatingRequest(captureRequestBuilder.build(), null, cameraHandler);
+    private void saveAndShareImage() {
+        Image image = imageReader.acquireLatestImage();
+        if (image != null) {
+            String imagePath = saveImageToPublicDirectory(image);
+            if (imagePath != null) {
+                // 将图片路径传递给CameraTranslationActivity
+                Intent intent = new Intent(CameraActivity.this, CameraTranslationActivity.class);
+                intent.putExtra("photo_path", imagePath);
+                startActivity(intent);
+            }
+            image.close();
         }
-        catch (CameraAccessException e){
-            throw new RuntimeException(e);
+    }
+
+    private String saveImageToPublicDirectory(Image image) {
+        if (image == null) return null;
+
+        ByteBuffer buffer = image.getPlanes()[0].getBuffer();
+        byte[] bytes = new byte[buffer.remaining()];
+        buffer.get(bytes);
+
+        // 获取公共图片目录
+        File photoDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+        // 创建时间戳作为文件名
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
+        File photoFile = new File(photoDir, "IMG_" + timeStamp + ".jpg");
+
+        try (FileOutputStream fos = new FileOutputStream(photoFile)) {
+            fos.write(bytes);
+            fos.flush();
+            return photoFile.getAbsolutePath(); // 返回图片文件的绝对路径
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null; // 如果保存失败，返回null
         }
     }
 
     // 建立缓冲区，准备保存图片，参数2表示最多存2张
     private void setUpImegeReader(){
-
-        imageReader = ImageReader.newInstance(captureSize.getWidth(), captureSize.getHeight(), ImageFormat.JPEG, 2);
+        imageReader = ImageReader.newInstance(
+                captureSize.getWidth(),
+                captureSize.getHeight(),
+                ImageFormat.JPEG,
+                2
+        );
 
         // 当图片已经准备好了
-        imageReader.setOnImageAvailableListener(new ImageReader.OnImageAvailableListener() {
-            @Override
-            public void onImageAvailable(ImageReader reader) {
-                cameraHandler.post(new Runnable() {
+        imageReader.setOnImageAvailableListener(
+                new ImageReader.OnImageAvailableListener() {
                     @Override
-                    public void run() {
-                        // 调用 CameraActivity 中的 ImageSaver 方法
-                        new ImageSaver(reader.acquireLatestImage());
+                    public void onImageAvailable(ImageReader reader) {
+                        // 直接处理最新的图片
+                        Image image = reader.acquireLatestImage();
+                        if (image != null) {
+                            // 保存图片并处理成功后的逻辑
+                            String imagePath = saveImageToPublicDirectory(image);
+                            image.close(); // 释放Image资源
+
+                            // 根据图片保存结果进行UI更新或其他操作
+                            if (imagePath != null) {
+                                // 图片保存成功，可以在这里更新UI或执行其他操作
+                                // 例如，使用runOnUiThread来更新UI
+                                runOnUiThread(() -> {
+                                    // 这里可以更新UI，例如显示一个提示信息
+                                    Toast.makeText(CameraActivity.this, "Image saved to: " + imagePath, Toast.LENGTH_LONG).show();
+                                });
+                            } else {
+                                // 图片保存失败，可以在这里处理错误，例如显示一个错误消息
+                                runOnUiThread(() -> {
+                                    Toast.makeText(CameraActivity.this, "Failed to save image.", Toast.LENGTH_LONG).show();
+                                });
+                            }
+                        }
                     }
-                });
-            }
-        }, cameraHandler);
-
+                },
+                cameraHandler
+        );
     }
 
-    private class ImageSaver implements Runnable{
-        Image image;
-        public ImageSaver(Image anImage){
-            image = anImage;
-        }
-
-        @Override
-        public void run(){
-
-            ByteBuffer buffer = image.getPlanes()[0].getBuffer();
-            byte[] data = new byte[buffer.remaining()];
-            buffer.get(data);
-            String path = Environment.getExternalStorageDirectory()+"/DCIM/CameraV2";
-            File imegeFile = new File(path);
-            if(!imegeFile.exists()){
-                imegeFile.mkdir();
-            }
-            // 文件命名方式：年月日_时分秒
-            String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-            String fileName = path + "IMG_" + timeStamp + ".jpg";
-            try {
-                FileOutputStream fos = new FileOutputStream(fileName);
-                fos.write(data, 0, data.length);
-            }
-            catch (FileNotFoundException e){
-                throw new RuntimeException(e);
-            }
-            catch (IOException e){
-                throw new RuntimeException(e);
-            }
-        }
-    }
 }
 

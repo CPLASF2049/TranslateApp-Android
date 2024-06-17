@@ -22,6 +22,8 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
+import com.bumptech.glide.Glide;
+
 public class CameraTranslationActivity extends AppCompatActivity {
 
     private static final int REQUEST_IMAGE_CAPTURE = 1;
@@ -30,6 +32,8 @@ public class CameraTranslationActivity extends AppCompatActivity {
     private Button btnSubmitTranslation;
     private ImageButton btnCapture, btnGallery;
     private Bitmap imageBitmap = null;
+    private String imagePath;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -137,13 +141,13 @@ public class CameraTranslationActivity extends AppCompatActivity {
         }
 
         if (requestCode == REQUEST_IMAGE_CAPTURE) {
-            // 从相机Intent的extras中获取Bitmap
-            Bundle extras = data.getExtras();
-            if (extras != null) {
-                imageBitmap = (Bitmap) extras.get("data");
-                if (imageBitmap != null) {
-                    imgSelectedPhoto.setImageBitmap(imageBitmap);
-                }
+            // 从Intent中获取图片路径
+            imagePath = getIntent().getStringExtra("photo_path");
+            if (imagePath != null) {
+                // 使用Glide加载图片
+                Glide.with(this)
+                        .load(imagePath)
+                        .into(imgSelectedPhoto);
             }
         } else if (requestCode == PICK_IMAGE_REQUEST) {
             // 从图库中获取图片的Uri

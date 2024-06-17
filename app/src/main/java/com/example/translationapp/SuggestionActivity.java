@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -18,7 +19,7 @@ public class SuggestionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.suggestions);
 
-        Button btnBack = findViewById(R.id.btn_back);
+        ImageButton btnBack = findViewById(R.id.btn_back);
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,9 +83,7 @@ public class SuggestionActivity extends AppCompatActivity {
     }
     // 模拟数据库保存逻辑
     private boolean saveToDatabase(String description, String contact) {
-        // 这里应该是保存数据到数据库的逻辑
-        // 目前我们只是返回true以表示“保存成功”
-        // 实际使用时需要替换为真实的数据库操作
+
         return true;
     }
 }

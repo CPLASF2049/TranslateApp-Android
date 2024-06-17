@@ -16,8 +16,6 @@ import com.example.translationapp.R;
 public class ProfileActivity extends AppCompatActivity {
 
     private ImageView profileImage;
-    private TextView userName;
-    private TextView emailAddress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +32,6 @@ public class ProfileActivity extends AppCompatActivity {
         LinearLayout cameraButton = findViewById(R.id.camera_button);
 
         profileImage = findViewById(R.id.profile_image);
-        userName = findViewById(R.id.user_name);
-        emailAddress = findViewById(R.id.email_address);
 
         // 为首页按钮设置点击事件
         homeButton.setOnClickListener(new View.OnClickListener() {
@@ -86,7 +82,6 @@ public class ProfileActivity extends AppCompatActivity {
         Button feedbackButton = findViewById(R.id.feedback_button);
         Button logoutButton = findViewById(R.id.logout_button);
 
-        displayUsername();
 
         // 为编辑资料按钮设置点击事件
         // 设置点击事件
@@ -149,25 +144,6 @@ public class ProfileActivity extends AppCompatActivity {
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 finish(); // 结束当前Activity
-            }
-        });
-
-
-    }
-
-    private void displayUsername() {
-        // 确保在 UI 线程上执行
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                String username = UserAccount.getCurrentUsername();
-                if (username != null && !username.isEmpty()) {
-                    // 如果有用户名，则显示它
-                    userName.setText(username);
-                } else {
-                    // 如果没有用户名，显示默认消息
-                    userName.setText("未登录");
-                }
             }
         });
     }
