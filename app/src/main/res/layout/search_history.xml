@@ -52,7 +52,6 @@
     <!-- 清除历史按钮 -->
     <Button
         android:id="@+id/btn_clear_history"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:text="清除历史记录"
