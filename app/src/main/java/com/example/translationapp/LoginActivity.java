@@ -49,7 +49,8 @@ public class LoginActivity extends AppCompatActivity {
 
         // 验证用户名和密码
         if (storedPassword != null && storedPassword.equals(inputPassword)) {
-            // 登录成功
+            // 登录成功，设置当前用户名
+            UserAccount.setCurrentUsername(username);
             performLoginSuccess();
         } else {
             // 登录失败，显示错误提示
@@ -63,7 +64,7 @@ public class LoginActivity extends AppCompatActivity {
             // 登录成功提示
             Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
             // 跳转到主界面
-            Intent intent = new Intent(LoginActivity.this, ProfileActivity.class);
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
             finish(); // 关闭当前登录界面
         }, 2000);
