@@ -54,7 +54,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_visitor"
-            android:layout_gravity="center_horizontal" />
+                android:layout_gravity="center_horizontal" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -67,7 +67,6 @@
 
         </LinearLayout>
 
-
         <!-- 中间区域按钮 -->
         <LinearLayout
             android:layout_width="match_parent"
@@ -77,10 +76,9 @@
 
             <Button
                 android:id="@+id/log_button"
-                style="?attr/borderlessButtonStyle"
                 android:layout_width="300dp"
                 android:layout_height="50dp"
-                android:background="@drawable/button_background"
+                android:background="@drawable/custom_button_background"
                 android:drawablePadding="30dp"
                 android:text="点击登录"
                 android:textColor="@color/white"
