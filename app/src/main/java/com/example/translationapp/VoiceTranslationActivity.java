@@ -97,9 +97,6 @@ public class VoiceTranslationActivity extends AppCompatActivity {
             }
         });
 
-
-
-
         // 初始化组件
         txtTranslationResult = findViewById(R.id.txt_translation_result);
         voiceInputButton = findViewById(R.id.voice_input_button);
@@ -195,7 +192,6 @@ public class VoiceTranslationActivity extends AppCompatActivity {
                 speechRecognizer.startListening(intent);
             }
         });
-
 
         // 创建适配器
         ArrayAdapter<String> sourceAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, sourceLanguages);

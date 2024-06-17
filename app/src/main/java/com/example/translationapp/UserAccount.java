@@ -65,6 +65,16 @@ public class UserAccount {
     // 假设我们使用一个静态变量来存储当前登录的用户名
     private static String currentUsername;
 
+    public void removeCredentials(String username) {
+        // 从内存中的map删除旧的凭证
+        userCredentials.remove(username);
+        // 从SharedPreferences中删除旧的凭证
+        SharedPreferences sharedPreferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.remove(username);
+        editor.apply();
+    }
+
     public static void setCurrentUsername(String username) {
         currentUsername = username;
     }

@@ -72,7 +72,7 @@
             android:layout_height="50dp"
             android:hint=" 密码"
             android:background="@drawable/custom_edittext_border"
-            android:inputType="phone" />
+            android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
 
