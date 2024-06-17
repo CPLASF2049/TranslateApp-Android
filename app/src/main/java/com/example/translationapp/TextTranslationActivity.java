@@ -102,7 +102,7 @@ public class TextTranslationActivity extends AppCompatActivity{
                     Intent intent = new Intent(TextTranslationActivity.this, ProfileActivity.class);
                     startActivity(intent);
                 } else {
-                    showLoginRequiredToast();
+                    Intent intent = new Intent(TextTranslationActivity.this, RegisterActivity.class);
                 }
             }
         });
