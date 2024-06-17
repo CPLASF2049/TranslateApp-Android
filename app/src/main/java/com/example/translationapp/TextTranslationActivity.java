@@ -51,60 +51,41 @@ public class TextTranslationActivity extends AppCompatActivity{
         LinearLayout myButton = findViewById(R.id.my_button);
         LinearLayout cameraButton = findViewById(R.id.camera_button);
 
-        SharedPreferences sharedPreferences = getSharedPreferences("YourAppPrefs", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean("isLoggedIn", true); // 用户已登录
-        editor.apply();
-// 为语音按钮设置点击事件
+        // 为语音按钮设置点击事件
         voiceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isUserLoggedIn()) {
-                    Intent intent = new Intent(TextTranslationActivity.this, VoiceTranslationActivity.class);
-                    startActivity(intent);
-                } else {
-                    showLoginRequiredToast();
-                }
+                // 跳转到语音Activity
+                Intent intent = new Intent(TextTranslationActivity.this, VoiceTranslationActivity.class);
+                startActivity(intent);
             }
         });
-
-// 为拍照按钮设置点击事件
+        // 为拍照按钮设置点击事件
         cameraButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isUserLoggedIn()) {
-                    Intent intent = new Intent(TextTranslationActivity.this, CameraTranslationActivity.class);
-                    startActivity(intent);
-                } else {
-                    showLoginRequiredToast();
-                }
+                // 跳转到拍照Activity
+                Intent intent = new Intent(TextTranslationActivity.this, CameraTranslationActivity.class);
+                startActivity(intent);
             }
         });
-
-// 为历史按钮设置点击事件
+        // 为历史按钮设置点击事件
         historyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isUserLoggedIn()) {
-                    Intent intent = new Intent(TextTranslationActivity.this, HistoryActivity.class);
-                    startActivity(intent);
-                } else {
-                    showLoginRequiredToast();
-                }
+                // 跳转到历史Activity
+                Intent intent = new Intent(TextTranslationActivity.this, HistoryActivity.class);
+                startActivity(intent);
             }
         });
 
-// 为“我的”按钮设置点击事件
+        // 为“我的”按钮设置点击事件
         myButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isUserLoggedIn()) {
-                    Intent intent = new Intent(TextTranslationActivity.this, ProfileActivity.class);
-                    startActivity(intent);
-                } else {
-                    Intent intent = new Intent(TextTranslationActivity.this, LoginActivity.class);
-                    startActivity(intent);
-                }
+                // 跳转到我的Activity
+                Intent intent = new Intent(TextTranslationActivity.this, ProfileActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -261,16 +242,4 @@ public class TextTranslationActivity extends AppCompatActivity{
         return DigestUtils.md5Hex(combinedString);
     }
 
-    // 检查用户是否登录的方法
-    private boolean isUserLoggedIn() {
-        // 获取SharedPreferences实例，通常命名为"loginPrefs"
-        SharedPreferences sharedPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
-
-        // 检查SharedPreferences中是否存在登录标记，例如"isLoggedIn"
-        return sharedPreferences.getBoolean("isLoggedIn", false);
-    }
-    // 显示未登录的提示
-    private void showLoginRequiredToast() {
-        Toast.makeText(TextTranslationActivity.this, "请先登录！", Toast.LENGTH_SHORT).show();
-    }
 }
