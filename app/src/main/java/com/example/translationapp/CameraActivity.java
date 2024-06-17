@@ -31,6 +31,7 @@ import android.util.SparseArray;
 import android.view.Surface;
 import android.view.TextureView;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -97,7 +98,7 @@ public class CameraActivity extends AppCompatActivity {
         previewView = findViewById(R.id.texture_view);
         previewView.setSurfaceTextureListener(textureListener);
         FrameLayout previewContainer = findViewById(R.id.camera_preview_container);
-        Button quitButton = findViewById(R.id.btn_back);
+        ImageButton quitButton = findViewById(R.id.btn_back);
         Button captureButton = findViewById(R.id.btn_capture);
 
         quitButton.setOnClickListener(new View.OnClickListener() {
