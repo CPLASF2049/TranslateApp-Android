@@ -34,8 +34,6 @@ public class ProfileActivity extends AppCompatActivity {
         LinearLayout cameraButton = findViewById(R.id.camera_button);
 
         profileImage = findViewById(R.id.profile_image);
-        userName = findViewById(R.id.user_name);
-        emailAddress = findViewById(R.id.email_address);
 
         // 为首页按钮设置点击事件
         homeButton.setOnClickListener(new View.OnClickListener() {
