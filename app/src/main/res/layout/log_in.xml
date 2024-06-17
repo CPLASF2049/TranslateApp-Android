@@ -9,7 +9,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="您好，\n       欢迎使用InnoTranslate！"
+        android:text="您好，\n  欢迎使用InnoTranslate！"
         android:layout_marginTop="30dp"
         android:textSize="25sp"
         android:textColor="#000000"
