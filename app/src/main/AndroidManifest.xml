@@ -65,6 +65,10 @@
 
         </activity>
 
+        <activity android:name=".PrivacyPolicy">
+
+        </activity>
+
         <activity android:name=".OfflineTranslationActivity">
 
         </activity>
