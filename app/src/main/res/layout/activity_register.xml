@@ -22,36 +22,66 @@
         android:src="@drawable/logo3"
         android:layout_marginTop="50dp" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginTop="20dp"
+        android:gravity="left"
+        android:text="请输入用户名，长度为6-10个字符"
+        android:textColor="#000000"
+        android:textSize="18sp" />
+
     <EditText
         android:id="@+id/usernameEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="请输入用户名"
+        android:hint="用户名"
         android:padding="10dp"
         android:background="@drawable/custom_edittext_border"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="5dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginTop="5dp"
+        android:gravity="left"
+        android:text="请输入密码，长度为6-16个字符，至少包含一个数字和字母"
+        android:textColor="#000000"
+        android:textSize="18sp" />
 
     <EditText
         android:id="@+id/passwordEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="请输入密码"
+        android:hint="密码"
         android:inputType="textPassword"
         android:padding="10dp"
         android:background="@drawable/custom_edittext_border"
         android:layout_below="@id/usernameEditText"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="5dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginTop="5dp"
+        android:gravity="left"
+        android:text="请再次输入密码"
+        android:textColor="#000000"
+        android:textSize="18sp" />
 
     <EditText
         android:id="@+id/confirmPasswordEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="请再次输入密码"
+        android:hint="再次输入密码"
         android:inputType="textPassword"
         android:padding="10dp"
         android:background="@drawable/custom_edittext_border"
         android:layout_below="@id/passwordEditText"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="5dp"/>
 
     <Button
         android:id="@+id/registerButton"

@@ -1,5 +1,6 @@
 package com.example.translationapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -8,8 +9,6 @@ import android.widget.TextView;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.translationapp.R;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -48,20 +47,41 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
+        // 检查用户名长度（6-10个字符）
+        if (username.length() < 6 || username.length() > 10) {
+            Toast.makeText(this, "用户名不符合要求", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // 检查密码长度（6-16个字符）和复杂性（至少包含1个数字和1个字母）
+        if (password.length() < 6 || password.length() > 16 ||
+                !password.matches(".*[0-9].*") || !password.matches(".*[a-zA-Z].*")) {
+            Toast.makeText(this, "密码不符合要求", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         // 检查两次输入的密码是否一致
         if (!password.equals(confirmPassword)) {
             Toast.makeText(this, "两次输入的密码不一致", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // 假设这里进行网络请求注册用户
-        // 以下代码仅为示例，您需要根据实际API和服务器情况实现网络请求
-        // new UserRegistrationTask().execute(username, password);
+        // 检查用户名是否已存在
+        UserAccount userAccount = UserAccount.getInstance();
+        if (userAccount.containsUsername(username)) {
+            Toast.makeText(this, "用户名已存在，请使用其他用户名", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // 存储用户名和密码到单例类中
+        userAccount.setCredentials(username, password);
 
         // 注册成功提示
         Toast.makeText(this, "用户注册成功，即将跳转到登录页面...", Toast.LENGTH_SHORT).show();
 
-        // 注册成功后的逻辑处理，比如跳转到登录界面等
-        // 这里需要您根据实际情况编写代码
+        // 注册成功后跳转到登录界面
+        Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+        startActivity(intent);
+        finish(); // 关闭当前注册界面
     }
 }
