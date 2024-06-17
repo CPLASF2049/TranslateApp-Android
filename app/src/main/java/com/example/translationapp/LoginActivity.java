@@ -63,7 +63,7 @@ public class LoginActivity extends AppCompatActivity {
             // 登录成功提示
             Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
             // 跳转到主界面
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            Intent intent = new Intent(LoginActivity.this, ProfileActivity.class);
             startActivity(intent);
             finish(); // 关闭当前登录界面
         }, 2000);
