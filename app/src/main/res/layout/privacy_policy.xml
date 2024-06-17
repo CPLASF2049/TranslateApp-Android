@@ -11,13 +11,13 @@
         android:id="@+id/textViewPrivacyPolicy"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-    android:scrollbars="vertical"
-    android:textColor="@color/black"
-    android:textSize="12sp"
-    app:layout_constraintBottom_toTopOf="@+id/btn_back"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
+        android:scrollbars="vertical"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:text="                                            翻译应用程序隐私政策\n
 
 引言\n
