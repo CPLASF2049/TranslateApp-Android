@@ -59,20 +59,25 @@ public class CameraRecognitionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.camera_recognition);
 
-        recognizedTextView = findViewById(R.id.txt_recognized_text);
-        translatedTextTextView = findViewById(R.id.txt_translated_text);
-        initOCR();
+        try {
+            recognizedTextView = findViewById(R.id.txt_recognized_text);
+            translatedTextTextView = findViewById(R.id.txt_translated_text);
+            initOCR();
 
-        // 获取传递过来的图片数据
-        Bitmap bitmap = getIntent().getParcelableExtra("imageBitmap");
+            Bitmap bitmap = getIntent().getParcelableExtra("imageBitmap");
+            if (bitmap != null) {
+                performOCR(bitmap);
+            } else {
+                Log.e(TAG, "Bitmap is null");
+            }
 
-        // 执行 OCR 识别操作
-        performOCR(bitmap);
-
-        if (allPermissionsGranted()) {
-            startCamera();
-        } else {
-            ActivityCompat.requestPermissions(this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS);
+            if (allPermissionsGranted()) {
+                startCamera();
+            } else {
+                ActivityCompat.requestPermissions(this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS);
+            }
+        } catch (Exception e) {
+            Log.e(TAG, "Error in onCreate", e);
         }
     }
 
