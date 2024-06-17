@@ -1,6 +1,7 @@
 package com.example.translationapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -91,19 +92,19 @@ public class MainActivity extends AppCompatActivity {
 
 
         // 检查用户是否登录
-        boolean isLoggedIn = getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
-                .getBoolean(IS_LOGGED_IN, false);
+        SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        boolean isLoggedIn = sharedPreferences.getBoolean(IS_LOGGED_IN, false);
 
+        Intent intent;
         if (isLoggedIn) {
             // 用户已登录，跳转到已登录用户的主界面
-            Intent intent = new Intent(this, ProfileActivity.class);
-            startActivity(intent);
+            intent = new Intent(this, ProfileActivity.class);
         } else {
             // 用户未登录，跳转到访客模式界面
-            Intent intent = new Intent(this, NoAccountManagementActivity.class);
-            startActivity(intent);
+            intent = new Intent(this, NoAccountManagementActivity.class);
         }
-
+        startActivity(intent);
+        finish();
 
 
         originalTextEditText = findViewById(R.id.txt_original_text);
