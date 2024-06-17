@@ -195,7 +195,8 @@ public class TextTranslationActivity extends AppCompatActivity{
 
         String appId = "20240531002066446";
         String salt = "123456"; // 随机数
-        String sign = md5(appId, originalText, salt, "GoAyiiiaGuLFmrY4F54O");// 根据文档计算得出的签名
+        // 根据文档计算得出的签名
+        String sign = md5(appId, originalText, salt, "GoAyiiiaGuLFmrY4F54O");
 
         // 使用 TranslationManager 进行翻译
         TranslationManager translationManager = new TranslationManager();
@@ -213,9 +214,10 @@ public class TextTranslationActivity extends AppCompatActivity{
                     }
                 });
 
-                // 保存翻译历史
+                // 保存翻译历史，这里需要传递当前的Activity Context 到 TranslationHistoryManager
                 String historyEntry = "Original: " + originalText + " | Translated: " + translatedText;
-                TranslationHistoryManager.getInstance().addHistoryEntry(historyEntry);
+                // 使用getInstance(this)确保传递正确的Context
+                TranslationHistoryManager.getInstance(TextTranslationActivity.this).addHistoryEntry(historyEntry);
             }
 
             @Override
@@ -224,7 +226,6 @@ public class TextTranslationActivity extends AppCompatActivity{
                 // 处理翻译失败的情况
             }
         });
-
     }
 
     public static String md5(String fixedString, String originalText, String salt, String password) {

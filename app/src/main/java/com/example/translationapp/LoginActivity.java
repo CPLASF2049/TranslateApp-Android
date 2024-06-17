@@ -62,22 +62,18 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void performLoginSuccess() {
-        new Handler().postDelayed(() -> {
-            Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
+        // 更新SharedPreferences以标记用户已登录
+        SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean(IS_LOGGED_IN, true);
+        // 确保提交更改
+        editor.apply(); // 使用apply()代替commit()，因为它是异步的
+        Log.d("LoginActivity", "SharedPreferences updated: isLoggedIn set to true");
 
-            // 更新SharedPreferences以标记用户已登录
-            SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putBoolean(IS_LOGGED_IN, true);
-            editor.commit();
-            Log.d("LoginActivity", "SharedPreferences updated: isLoggedIn set to true");
-
-            // 跳转到MainActivity
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-            finish();
-        }, 2000);
+        // 跳转到MainActivity
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish(); // 结束当前活动
     }
 
     // 这个方法将作为按钮点击事件的处理器

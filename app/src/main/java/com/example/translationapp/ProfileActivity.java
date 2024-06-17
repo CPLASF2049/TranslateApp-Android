@@ -156,14 +156,20 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void displayUsername() {
-        String username = UserAccount.getCurrentUsername();
-        if (username != null) {
-            // 如果有用户名，则显示它
-            userName.setText(username);
-        } else {
-            // 如果没有用户名，可以设置一个默认的消息或提示
-            userName.setText("未登录");
-        }
+        // 确保在 UI 线程上执行
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                String username = UserAccount.getCurrentUsername();
+                if (username != null && !username.isEmpty()) {
+                    // 如果有用户名，则显示它
+                    userName.setText(username);
+                } else {
+                    // 如果没有用户名，显示默认消息
+                    userName.setText("未登录");
+                }
+            }
+        });
     }
 }
 

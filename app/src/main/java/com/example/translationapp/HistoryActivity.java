@@ -80,8 +80,11 @@ public class HistoryActivity extends AppCompatActivity {
         listSearchHistory = findViewById(R.id.list_search_history);
         btnClearHistory = findViewById(R.id.btn_clear_history);
 
+        // 获取翻译历史管理器实例，传递当前Activity的Context
+        TranslationHistoryManager historyManager = TranslationHistoryManager.getInstance(this);
+
         // 初始化历史数据列表
-        historyData = TranslationHistoryManager.getInstance().getHistoryData();
+        historyData = historyManager.getHistoryData();
 
         // 设置列表适配器
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, historyData);
@@ -101,11 +104,10 @@ public class HistoryActivity extends AppCompatActivity {
         btnClearHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (historyData != null) {
-                    historyData.clear();
-                    adapter.notifyDataSetChanged(); // 通知适配器数据已更改
-                    Toast.makeText(HistoryActivity.this, "History cleared", Toast.LENGTH_SHORT).show();
-                }
+                // 调用 TranslationHistoryManager 的 clearHistory 方法
+                historyManager.clearHistory();
+                adapter.notifyDataSetChanged(); // 通知适配器数据已更改
+                Toast.makeText(HistoryActivity.this, "History cleared", Toast.LENGTH_SHORT).show();
             }
         });
     }
