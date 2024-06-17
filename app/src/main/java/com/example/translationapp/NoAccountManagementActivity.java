@@ -20,9 +20,11 @@ public class NoAccountManagementActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.my_management_noaccount);
+
+
+        // 初始化登录按钮并设置点击事件
+        Button logButton = findViewById(R.id.log_button);
         setupLoginButton(logButton); // 确保这个方法被调用
-
-
         // 初始化底部导航栏的LinearLayout
         LinearLayout bottomNavigation = findViewById(R.id.bottom_navigation);
         LinearLayout homeButton = findViewById(R.id.home_button);
@@ -61,8 +63,7 @@ public class NoAccountManagementActivity extends AppCompatActivity {
         // 如果需要关闭当前Activity，可以添加以下代码：
         finish();
     }
-    // 初始化登录按钮并设置点击事件
-    Button logButton = findViewById(R.id.log_button);
+
 
     // 设置登录按钮的点击事件
     private void setupLoginButton(Button loginButton) {
