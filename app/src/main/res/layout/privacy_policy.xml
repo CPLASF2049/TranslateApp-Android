@@ -6,21 +6,18 @@
     android:layout_height="match_parent"
     android:padding="40dp">
 
-    <!-- 退出按钮 -->
 
     <TextView
         android:id="@+id/textViewPrivacyPolicy"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:scrollbars="vertical"
-        android:textColor="@color/black"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
+        android:layout_height="wrap_content"
+    android:scrollbars="vertical"
+    android:textColor="@color/black"
+    android:textSize="12sp"
+    app:layout_constraintBottom_toTopOf="@+id/btn_back"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
         tools:text="                                            翻译应用程序隐私政策\n
 
 引言\n
@@ -45,8 +42,7 @@
 \n
 5. 用户权利\n
 您有权：访问、更正或删除您的个人信息。" />
-
-    <android.widget.Button
+    <Button
         android:id="@+id/btn_back"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -55,9 +51,8 @@
         android:textColor="@color/white"
         android:textSize="19sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.98"
-        tools:layout_editor_absoluteX="16dp" />
-
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPrivacyPolicy" /> <!-- 约束到TextView的下方 -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
