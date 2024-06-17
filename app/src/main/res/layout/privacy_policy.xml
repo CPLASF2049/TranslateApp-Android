@@ -17,31 +17,7 @@
         app:layout_constraintBottom_toTopOf="@+id/btn_back"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="                                            翻译应用程序隐私政策\n
-
-引言\n
-欢迎使用我们的翻译应用程序InnoTranslate（以下简称“应用”）。我们重视您的隐私，并致力于保护您的个人信息。本隐私政策解释了当您使用我们的应用时，我们如何收集、使用、存储和保护您的数据。
-\n\n
-1. 信息收集\n
-我们可能收集以下类型的信息：\n
-
-个人身份信息：包括但不限于您的姓名、电子邮件地址、电话号码等。\n
-使用数据：包括您使用应用时的行为数据，例如查询的翻译内容、使用频率等。\n
-设备信息：可能包括您的设备型号、操作系统版本、IP地址等。\n\n
-2. 信息使用\n
-我们使用收集的信息来：\n
-提供和改进我们的服务。\n
-定制和个性化您的用户体验。\n\n
-3. 信息共享\n
-我们不会与任何第三方共享您的个人信息，除非：\n
-为了提供服务，例如使用第三方服务进行翻译处理。\n
-法律要求或保护我们的权益。\n\n
-4. 信息安全\n
-我们采取适当的安全措施来保护您的个人信息免受未经授权的访问和泄露。然而，由于互联网的性质，我们无法保证信息的绝对安全。\n
-\n
-5. 用户权利\n
-您有权：访问、更正或删除您的个人信息。" />
+        app:layout_constraintTop_toTopOf="parent" />
     <Button
         android:id="@+id/btn_back"
         android:layout_width="match_parent"
