@@ -49,7 +49,7 @@
         android:layout_marginTop="73dp"
         android:layout_marginBottom="16dp"
         android:gravity="center"
-        android:text="欢迎使用\n Innotranslate翻译APP！"
+        android:text="欢迎使用\n InnoTranslate翻译APP！"
         android:textColor="#000000"
         android:textSize="26sp"
         android:textStyle="bold" />
