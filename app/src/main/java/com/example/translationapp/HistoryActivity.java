@@ -108,7 +108,7 @@ public class HistoryActivity extends AppCompatActivity {
                 clipboard.setPrimaryClip(clip);
 
                 // 显示复制成功的提示
-                Toast.makeText(HistoryActivity.this, "Copied to clipboard: " + clickedItem, Toast.LENGTH_SHORT).show();
+                Toast.makeText(HistoryActivity.this, "复制到剪贴板: " + clickedItem, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -119,7 +119,7 @@ public class HistoryActivity extends AppCompatActivity {
                 // 调用 TranslationHistoryManager 的 clearHistory 方法
                 historyManager.clearHistory();
                 adapter.notifyDataSetChanged(); // 通知适配器数据已更改
-                Toast.makeText(HistoryActivity.this, "History cleared", Toast.LENGTH_SHORT).show();
+                Toast.makeText(HistoryActivity.this, "翻译历史已清空！", Toast.LENGTH_SHORT).show();
             }
         });
     }
