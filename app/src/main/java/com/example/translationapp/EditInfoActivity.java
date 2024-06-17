@@ -28,7 +28,7 @@ public class EditInfoActivity extends AppCompatActivity {
     private static final int PICK_IMAGE_REQUEST = 2;
     private TextInputLayout tilName;
     private TextInputLayout tilEmail;
-    private TextInputLayout tilPhone;
+    private TextInputLayout tilCode;
     private FrameLayout layoutAvatar;
     private ImageView imgAvatar;
     private ImageButton btnChangeAvatar;
@@ -42,7 +42,7 @@ public class EditInfoActivity extends AppCompatActivity {
         // 初始化组件
         tilName = findViewById(R.id.til_name);
         tilEmail = findViewById(R.id.til_email);
-        tilPhone = findViewById(R.id.til_phone);
+        tilCode = findViewById(R.id.til_phone);
         layoutAvatar = findViewById(R.id.layout_avatar);
         imgAvatar = findViewById(R.id.img_avatar);
         btnChangeAvatar = findViewById(R.id.btn_change_avatar);
@@ -129,14 +129,34 @@ public class EditInfoActivity extends AppCompatActivity {
 
     private void submitProfileInfo() {
         // 获取用户输入的信息
-        String name = ((TextInputEditText) tilName.getEditText()).getText().toString();
         String email = ((TextInputEditText) tilEmail.getEditText()).getText().toString();
-        String phone = ((TextInputEditText) tilPhone.getEditText()).getText().toString();
+        String username = ((TextInputEditText) tilName.getEditText()).getText().toString();
+        String password = ((TextInputEditText) tilCode.getEditText()).getText().toString();
 
         // 验证输入是否合法
-        if (!name.isEmpty() && !email.isEmpty() && !phone.isEmpty()) {
-            // 这里假设你已经实现了保存用户信息的逻辑
-            // saveUserInfo(name, email, phone);
+        if (!email.isEmpty() && !username.isEmpty() && !password.isEmpty()) {
+            // 验证用户名长度和复杂性
+            if (username.length() < 6 || username.length() > 10 || !username.matches(".*[a-zA-Z].*") || !username.matches(".*[0-9].*")) {
+                Toast.makeText(this, "用户名必须6-10个字符，且必须包含至少1个数字和1个字母", Toast.LENGTH_LONG).show();
+                return;
+            }
+
+            // 验证密码长度和复杂性
+            if (password.length() < 6 || password.length() > 16 || !password.matches(".*[a-zA-Z].*") || !password.matches(".*[0-9].*")) {
+                Toast.makeText(this, "密码必须6-16个字符，且必须包含至少1个数字和1个字母", Toast.LENGTH_LONG).show();
+                return;
+            }
+
+            // 简单的邮箱格式验证
+            if (!email.matches("^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$")) {
+                Toast.makeText(this, "邮箱格式不正确", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // 更新用户名和密码
+            UserAccount userAccount = UserAccount.getInstance(this);
+            userAccount.setCredentials(username, password);
+            userAccount.saveCredentials();
 
             // 显示信息已更新的提示
             Toast.makeText(this, "用户信息已更新", Toast.LENGTH_SHORT).show();
@@ -149,6 +169,4 @@ public class EditInfoActivity extends AppCompatActivity {
             Toast.makeText(this, "请填写所有字段", Toast.LENGTH_SHORT).show();
         }
     }
-    // 以下是可能需要的其他方法，例如权限请求等
-    // ...
 }
