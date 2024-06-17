@@ -20,28 +20,28 @@ public class NoAccountManagementActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.my_management_noaccount);
+        setupLoginButton(logButton); // 确保这个方法被调用
 
 
+        // 初始化底部导航栏的LinearLayout
+        LinearLayout bottomNavigation = findViewById(R.id.bottom_navigation);
+        LinearLayout homeButton = findViewById(R.id.home_button);
+        LinearLayout voiceButton = findViewById(R.id.voice_button);
+        LinearLayout cameraButton = findViewById(R.id.camera_button);
+        LinearLayout historyButton = findViewById(R.id.history_button);
+        LinearLayout myButton = findViewById(R.id.my_button);
 
-    // 初始化底部导航栏的LinearLayout
-    LinearLayout bottomNavigation = findViewById(R.id.bottom_navigation);
-    LinearLayout homeButton = findViewById(R.id.home_button);
-    LinearLayout voiceButton = findViewById(R.id.voice_button);
-    LinearLayout cameraButton = findViewById(R.id.camera_button);
-    LinearLayout historyButton = findViewById(R.id.history_button);
-    LinearLayout myButton = findViewById(R.id.my_button);
-
-    // 为首页按钮设置点击事件，可以跳转到首页
+        // 为首页按钮设置点击事件，可以跳转到首页
         homeButton.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            redirectToHomeActivity();
-        }
-    });
+            @Override
+            public void onClick(View v) {
+                redirectToHomeActivity();
+            }
+        });
 
-    // 为其他按钮设置点击事件，未登录时不能跳转
-    setUnauthenticatedButtonClickListener(voiceButton, cameraButton, historyButton, myButton);
-}
+        // 为其他按钮设置点击事件，未登录时不能跳转
+        setUnauthenticatedButtonClickListener(voiceButton, cameraButton, historyButton, myButton);
+    }
 
     private void setUnauthenticatedButtonClickListener(LinearLayout... buttons) {
         for (LinearLayout button : buttons) {
@@ -59,11 +59,10 @@ public class NoAccountManagementActivity extends AppCompatActivity {
         Intent intent = new Intent(NoAccountManagementActivity.this, MainActivity.class);
         startActivity(intent);
         // 如果需要关闭当前Activity，可以添加以下代码：
-         finish();
+        finish();
     }
     // 初始化登录按钮并设置点击事件
     Button logButton = findViewById(R.id.log_button);
-
 
     // 设置登录按钮的点击事件
     private void setupLoginButton(Button loginButton) {
@@ -81,7 +80,7 @@ public class NoAccountManagementActivity extends AppCompatActivity {
         Intent intent = new Intent(NoAccountManagementActivity.this, LoginActivity.class);
         startActivity(intent);
         // 如果需要关闭当前Activity，取消注释下面的代码
-        // finish();
+         finish();
     }
 }
 
