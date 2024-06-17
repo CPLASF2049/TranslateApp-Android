@@ -1,6 +1,7 @@
 package com.example.translationapp;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -363,10 +364,11 @@ public class CameraActivity extends AppCompatActivity {
                     String imagePath = saveImageToPublicDirectory(image);
                     image.close();
                     if (imagePath != null) {
-                        // 将图片路径传递给CameraTranslationActivity
-                        Intent intent = new Intent(CameraActivity.this, CameraTranslationActivity.class);
-                        intent.putExtra("photo_path", imagePath);
-                        startActivity(intent);
+                        // 设置结果并结束当前活动
+                        Intent resultIntent = new Intent();
+                        resultIntent.putExtra("photo_path", imagePath);
+                        setResult(Activity.RESULT_OK, resultIntent);
+                        finish(); // 结束当前活动
                     }
                 }
 
@@ -377,20 +379,6 @@ public class CameraActivity extends AppCompatActivity {
 
         cameraCaptureSession.stopRepeating();
         cameraCaptureSession.capture(cameraBuilder.build(), captureCallback, cameraHandler);
-    }
-
-    private void saveAndShareImage() {
-        Image image = imageReader.acquireLatestImage();
-        if (image != null) {
-            String imagePath = saveImageToPublicDirectory(image);
-            if (imagePath != null) {
-                // 将图片路径传递给CameraTranslationActivity
-                Intent intent = new Intent(CameraActivity.this, CameraTranslationActivity.class);
-                intent.putExtra("photo_path", imagePath);
-                startActivity(intent);
-            }
-            image.close();
-        }
     }
 
     private String saveImageToPublicDirectory(Image image) {
@@ -457,6 +445,5 @@ public class CameraActivity extends AppCompatActivity {
                 cameraHandler
         );
     }
-
 }
 

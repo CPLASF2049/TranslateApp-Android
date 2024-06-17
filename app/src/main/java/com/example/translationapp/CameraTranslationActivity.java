@@ -46,6 +46,17 @@ public class CameraTranslationActivity extends AppCompatActivity {
         btnCapture = findViewById(R.id.btn_capture);
         btnGallery = findViewById(R.id.btn_gallery);
 
+        // 检查Intent中是否有图片路径
+        Intent intent = getIntent();
+        if (intent.hasExtra("photo_path")) {
+            String imagePath = intent.getStringExtra("photo_path");
+            if (imagePath != null) {
+                // 使用Glide加载图片
+                Glide.with(this)
+                        .load(imagePath)
+                        .into(imgSelectedPhoto);
+            }
+        }
 
         // 设置拍照按钮的点击事件
         btnCapture.setOnClickListener(new View.OnClickListener() {
