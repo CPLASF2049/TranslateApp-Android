@@ -11,7 +11,7 @@
         android:id="@+id/txt_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="- 更改个人资料 -"
+        android:text=" 更改个人资料 "
         android:textColor="#000000"
         android:textSize="26sp"
         android:textStyle="bold"
@@ -51,12 +51,12 @@
         android:id="@+id/et_email"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:hint="   邮箱"
+        android:hint="  邮箱"
     android:background="@drawable/custom_edittext_border"
     android:inputType="textEmailAddress" />
 </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- 电话输入框 -->
+    <!-- 密码输入框 -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_phone"
         android:layout_width="match_parent"
@@ -69,7 +69,7 @@
             android:id="@+id/et_phone"
             android:layout_width="300dp"
             android:layout_height="50dp"
-            android:hint="   密码"
+            android:hint=" 密码"
             android:background="@drawable/custom_edittext_border"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
