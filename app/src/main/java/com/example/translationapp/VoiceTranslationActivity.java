@@ -44,8 +44,8 @@ public class VoiceTranslationActivity extends AppCompatActivity {
     private String sourceLanguage = "auto"; // 默认为自动识别
     private String targetLanguage;
     private static final int REQUEST_RECORD_AUDIO = 1;
-    String[] sourceLanguages = new String[]{"自动识别", "英语", "中文", "西班牙语", "德语", "法语"};
-    String[] targetLanguages = new String[]{"英语", "中文", "西班牙语", "德语", "法语"};
+    String[] sourceLanguages = new String[]{"自动识别", "英语", "中文", "西班牙语", "德语", "法语", "日语", "韩语", "阿拉伯语"};
+    String[] targetLanguages = new String[]{"英语", "中文", "西班牙语", "德语", "法语", "日语", "韩语", "阿拉伯语"};
     String appId = "20240531002066446";
     String salt = "123456"; // 随机数
 
@@ -241,9 +241,17 @@ public class VoiceTranslationActivity extends AppCompatActivity {
                         case 4:
                             sourceLanguage = "fra";
                             break;
+                        case 5:
+                            sourceLanguage = "jp";
+                            break;
+                        case 6:
+                            sourceLanguage = "kor";
+                            break;
+                        case 7:
+                            sourceLanguage = "ara";
+                            break;
                     }
                 }
-                // 这里可以添加其他逻辑，比如更新UI或开始翻译等
             }
 
             @Override
@@ -273,17 +281,23 @@ public class VoiceTranslationActivity extends AppCompatActivity {
                     case 4:
                         targetLanguage = "fra";
                         break;
+                    case 5:
+                        targetLanguage = "jp";
+                        break;
+                    case 6:
+                        targetLanguage = "kor";
+                        break;
+                    case 7:
+                        targetLanguage = "ara";
+                        break;
                 }
-                // 这里可以添加其他逻辑，比如更新UI或开始翻译等
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 // 没有选择时的处理
                 targetLanguage = "en";
             }
         });
-
     }
 
     @Override
