@@ -29,15 +29,19 @@ public class ResetPasswordActivity extends AppCompatActivity {
         setContentView(R.layout.find_key);
 
         initializeViews();
-        setListeners();
 
         // 提交按钮的点击事件
         Button btnSubmit = findViewById(R.id.btn_submit);
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 跳转到LoginActivity
-                redirectToLoginActivity();
+                // 获取输入的文本
+                EditText etAccount = findViewById(R.id.et_account);
+                EditText etNewPassword = findViewById(R.id.et_new_password);
+                EditText etConfirmPassword = findViewById(R.id.et_confirm_password);
+
+                // 执行重置密码的逻辑
+                resetPassword(etAccount, etNewPassword, etConfirmPassword);
             }
         });
 
@@ -73,48 +77,62 @@ public class ResetPasswordActivity extends AppCompatActivity {
         // 这里可以添加更多初始化代码，比如设置导航栏的返回按钮等
     }
 
-    private void setListeners() {
-        // 设置按钮的点击事件监听器
-        btnSubmit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                resetPassword();
-            }
-        });
-
-        // 如果导航栏中有其他交互元素，也可以在这里设置监听器
-    }
-
-    private void resetPassword() {
+    // 重置密码方法，接收EditText参数
+    private void resetPassword(EditText etAccount, EditText etNewPassword, EditText etConfirmPassword) {
         String account = etAccount.getText().toString().trim();
         String newPassword = etNewPassword.getText().toString().trim();
         String confirmPassword = etConfirmPassword.getText().toString().trim();
 
         // 检查输入是否有效
-        if (!isValidInput(account, newPassword, confirmPassword)) {
-            Toast.makeText(this, "输入有误，请重新输入", Toast.LENGTH_SHORT).show();
-            return;
-        }
+        if (isValidInput(account, newPassword, confirmPassword)) {
+            // 检查账户是否存在
+            UserAccount userAccount = UserAccount.getInstance();
+            if (userAccount.containsUsername(account)) {
+                // 调用重置密码的逻辑，这里我们先模拟这个过程
+                boolean isResetSuccess = resetPasswordFromServer(account, newPassword);
 
-        // 调用重置密码的逻辑，例如调用后端API
-        boolean isResetSuccess = resetPasswordFromServer(account, newPassword);
-
-        if (isResetSuccess) {
-            Toast.makeText(this, "密码重置成功", Toast.LENGTH_SHORT).show();
-            // 可以在这里添加逻辑，比如跳转到登录界面等
+                if (isResetSuccess) {
+                    // 如果重置成功，更新本地存储的密码
+                    userAccount.setCredentials(account, newPassword);
+                    Toast.makeText(this, "密码重置成功", Toast.LENGTH_SHORT).show();
+                    // 跳转到登录界面
+                    redirectToLoginActivity();
+                } else {
+                    Toast.makeText(this, "密码重置失败，请重试", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(this, "账户不存在", Toast.LENGTH_SHORT).show();
+            }
         } else {
-            Toast.makeText(this, "密码重置失败，请重试", Toast.LENGTH_SHORT).show();
+            // 输入无效，isValidInput已经显示了Toast提示
+            // 无需额外操作
         }
     }
 
     private boolean isValidInput(String account, String newPassword, String confirmPassword) {
-        // 这里可以添加具体的验证逻辑，例如检查邮箱格式、密码强度等
-        return !account.isEmpty() && newPassword.equals(confirmPassword) && newPassword.matches(".{6,}"); // 至少6位密码
+        // 检查账户是否为空
+        if (account.isEmpty()) {
+            Toast.makeText(this, "账户名不能为空", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        // 检查密码长度（6-16个字符）和复杂性（至少包含1个数字和1个字母）
+        if (newPassword.length() < 6 || newPassword.length() > 16 ||
+                !newPassword.matches(".*[0-9].*") || !newPassword.matches(".*[a-zA-Z].*")) {
+            Toast.makeText(this, "密码不符合要求", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        // 检查两次输入的密码是否一致
+        if (!newPassword.equals(confirmPassword)) {
+            Toast.makeText(this, "两次输入的密码不一致", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
     }
 
+    // 模拟调用后端API进行密码重置的过程
     private boolean resetPasswordFromServer(String account, String newPassword) {
-        // 这里应该是调用后端API的逻辑，返回操作结果
-        // 以下为示例代码，实际开发中需要替换为真实的网络请求
-        return true; // 假设重置总是成功
+        // 这里应该是网络请求的代码，现在我们直接返回true模拟重置成功
+        // 实际开发中，你需要替换这里的代码，执行实际的API调用
+        return true;
     }
 }
