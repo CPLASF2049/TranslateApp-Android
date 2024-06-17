@@ -49,6 +49,7 @@
         android:layout_width="310dp"
         android:layout_height="wrap_content"
         android:text="登录"
+        android:gravity="center_horizontal"
         android:textSize="20sp"
         android:textStyle="bold"
         android:layout_marginTop="50dp"
@@ -60,13 +61,13 @@
 
     <android.widget.Button
         android:id="@+id/forgotPasswordButton"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:background="@drawable/circle_border"
         android:text="忘记密码？点击此处找回密码"
         android:textStyle="bold"
+        android:gravity="center"
         android:layout_marginTop="50dp"
-        android:textAlignment="textEnd"
         android:padding="10dp"
         android:textSize="14sp"
 
@@ -77,14 +78,14 @@
 
     <android.widget.Button
         android:id="@+id/registerButton"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:text="没有账号？点击此处注册账号"
         android:background="@drawable/circle_border"
         android:textStyle="bold"
         android:layout_marginTop="5dp"
         android:textSize="14sp"
-        android:textAlignment="textEnd"
+        android:gravity="center"
         android:padding="10dp"
         android:textColor="#87CEFA"
         android:clickable="true"
