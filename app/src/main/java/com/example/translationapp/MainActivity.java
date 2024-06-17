@@ -99,13 +99,13 @@ public class MainActivity extends AppCompatActivity {
         if (isLoggedIn) {
             // 用户已登录，跳转到已登录用户的主界面
             intent = new Intent(this, ProfileActivity.class);
+            startActivity(intent);
         } else {
             // 用户未登录，跳转到访客模式界面
             intent = new Intent(this, NoAccountManagementActivity.class);
+            startActivity(intent);
+            finish(); // 仅在用户未登录时完成MainActivity
         }
-        startActivity(intent);
-        finish();
-
 
         originalTextEditText = findViewById(R.id.txt_original_text);
         translatedTextTextView = findViewById(R.id.txt_translated_text);
