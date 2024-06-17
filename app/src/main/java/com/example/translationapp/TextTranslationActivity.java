@@ -37,6 +37,7 @@ public class TextTranslationActivity extends AppCompatActivity{
     String sourceLanguage = "auto";
     String targetLanguage;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +51,10 @@ public class TextTranslationActivity extends AppCompatActivity{
         LinearLayout myButton = findViewById(R.id.my_button);
         LinearLayout cameraButton = findViewById(R.id.camera_button);
 
-
+        SharedPreferences sharedPreferences = getSharedPreferences("YourAppPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("isLoggedIn", true); // 用户已登录
+        editor.apply();
 // 为语音按钮设置点击事件
         voiceButton.setOnClickListener(new View.OnClickListener() {
             @Override
