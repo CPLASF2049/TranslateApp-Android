@@ -2,6 +2,8 @@ package com.example.translationapp;
 
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.speech.RecognitionListener;
@@ -19,6 +21,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -38,6 +41,7 @@ public class VoiceTranslationActivity extends AppCompatActivity {
     private Spinner spinnerSourceLanguage, spinnerTargetLanguage;
     private String sourceLanguage = "auto"; // 默认为自动识别
     private String targetLanguage;
+    private static final int REQUEST_RECORD_AUDIO = 1;
     String[] sourceLanguages = new String[]{"自动识别", "英语", "中文", "西班牙语", "德语", "法语"};
     String[] targetLanguages = new String[]{"英语", "中文", "西班牙语", "德语", "法语"};
     String appId = "20240531002066446";
@@ -193,6 +197,7 @@ public class VoiceTranslationActivity extends AppCompatActivity {
             }
         });
 
+
         // 创建适配器
         ArrayAdapter<String> sourceAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, sourceLanguages);
         ArrayAdapter<String> targetAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, targetLanguages);
@@ -270,6 +275,23 @@ public class VoiceTranslationActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case REQUEST_RECORD_AUDIO: {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // 权限被授予，可以开始使用麦克风
+                    // 例如，可以在这里调用语音识别的初始化代码
+                } else {
+                    // 权限被拒绝，可以提示用户或者禁用相关功能
+                    Toast.makeText(this, "需要麦克风权限才能使用语音翻译功能。", Toast.LENGTH_LONG).show();
+                }
+                break;
+            }
+        }
     }
 
     @Override
