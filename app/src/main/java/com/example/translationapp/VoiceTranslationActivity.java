@@ -1,7 +1,5 @@
 package com.example.translationapp;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.Manifest;
@@ -13,7 +11,6 @@ import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.view.View;
 import android.view.WindowManager;
-import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -23,8 +20,6 @@ import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -39,12 +34,14 @@ import org.apache.commons.codec.digest.DigestUtils;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class VoiceTranslationActivity extends AppCompatActivity {
 
     private SpeechRecognizer speechRecognizer;
     private TextView txtTranslationResult;
     private ImageView voiceInputButton;
+    private List<String> translationHistory; // 用于保存翻译历史
     private Spinner spinnerSourceLanguage, spinnerTargetLanguage;
     private String sourceLanguage = "auto"; // 默认为自动识别
     private String targetLanguage;
@@ -60,8 +57,6 @@ public class VoiceTranslationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.voice_translation);
 
-
-
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
                 != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this,
@@ -75,9 +70,6 @@ public class VoiceTranslationActivity extends AppCompatActivity {
         LinearLayout historyButton = findViewById(R.id.history_button);
         LinearLayout myButton = findViewById(R.id.my_button);
         LinearLayout cameraButton = findViewById(R.id.camera_button);
-        voiceInputButton = findViewById(R.id.voice_input_button);
-
-
 
         // 为首页按钮设置点击事件
         homeButton.setOnClickListener(new View.OnClickListener() {
@@ -125,30 +117,6 @@ public class VoiceTranslationActivity extends AppCompatActivity {
         voiceInputButton = findViewById(R.id.voice_input_button);
         spinnerSourceLanguage = findViewById(R.id.spinner_source_language);
         spinnerTargetLanguage = findViewById(R.id.spinner_target_language);
-
-      // 创建一个缩放动画
-        ObjectAnimator scaleAnim = ObjectAnimator.ofFloat(voiceInputButton, "scaleX", 1f, 0.9f, 1f);
-        scaleAnim.setDuration(300); // 动画持续时间
-        scaleAnim.setInterpolator(new AccelerateDecelerateInterpolator()); // 插值器
-
-       // 创建一个旋转动画
-        ObjectAnimator rotateAnim = ObjectAnimator.ofFloat(voiceInputButton, "rotation", 0f, 360f);
-        rotateAnim.setDuration(300); // 动画持续时间
-        rotateAnim.setInterpolator(new AccelerateDecelerateInterpolator()); // 插值器
-
-// 将两个动画组合在一起
-        AnimatorSet animSet = new AnimatorSet();
-        animSet.playTogether(scaleAnim, rotateAnim);
-
-// 设置按钮的点击事件
-        voiceInputButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // 点击时播放动画
-                animSet.start();
-            }
-        });
-
 
         // 初始化语音识别器
         speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
@@ -200,8 +168,10 @@ public class VoiceTranslationActivity extends AppCompatActivity {
                             // 显示翻译结果
                             txtTranslationResult.setText(translatedText);
 
-                            // 保存翻译历史
-                            saveToHistory(recognizedText, translatedText);
+                            // 保存翻译历史，这里需要传递当前的Activity Context 到 TranslationHistoryManager
+                            String historyEntry = "Original: " + recognizedText + " | Translated: " + translatedText;
+                            // 使用getInstance(this)确保传递正确的Context
+                            TranslationHistoryManager.getInstance(VoiceTranslationActivity.this).addHistoryEntry(historyEntry);
                         }
 
                         @Override
@@ -223,6 +193,8 @@ public class VoiceTranslationActivity extends AppCompatActivity {
                 // 其他事件
             }
         });
+
+        translationHistory = new ArrayList<>();
 
         // 设置语音输入按钮的点击事件
         // 设置语音输入按钮的点击事件
@@ -351,7 +323,6 @@ public class VoiceTranslationActivity extends AppCompatActivity {
         }
     }
 
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -365,18 +336,6 @@ public class VoiceTranslationActivity extends AppCompatActivity {
         String combinedString = fixedString + originalText + salt + password;
         // 计算组合后的字符串的 MD5 值并返回
         return DigestUtils.md5Hex(combinedString);
-    }
-
-    private void saveToHistory(String originalText, String translatedText) {
-        String historyRecord = "原文: " + originalText + "\n翻译结果: " + translatedText + "\n\n";
-
-        // 将历史记录追加到文件
-        try (FileOutputStream fos = openFileOutput("translation_history.txt", MODE_APPEND)) {
-            fos.write(historyRecord.getBytes());
-        } catch (IOException e) {
-            e.printStackTrace();
-            Toast.makeText(this, "保存历史失败", Toast.LENGTH_SHORT).show();
-        }
     }
 
 }
