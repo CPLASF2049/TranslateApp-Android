@@ -54,9 +54,8 @@ public class SettingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // 打开隐私政策详情页面或执行其他操作
-                Toast.makeText(SettingActivity.this, "查看隐私政策", Toast.LENGTH_SHORT).show();
-                // 例如：Intent intent = new Intent(this, PrivacyPolicyActivity.class);
-                // startActivity(intent);
+                Intent intent = new Intent(SettingActivity.this, PrivacyPolicy.class);
+                startActivity(intent);
             }
         });
 
