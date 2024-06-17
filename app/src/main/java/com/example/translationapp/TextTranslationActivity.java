@@ -102,7 +102,7 @@ public class TextTranslationActivity extends AppCompatActivity{
                     Intent intent = new Intent(TextTranslationActivity.this, ProfileActivity.class);
                     startActivity(intent);
                 } else {
-                    Intent intent = new Intent(TextTranslationActivity.this, RegisterActivity.class);
+                    Intent intent = new Intent(TextTranslationActivity.this, LoginActivity.class);
                 }
             }
         });
