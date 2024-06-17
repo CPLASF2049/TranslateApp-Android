@@ -1,5 +1,7 @@
 package com.example.translationapp;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.Manifest;
@@ -11,9 +13,12 @@ import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -70,7 +75,30 @@ public class VoiceTranslationActivity extends AppCompatActivity {
         LinearLayout historyButton = findViewById(R.id.history_button);
         LinearLayout myButton = findViewById(R.id.my_button);
         LinearLayout cameraButton = findViewById(R.id.camera_button);
+        // 在你的Activity或者Fragment中
+        ImageView voiceInputButton = findViewById(R.id.voice_input_button);
+        // 创建一个缩放动画
+        ObjectAnimator scaleAnim = ObjectAnimator.ofFloat(voiceInputButton, "scaleX", 1f, 0.9f, 1f);
+        scaleAnim.setDuration(300); // 动画持续时间
+        scaleAnim.setInterpolator(new AccelerateDecelerateInterpolator()); // 插值器
 
+// 创建一个旋转动画
+        ObjectAnimator rotateAnim = ObjectAnimator.ofFloat(voiceInputButton, "rotation", 0f, 360f);
+        rotateAnim.setDuration(300); // 动画持续时间
+        rotateAnim.setInterpolator(new AccelerateDecelerateInterpolator()); // 插值器
+
+// 将两个动画组合在一起
+        AnimatorSet animSet = new AnimatorSet();
+        animSet.playTogether(scaleAnim, rotateAnim);
+
+// 设置按钮的点击事件
+        voiceInputButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 点击时播放动画
+                animSet.start();
+            }
+        });
         // 为首页按钮设置点击事件
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
