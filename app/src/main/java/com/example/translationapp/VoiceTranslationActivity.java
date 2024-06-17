@@ -34,12 +34,14 @@ import org.apache.commons.codec.digest.DigestUtils;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class VoiceTranslationActivity extends AppCompatActivity {
 
     private SpeechRecognizer speechRecognizer;
     private TextView txtTranslationResult;
     private ImageView voiceInputButton;
+    private List<String> translationHistory; // 用于保存翻译历史
     private Spinner spinnerSourceLanguage, spinnerTargetLanguage;
     private String sourceLanguage = "auto"; // 默认为自动识别
     private String targetLanguage;
@@ -166,8 +168,10 @@ public class VoiceTranslationActivity extends AppCompatActivity {
                             // 显示翻译结果
                             txtTranslationResult.setText(translatedText);
 
-                            // 保存翻译历史
-                            saveToHistory(recognizedText, translatedText);
+                            // 保存翻译历史，这里需要传递当前的Activity Context 到 TranslationHistoryManager
+                            String historyEntry = "Original: " + recognizedText + " | Translated: " + translatedText;
+                            // 使用getInstance(this)确保传递正确的Context
+                            TranslationHistoryManager.getInstance(VoiceTranslationActivity.this).addHistoryEntry(historyEntry);
                         }
 
                         @Override
@@ -189,6 +193,8 @@ public class VoiceTranslationActivity extends AppCompatActivity {
                 // 其他事件
             }
         });
+
+        translationHistory = new ArrayList<>();
 
         // 设置语音输入按钮的点击事件
         // 设置语音输入按钮的点击事件
@@ -332,15 +338,4 @@ public class VoiceTranslationActivity extends AppCompatActivity {
         return DigestUtils.md5Hex(combinedString);
     }
 
-    private void saveToHistory(String originalText, String translatedText) {
-        String historyRecord = "原文: " + originalText + "\n翻译结果: " + translatedText + "\n\n";
-
-        // 将历史记录追加到文件
-        try (FileOutputStream fos = openFileOutput("translation_history.txt", MODE_APPEND)) {
-            fos.write(historyRecord.getBytes());
-        } catch (IOException e) {
-            e.printStackTrace();
-            Toast.makeText(this, "保存历史失败", Toast.LENGTH_SHORT).show();
-        }
-    }
 }
