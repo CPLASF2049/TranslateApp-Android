@@ -93,7 +93,7 @@
         style="?attr/borderlessButtonStyle"
         android:layout_width="350dp"
         android:layout_height="50dp"
-        android:background="@drawable/button_background"
+        android:background="@drawable/custom_button_background"
         android:drawablePadding="30dp"
         android:stateListAnimator="@animator/button_elevation"
         android:text="点击登录"
