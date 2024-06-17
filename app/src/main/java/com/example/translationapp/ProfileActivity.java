@@ -15,6 +15,10 @@ import com.example.translationapp.R;
 
 public class ProfileActivity extends AppCompatActivity {
 
+    ImageView profileImage = findViewById(R.id.profile_image);
+    TextView userName = findViewById(R.id.user_name);
+    TextView emailAddress = findViewById(R.id.email_address);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,15 +75,14 @@ public class ProfileActivity extends AppCompatActivity {
 
 
         // 初始化按钮
-        ImageView profileImage = findViewById(R.id.profile_image);
-        TextView userName = findViewById(R.id.user_name);
-        TextView emailAddress = findViewById(R.id.email_address);
         Button editButton = findViewById(R.id.edit_button);
         Button offlineTranslationButton = findViewById(R.id.offline_translation_button);
         Button privacySettingsButton = findViewById(R.id.privacy_settings_button);
         Button selectButton = findViewById(R.id.select_language_button);
         Button feedbackButton = findViewById(R.id.feedback_button);
         Button logoutButton = findViewById(R.id.logout_button);
+
+        displayUsername();
 
         // 为编辑资料按钮设置点击事件
         // 设置点击事件
@@ -145,5 +148,16 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void displayUsername() {
+        String username = UserAccount.getCurrentUsername();
+        if (username != null) {
+            // 如果有用户名，则显示它
+            userName.setText(username);
+        } else {
+            // 如果没有用户名，可以设置一个默认的消息或提示
+            userName.setText("未登录");
+        }
     }
+}
 

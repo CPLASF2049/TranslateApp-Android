@@ -37,6 +37,17 @@ public class UserAccount {
         return userCredentials.containsKey(username);
     }
 
+    // 假设我们使用一个静态变量来存储当前登录的用户名
+    private static String currentUsername;
+
+    public static void setCurrentUsername(String username) {
+        currentUsername = username;
+    }
+
+    public static String getCurrentUsername() {
+        return currentUsername;
+    }
+
     public void removeUser(String username) {
         userCredentials.remove(username);
     }
