@@ -101,10 +101,10 @@
         <!-- 编辑资料按钮 -->
         <Button
             android:id="@+id/edit_button"
-            android:layout_width="200dp"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@drawable/button_background"
+            android:background="@drawable/circle_border"
             android:drawableLeft="@drawable/ic_edit"
             android:drawableRight="@drawable/ic_to"
             android:drawablePadding="16dp"
@@ -116,10 +116,10 @@
         <!-- 离线翻译按钮 -->
         <Button
             android:id="@+id/offline_translation_button"
-            android:layout_width="200dp"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@drawable/button_background"
+            android:background="@drawable/circle_border"
             android:drawableLeft="@drawable/ic_download"
             android:drawableRight="@drawable/ic_to"
             android:drawablePadding="16dp"
@@ -131,10 +131,10 @@
         <!-- 隐私设置按钮 -->
         <Button
             android:id="@+id/privacy_settings_button"
-            android:layout_width="200dp"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@drawable/button_background"
+            android:background="@drawable/circle_border"
             android:drawableLeft="@drawable/ic_personalset"
             android:drawableRight="@drawable/ic_to"
             android:drawablePadding="16dp"
@@ -146,10 +146,10 @@
         <!-- 选择语言按钮 -->
         <Button
             android:id="@+id/select_language_button"
-            android:layout_width="200dp"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@drawable/button_background"
+            android:background="@drawable/circle_border"
             android:drawableLeft="@drawable/ic_select"
             android:drawableRight="@drawable/ic_to"
             android:drawablePadding="16dp"
@@ -161,10 +161,10 @@
         <!-- 投诉建议按钮 -->
         <Button
             android:id="@+id/feedback_button"
-            android:layout_width="200dp"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@drawable/button_background"
+            android:background="@drawable/circle_border"
             android:drawableLeft="@drawable/ic_feedback"
             android:drawableRight="@drawable/ic_to"
             android:drawablePadding="16dp"
@@ -176,10 +176,10 @@
         <!-- 退出账号按钮 -->
         <Button
             android:id="@+id/logout_button"
-            android:layout_width="200dp"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@drawable/button_background"
+            android:background="@drawable/circle_border"
             android:drawableLeft="@drawable/ic_exit"
             android:drawableRight="@drawable/ic_to"
             android:drawablePadding="16dp"
@@ -198,11 +198,10 @@
             android:id="@+id/bottom_navigation"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_alignParentBottom="true"
             android:layout_marginTop="40dp"
             android:background="#EDEDED"
             android:orientation="horizontal"
-            android:paddingVertical="8dp">
+            android:paddingVertical="10dp">
 
             <!-- 首页按钮 -->
             <LinearLayout
