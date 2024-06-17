@@ -81,7 +81,7 @@ public class CameraTranslationActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // 跳转到HomeActivity
-                Intent intent = new Intent(CameraTranslationActivity.this, MainActivity.class);
+                Intent intent = new Intent(CameraTranslationActivity.this, TextTranslationActivity.class);
                 startActivity(intent);
             }
         });

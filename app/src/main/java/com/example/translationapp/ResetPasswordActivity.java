@@ -64,8 +64,6 @@ public class ResetPasswordActivity extends AppCompatActivity {
          finish();
     }
 
-
-
     private void initializeViews() {
         // 初始化视图组件
         etAccount = findViewById(R.id.et_account);
@@ -85,8 +83,8 @@ public class ResetPasswordActivity extends AppCompatActivity {
 
         // 检查输入是否有效
         if (isValidInput(account, newPassword, confirmPassword)) {
-            // 检查账户是否存在
-            UserAccount userAccount = UserAccount.getInstance();
+            // 获取UserAccount实例，传递当前Activity的Context
+            UserAccount userAccount = UserAccount.getInstance(this);
             if (userAccount.containsUsername(account)) {
                 // 调用重置密码的逻辑，这里我们先模拟这个过程
                 boolean isResetSuccess = resetPasswordFromServer(account, newPassword);
@@ -94,6 +92,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
                 if (isResetSuccess) {
                     // 如果重置成功，更新本地存储的密码
                     userAccount.setCredentials(account, newPassword);
+                    userAccount.saveCredentials(); // 保存更新的密码到SharedPreferences
                     Toast.makeText(this, "密码重置成功", Toast.LENGTH_SHORT).show();
                     // 跳转到登录界面
                     redirectToLoginActivity();

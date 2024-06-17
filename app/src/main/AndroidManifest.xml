@@ -33,40 +33,73 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.example.translationapp.VoiceTranslationActivity"></activity>
+        <activity android:name="com.example.translationapp.VoiceTranslationActivity">
 
-        <activity android:name=".CameraTranslationActivity"></activity>
+        </activity>
 
-        <activity android:name=".CameraActivity"></activity>
+        <activity android:name=".CameraTranslationActivity">
 
-        <activity android:name="com.example.translationapp.ProfileActivity"></activity>
+        </activity>
 
-        <activity android:name=".HistoryActivity"></activity>
+        <activity android:name=".CameraActivity">
 
-        <activity android:name=".LoginActivity"></activity>
+        </activity>
 
-        <activity android:name=".EditInfoActivity"></activity>
+        <activity android:name="com.example.translationapp.ProfileActivity">
 
-        <activity android:name=".SettingActivity"></activity>
+        </activity>
 
-        <activity android:name=".OfflineTranslationActivity"></activity>
+        <activity android:name=".HistoryActivity">
 
-        <activity android:name=".SuggestionActivity"></activity>
+        </activity>
 
-        <activity android:name="NoAccountManagementActivity"></activity>
+        <activity android:name=".LoginActivity">
 
-        <activity android:name=".ChooseLanguageActivity"></activity>
+        </activity>
 
-        <activity android:name=".ResetPasswordActivity"></activity>
+        <activity android:name=".EditInfoActivity">
 
-        <activity android:name=".RegisterActivity"></activity>
+        </activity>
 
-        <activity android:name=".TranslationActivity"></activity>
+        <activity android:name=".SettingActivity">
 
-        <activity android:name=".VoiceRecognition"></activity>
+        </activity>
 
-        <activity android:name=".CameraRecognitionActivity"></activity>
+        <activity android:name=".OfflineTranslationActivity">
 
+        </activity>
+
+        <activity android:name=".SuggestionActivity">
+
+        </activity>
+
+        <activity android:name=".NoAccountManagementActivity">
+
+        </activity>
+
+        <activity android:name=".ChooseLanguageActivity">
+
+        </activity>
+
+        <activity android:name=".ResetPasswordActivity">
+
+        </activity>
+
+        <activity android:name=".RegisterActivity">
+
+        </activity>
+
+        <activity android:name=".TranslationActivity">
+
+        </activity>
+
+        <activity android:name=".CameraRecognitionActivity">
+
+        </activity>
+
+        <activity android:name=".TextTranslationActivity">
+
+        </activity>
 
     </application>
 

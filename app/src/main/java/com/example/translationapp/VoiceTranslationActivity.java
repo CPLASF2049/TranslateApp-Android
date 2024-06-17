@@ -61,7 +61,7 @@ public class VoiceTranslationActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // 跳转到首页Activity
-                Intent intent = new Intent(VoiceTranslationActivity.this, MainActivity.class);
+                Intent intent = new Intent(VoiceTranslationActivity.this, TextTranslationActivity.class);
                 startActivity(intent);
             }
         });

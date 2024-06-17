@@ -41,7 +41,7 @@ public class HistoryActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // 跳转到首页Activity
-                Intent intent = new Intent(HistoryActivity.this, MainActivity.class);
+                Intent intent = new Intent(HistoryActivity.this, TextTranslationActivity.class);
                 startActivity(intent);
             }
         });

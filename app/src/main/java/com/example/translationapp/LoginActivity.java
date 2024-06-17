@@ -1,8 +1,10 @@
 package com.example.translationapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -10,9 +12,10 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.translationapp.R;
-
 public class LoginActivity extends AppCompatActivity {
+
+    private static final String PREFS_NAME = "InnoTranslate";
+    private static final String IS_LOGGED_IN = "isLoggedIn";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +46,8 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        // 检索存储的密码
-        UserAccount userAccount = UserAccount.getInstance();
+        // 获取UserAccount实例，传递当前Activity的Context
+        UserAccount userAccount = UserAccount.getInstance(this);
         String storedPassword = userAccount.getPassword(username);
 
         // 验证用户名和密码
@@ -59,17 +62,23 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void performLoginSuccess() {
-        // 模拟网络请求成功后的操作
         new Handler().postDelayed(() -> {
-            // 登录成功提示
             Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
-            // 跳转到主界面
+
+            // 更新SharedPreferences以标记用户已登录
+            SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putBoolean(IS_LOGGED_IN, true);
+            editor.commit();
+            Log.d("LoginActivity", "SharedPreferences updated: isLoggedIn set to true");
+
+            // 跳转到MainActivity
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
-            finish(); // 关闭当前登录界面
+            finish();
         }, 2000);
     }
-
 
     // 这个方法将作为按钮点击事件的处理器
     public void onForgotPasswordClick(View view) {
@@ -77,7 +86,6 @@ public class LoginActivity extends AppCompatActivity {
         // 启动ResetPasswordActivity
         startActivity(intent);
     }
-
 
     public void onRegisterClick(View view) {
         // 创建Intent以启动RegisterActivity

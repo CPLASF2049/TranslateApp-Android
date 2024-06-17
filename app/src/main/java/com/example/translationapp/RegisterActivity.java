@@ -67,14 +67,17 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
         // 检查用户名是否已存在
-        UserAccount userAccount = UserAccount.getInstance();
+        UserAccount userAccount = UserAccount.getInstance(this); // 直接在此处传递Context
         if (userAccount.containsUsername(username)) {
             Toast.makeText(this, "用户名已存在，请使用其他用户名", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // 存储用户名和密码到单例类中
+        // 继续使用相同的userAccount实例来存储用户名和密码
         userAccount.setCredentials(username, password);
+
+        // 保存凭证到SharedPreferences
+        userAccount.saveCredentials();
 
         // 注册成功提示
         Toast.makeText(this, "用户注册成功，即将跳转到登录页面...", Toast.LENGTH_SHORT).show();

@@ -15,9 +15,9 @@ import com.example.translationapp.R;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    ImageView profileImage = findViewById(R.id.profile_image);
-    TextView userName = findViewById(R.id.user_name);
-    TextView emailAddress = findViewById(R.id.email_address);
+    private ImageView profileImage;
+    private TextView userName;
+    private TextView emailAddress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,12 +33,16 @@ public class ProfileActivity extends AppCompatActivity {
         LinearLayout myButton = findViewById(R.id.my_button);
         LinearLayout cameraButton = findViewById(R.id.camera_button);
 
+        profileImage = findViewById(R.id.profile_image);
+        userName = findViewById(R.id.user_name);
+        emailAddress = findViewById(R.id.email_address);
+
         // 为首页按钮设置点击事件
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // 跳转到首页Activity
-                Intent intent = new Intent(ProfileActivity.this, MainActivity.class);
+                Intent intent = new Intent(ProfileActivity.this, TextTranslationActivity.class);
                 startActivity(intent);
             }
         });
@@ -147,6 +151,8 @@ public class ProfileActivity extends AppCompatActivity {
                 finish(); // 结束当前Activity
             }
         });
+
+
     }
 
     private void displayUsername() {

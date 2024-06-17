@@ -1,25 +1,50 @@
 package com.example.translationapp;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class UserAccount {
     private static UserAccount instance;
     private Map<String, String> userCredentials;
+    private static final String PREFS_NAME = "UserAccountPrefs";
+    private static final String CREDENTIALS_MAP = "credentialsMap";
 
-    private UserAccount() {
+    private Context context; // 用于访问SharedPreferences
+
+    private UserAccount(Context context) {
+        this.context = context;
         userCredentials = new HashMap<>();
+        loadCredentials(); // 加载已保存的凭证
     }
 
-    public static UserAccount getInstance() {
+    public static UserAccount getInstance(Context context) {
         if (instance == null) {
             synchronized (UserAccount.class) {
                 if (instance == null) {
-                    instance = new UserAccount();
+                    instance = new UserAccount(context);
                 }
             }
         }
         return instance;
+    }
+
+    private void loadCredentials() {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        for (String key : sharedPreferences.getAll().keySet()) {
+            userCredentials.put(key, sharedPreferences.getString(key, null));
+        }
+    }
+
+    public void saveCredentials() {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        for (Map.Entry<String, String> entry : userCredentials.entrySet()) {
+            editor.putString(entry.getKey(), entry.getValue());
+        }
+        editor.apply();
     }
 
     public void setCredentials(String username, String password) {
@@ -48,11 +73,4 @@ public class UserAccount {
         return currentUsername;
     }
 
-    public void removeUser(String username) {
-        userCredentials.remove(username);
-    }
-
-    public void clearAllUsers() {
-        userCredentials.clear();
-    }
 }
