@@ -103,6 +103,7 @@ public class TextTranslationActivity extends AppCompatActivity{
                     startActivity(intent);
                 } else {
                     Intent intent = new Intent(TextTranslationActivity.this, LoginActivity.class);
+                    startActivity(intent);
                 }
             }
         });
