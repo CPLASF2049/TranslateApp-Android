@@ -54,7 +54,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_visitor"
-            android:layout_gravity="center_horizontal" />
+                android:layout_gravity="center_horizontal" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -66,7 +66,6 @@
                 android:textStyle="bold" />
 
         </LinearLayout>
-
 
         <!-- 中间区域按钮 -->
         <LinearLayout
