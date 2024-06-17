@@ -24,7 +24,7 @@
 
     <EditText
         android:id="@+id/usernameEditText"
-        android:layout_width="330dp"
+        android:layout_width="310dp"
         android:layout_height="wrap_content"
         android:hint=" 请输入用户名"
         android:textColorHint="#d3d3d3"
@@ -35,7 +35,7 @@
 
     <EditText
         android:id="@+id/passwordEditText"
-        android:layout_width="330dp"
+        android:layout_width="310dp"
         android:layout_height="wrap_content"
         android:hint=" 请输入密码"
         android:textColorHint="#d3d3d3"
@@ -46,7 +46,7 @@
 
     <Button
         android:id="@+id/loginButton"
-        android:layout_width="320dp"
+        android:layout_width="310dp"
         android:layout_height="wrap_content"
         android:text="登录"
         android:textSize="20sp"
@@ -63,7 +63,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="忘记密码？点击此处找回密码"
-        android:background="@drawable/custom_edittext_border"
         android:textStyle="bold"
         android:layout_marginTop="50dp"
         android:textAlignment="textEnd"
@@ -79,7 +78,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="没有账号？点击此处注册账号"
-        android:background="@drawable/custom_edittext_border"
         android:textStyle="bold"
         android:layout_marginTop="0dp"
         android:textSize="14sp"
