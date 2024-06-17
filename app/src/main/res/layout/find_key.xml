@@ -80,7 +80,6 @@
             <!-- 提交按钮 -->
             <Button
                 android:id="@+id/btn_submit"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="提交"
@@ -92,7 +91,6 @@
             <!-- 返回按钮 -->
             <Button
                 android:id="@+id/btn_forget"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="放弃"

@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
     private EditText originalTextEditText;
     private TextView translatedTextTextView;
     private ScrollView translationResultScrollView;
-    private Button translateButton;
     private List<String> translationHistory; // 用于保存翻译历史
     String[] sourceLanguages = new String[]{"自动识别", "英语", "中文", "西班牙语", "德语", "法语"};
     String[] targetLanguages = new String[]{"英语", "中文", "西班牙语", "德语", "法语"};
@@ -91,8 +90,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
-
         // 检查用户是否登录
         boolean isLoggedIn = getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
                 .getBoolean(IS_LOGGED_IN, false);
@@ -107,13 +104,12 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         }
 
-        // 结束当前Activity，因为已经启动了新的Activity
-        finish();
+
 
         originalTextEditText = findViewById(R.id.txt_original_text);
         translatedTextTextView = findViewById(R.id.txt_translated_text);
         translationResultScrollView = findViewById(R.id.scroll_translation_result);
-        translateButton = findViewById(R.id.btn_translate);
+        Button translateButton = findViewById(R.id.btn_translate);
 
         Spinner spinnerSourceLanguage = findViewById(R.id.spinner_source_language);
         Spinner spinnerTargetLanguage = findViewById(R.id.spinner_target_language);
