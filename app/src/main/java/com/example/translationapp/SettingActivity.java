@@ -44,7 +44,7 @@ public class SettingActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 // 根据开关状态处理通知设置
-                Toast.makeText(SettingActivity.this, "接收通知: " + (isChecked ? "开启" : "关闭"), Toast.LENGTH_SHORT).show();
+                Toast.makeText(SettingActivity.this, "护眼模式: " + (isChecked ? "开启" : "关闭"), Toast.LENGTH_SHORT).show();
                 // 这里可以添加保存通知设置的代码
             }
         });
