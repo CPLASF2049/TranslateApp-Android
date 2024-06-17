@@ -83,12 +83,12 @@
         android:layout_below="@id/passwordEditText"
         android:layout_marginTop="5dp"/>
 
-    <Button
+    <android.widget.Button
         android:id="@+id/registerButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="注册账号"
-        android:background="@drawable/custom_button_background"
+        android:background="@drawable/button_background"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         android:padding="11dp"

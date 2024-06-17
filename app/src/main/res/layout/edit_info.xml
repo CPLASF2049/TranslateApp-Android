@@ -100,7 +100,7 @@
     </FrameLayout>
 
     <!-- 提交按钮 -->
-    <Button
+    <android.widget.Button
         android:id="@+id/btn_submit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -111,7 +111,7 @@
         android:textColor="@color/white"
         app:layout_constraintTop_toBottomOf="@id/layout_avatar" />
 
-    <Button
+    <android.widget.Button
         android:id="@+id/btn_giveup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -14,12 +14,12 @@
         android:padding="16dp">
 
         <!-- 返回按钮 -->
-        <Button
+        <ImageButton
             android:id="@+id/btn_back"
-            android:layout_width="80dp"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:background="@drawable/button_background"
-            android:drawableLeft="@drawable/ic_arrow_back" />
+            android:src="@drawable/ic_arrow_back" />
     </LinearLayout>
 
     <!-- 摄像头预览容器 -->

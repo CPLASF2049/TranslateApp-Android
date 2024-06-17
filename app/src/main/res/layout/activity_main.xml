@@ -142,11 +142,11 @@
             </ScrollView>
 
             <!-- 翻译操作按钮 -->
-            <Button
+            <android.widget.Button
                 android:id="@+id/btn_translate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/custom_button_background"
+                android:background="@drawable/button_background"
                 android:text="翻译"
                 android:layout_marginTop="150dp"
                 android:textColor="@color/white"

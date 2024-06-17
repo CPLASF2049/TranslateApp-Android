@@ -50,7 +50,7 @@
         android:padding="16dp" />
 
     <!-- 清除历史按钮 -->
-    <Button
+    <android.widget.Button
         android:id="@+id/btn_clear_history"
         android:layout_width="250dp"
         android:layout_height="50dp"
@@ -59,7 +59,7 @@
         android:layout_marginTop="50dp"
         android:textColor="@color/white"
         android:textSize="18sp"
-        android:background="@drawable/custom_button_background"
+        android:background="@drawable/button_background"
         android:layout_below="@id/list_search_history" />
 
         <!-- 其他底部按钮可以在这里添加，与主页布局类似 -->

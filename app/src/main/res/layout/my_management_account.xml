@@ -60,32 +60,14 @@
 
                 <ImageView
                     android:id="@+id/profile_image"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
+                    android:layout_width="125dp"
+                    android:layout_height="113dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="0dp"
                     android:background="@drawable/circle_border"
                     android:padding="4dp"
-                    android:src="@drawable/logo2"/>
+                    android:src="@drawable/logo3" />
 
-                <TextView
-                    android:id="@+id/user_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="8dp"
-                    android:textColor="#000000"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/email_address"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="8dp"
-                    android:textColor="#778899"
-                    android:textSize="16sp" />
             </LinearLayout>
         </LinearLayout>
 
@@ -101,7 +83,7 @@
         android:paddingVertical="5dp">
 
         <!-- 编辑资料按钮 -->
-        <Button
+        <android.widget.Button
             android:id="@+id/edit_button"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
@@ -116,7 +98,7 @@
             android:textSize="18sp" />
 
         <!-- 离线翻译按钮 -->
-        <Button
+        <android.widget.Button
             android:id="@+id/offline_translation_button"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
@@ -131,7 +113,7 @@
             android:textSize="18sp" />
 
         <!-- 隐私设置按钮 -->
-        <Button
+        <android.widget.Button
             android:id="@+id/privacy_settings_button"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
@@ -146,7 +128,7 @@
             android:textSize="18sp" />
 
         <!-- 选择语言按钮 -->
-        <Button
+        <android.widget.Button
             android:id="@+id/select_language_button"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
@@ -161,7 +143,7 @@
             android:textSize="18sp" />
 
         <!-- 投诉建议按钮 -->
-        <Button
+        <android.widget.Button
             android:id="@+id/feedback_button"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
@@ -176,7 +158,7 @@
             android:textSize="18sp" />
 
         <!-- 退出账号按钮 -->
-        <Button
+        <android.widget.Button
             android:id="@+id/logout_button"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
