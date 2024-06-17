@@ -1,5 +1,6 @@
 package com.example.translationapp;
 
+import android.content.ClipData;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
+import android.content.ClipboardManager;
 import androidx.appcompat.app.AppCompatActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -90,13 +92,23 @@ public class HistoryActivity extends AppCompatActivity {
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, historyData);
         listSearchHistory.setAdapter(adapter);
 
-        // 设置列表项点击事件
         listSearchHistory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // 处理列表项点击事件
+                // 获取点击的项
                 String clickedItem = historyData.get(position);
-                Toast.makeText(HistoryActivity.this, "Clicked on: " + clickedItem, Toast.LENGTH_SHORT).show();
+
+                // 创建一个ClipData对象并添加点击的项
+                ClipData clip = ClipData.newPlainText("simple text", clickedItem);
+
+                // 获取系统剪贴板服务
+                ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+
+                // 将ClipData设置到剪贴板
+                clipboard.setPrimaryClip(clip);
+
+                // 显示复制成功的提示
+                Toast.makeText(HistoryActivity.this, "Copied to clipboard: " + clickedItem, Toast.LENGTH_SHORT).show();
             }
         });
 
