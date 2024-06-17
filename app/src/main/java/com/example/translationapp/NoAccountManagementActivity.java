@@ -8,13 +8,11 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 
 import com.example.translationapp.R;
 
 public class NoAccountManagementActivity extends AppCompatActivity {
 
-    private CardView cardViewWithLogButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,12 +32,7 @@ public class NoAccountManagementActivity extends AppCompatActivity {
         LinearLayout myButton = findViewById(R.id.my_button);
 
         // 为首页按钮设置点击事件，可以跳转到首页
-        homeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                redirectToHomeActivity();
-            }
-        });
+        homeButton.setOnClickListener(v -> redirectToHomeActivity());
 
         // 为其他按钮设置点击事件，未登录时不能跳转
         setUnauthenticatedButtonClickListener(voiceButton, cameraButton, historyButton, myButton);
@@ -47,12 +40,9 @@ public class NoAccountManagementActivity extends AppCompatActivity {
 
     private void setUnauthenticatedButtonClickListener(LinearLayout... buttons) {
         for (LinearLayout button : buttons) {
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // 显示未登录提示
-                    Toast.makeText(NoAccountManagementActivity.this, "您尚未登录，请先登录!", Toast.LENGTH_SHORT).show();
-                }
+            button.setOnClickListener(v -> {
+                // 显示未登录提示
+                Toast.makeText(NoAccountManagementActivity.this, "您尚未登录，请先登录!", Toast.LENGTH_SHORT).show();
             });
         }
     }
@@ -67,12 +57,9 @@ public class NoAccountManagementActivity extends AppCompatActivity {
 
     // 设置登录按钮的点击事件
     private void setupLoginButton(Button loginButton) {
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // 调用跳转到登录界面的函数
-                redirectToLoginActivity();
-            }
+        loginButton.setOnClickListener(v -> {
+            // 调用跳转到登录界面的函数
+            redirectToLoginActivity();
         });
     }
 
