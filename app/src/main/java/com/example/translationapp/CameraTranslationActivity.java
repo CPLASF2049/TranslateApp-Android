@@ -29,6 +29,7 @@ public class CameraTranslationActivity extends AppCompatActivity {
     private ImageView imgSelectedPhoto;
     private Button btnSubmitTranslation;
     private ImageButton btnCapture, btnGallery;
+    private Bitmap imageBitmap = null;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -76,7 +77,7 @@ public class CameraTranslationActivity extends AppCompatActivity {
         LinearLayout myButton = findViewById(R.id.my_button);
         LinearLayout cameraButton = findViewById(R.id.camera_button);
 
-// 为首页按钮设置点击事件
+        // 为首页按钮设置点击事件
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -135,8 +136,6 @@ public class CameraTranslationActivity extends AppCompatActivity {
             return; // 如果结果不是RESULT_OK，则直接返回
         }
 
-        Bitmap imageBitmap = null;
-
         if (requestCode == REQUEST_IMAGE_CAPTURE) {
             // 从相机Intent的extras中获取Bitmap
             Bundle extras = data.getExtras();
@@ -167,7 +166,14 @@ public class CameraTranslationActivity extends AppCompatActivity {
     }
 
     private void submitTranslation() {
-        // 可以在这里添加将图片或文本发送到翻译服务的代码
+        // 创建Intent对象，指向CameraRecognitionActivity
+        Intent intent = new Intent(this, CameraRecognitionActivity.class);
+
+        // 将Bitmap对象作为额外数据传递
+        intent.putExtra("imageBitmap", imageBitmap);
+
+        // 启动CameraRecognitionActivity
+        startActivity(intent);
     }
 
 }
