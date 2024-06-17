@@ -92,7 +92,7 @@
             android:drawableLeft="@drawable/ic_edit"
             android:drawableRight="@drawable/ic_to"
             android:drawablePadding="16dp"
-            android:gravity="center_vertical"
+            android:gravity="center"
             android:padding="8dp"
             android:text="编辑资料"
             android:textSize="18sp" />
@@ -107,7 +107,7 @@
             android:drawableLeft="@drawable/ic_download"
             android:drawableRight="@drawable/ic_to"
             android:drawablePadding="16dp"
-            android:gravity="center_vertical"
+            android:gravity="center"
             android:padding="8dp"
             android:text="离线翻译"
             android:textSize="18sp" />
@@ -122,7 +122,7 @@
             android:drawableLeft="@drawable/ic_personalset"
             android:drawableRight="@drawable/ic_to"
             android:drawablePadding="16dp"
-            android:gravity="center_vertical"
+            android:gravity="center"
             android:padding="8dp"
             android:text="隐私设置"
             android:textSize="18sp" />
@@ -137,7 +137,7 @@
             android:drawableLeft="@drawable/ic_select"
             android:drawableRight="@drawable/ic_to"
             android:drawablePadding="16dp"
-            android:gravity="center_vertical"
+            android:gravity="center"
             android:padding="8dp"
             android:text="选择语言"
             android:textSize="18sp" />
@@ -152,7 +152,7 @@
             android:drawableLeft="@drawable/ic_feedback"
             android:drawableRight="@drawable/ic_to"
             android:drawablePadding="16dp"
-            android:gravity="center_vertical"
+            android:gravity="center"
             android:padding="8dp"
             android:text="投诉建议"
             android:textSize="18sp" />
@@ -167,7 +167,7 @@
             android:drawableLeft="@drawable/ic_exit"
             android:drawableRight="@drawable/ic_to"
             android:drawablePadding="16dp"
-            android:gravity="center_vertical"
+            android:gravity="center"
             android:padding="8dp"
             android:text="退出账号"
             android:textSize="18sp" />
