@@ -1,6 +1,6 @@
 <h1 align="center">API接口文档</h1>
 
-## 1 通用翻译接口
+## 1  通用翻译接口
 
 ### 接口API:
 
@@ -110,7 +110,7 @@ http://api.fanyi.baidu.com/api/trans/vip/translate?q=apple&from=en&to=zh&appid=2
 |   芬兰语   |   fin    |    捷克语   |    cs    | 罗马尼亚语 |    rom    |
 |  繁体中文  |   cht    |    越南语   |    vie   |            |           |
 
-## 2 语音识别接口
+## 2  语音识别接口
 
 ### 接口API:
 
@@ -230,7 +230,7 @@ http://api.fanyi.baidu.com/api/trans/vip/translate?q=apple&from=en&to=zh&appid=2
 }
 ```
 
-## 3 图像识别接口
+## 3  图像识别接口
 
 ### 接口API:
 
